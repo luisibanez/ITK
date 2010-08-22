@@ -15,8 +15,8 @@ MAKE_DIRECTORY(${ITK_DOWNLOADED_INPUT_DATA_DIR})
 
 INCLUDE(itkGetTestingData)
 
+FIND_FILE(MIDASdatabase midas.db)
 SET(MIDASappname midascli)
-SET(MIDASdatabase C:/Julien/Workspace/MIDAScpp-bin/midas.db)
 SET(MIDASurl http://www.insight-journal.org/midas/api/rest)
 
 
