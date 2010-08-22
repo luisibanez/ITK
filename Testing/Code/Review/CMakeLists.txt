@@ -2448,7 +2448,7 @@ ADD_TEST(itkJPEG2000Test03  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${TEMP}/Br
 SET_TESTS_PROPERTIES( itkJPEG2000Test03 PROPERTIES DEPENDS itkJPEG2000Test00 )
 
 ADD_TEST(itkJPEG2000Test04  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
-  "${ITK_DOWNLOADED_DATA_DIR}/Insight Toolkit/Testing/Baselines/Algorithms/itkNarrowBandCurvesLevelSetImageFilterTest/itkNarrowBandCurvesLevelSetImageFilterTest.png"
+  "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/Bretagne0.j2k/Bretagne0.j2k"
   ${TEMP}/Bretagne0_01.png )
 
 #
