@@ -9,15 +9,14 @@ IF(ITK_CSWIG_JAVA)
 ENDIF(ITK_CSWIG_JAVA)
 
 MAKE_DIRECTORY(${ITKTesting_BINARY_DIR}/Temporary)
-MAKE_DIRECTORY(${ITKTesting_BINARY_DIR}/Temporary/Data)
-SET(ITK_DOWNLOADED_INPUT_DATA_DIR ${ITKTesting_BINARY_DIR}/Temporary/Data/Input)
-MAKE_DIRECTORY(${ITK_DOWNLOADED_INPUT_DATA_DIR})
+SET(ITK_DOWNLOADED_DATA_DIR ${ITKTesting_BINARY_DIR}/Temporary/Data)
+MAKE_DIRECTORY(${ITK_DOWNLOADED_DATA_DIR})
 
 INCLUDE(itkGetTestingData)
 
-FIND_FILE(MIDASdatabase midas.db)
+SET(MIDASdatabase ${ITK_DOWNLOADED_DATA_DIR}/midas.db)
 SET(MIDASappname midascli)
-SET(MIDASurl http://www.insight-journal.org/midas/api/rest)
+SET(MIDASurl http://midas.kitware.com/api/rest)
 
 
 IF(ITK_BINARY_DIR)
