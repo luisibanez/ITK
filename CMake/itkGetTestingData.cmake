@@ -13,12 +13,9 @@ macro( get_testing_data TEST_NAME DESTINATION_DIR PATH_TO_ITEM_OR_BITSTREAM ) #T
 
   foreach( test_download_data ${PATH_TO_ITEM_OR_BITSTREAM} )                  #The variable takes the value of the different items
 
-    add_test( ${TEST_NAME}_download_data_${MCN}_${DIN}
+    add_test( ${TEST_NAME}_${MCN}_${DIN}
       ${MIDAScli_EXECUTABLE} --database ${MIDASdatabase} pull -d ${DESTINATION_DIR}  #pulling the data into the destination directory
-       -p -r ${test_download_data} ${MIDASurl} )
-
-    set_property( TEST ${TEST_NAME} APPEND PROPERTY                           #The main test (TEST_NAME) depends on each download data test (TEST_NAME_downlad_data_MCN_DIN)
-      DEPENDS ${TEST_NAME}_download_data_${MCN}_${DIN} )
+       -r -i ${test_download_data} ${MIDASurl} )
 
     math( EXPR DIN "${DIN}+1" )                                               #Each time the macro is called, MCN is increased by 1
 
