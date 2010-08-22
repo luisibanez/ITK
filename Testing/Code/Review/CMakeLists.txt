@@ -2431,7 +2431,38 @@ ADD_TEST(itkMRCImageIOTest ${REVIEW_TESTS5} itkMRCImageIOTest ${TEMP})
 ADD_TEST(itkVTKImageIO2Test ${REVIEW_TESTS5} itkVTKImageIO2Test ${TEMP})
 
 
-ADD_TEST(itkJPEG2000Test00
+ADD_TEST(itkJPEG2000Test00  ${REVIEW_TESTS5} itkJPEG2000ImageIOFactoryTest01 )
+ADD_TEST(itkJPEG2000Test01  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest00 )
+
+FUNCTION(ADD_JP2TEST  TESTID MIDASITEMID  FILEID)
+  ADD_TEST(itkJPEG2000Test${TESTID}  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
+    "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/${MIDASITEMID}/${FILEID}"
+    ${TEMP}/${FILEID}.png )
+ENDFUNCTION()
+
+ADD_JP2TEST( 02 JP2TestCodeStreams file1.jp2 )
+ADD_JP2TEST( 03 JP2TestCodeStreams file2.jp2 )
+ADD_JP2TEST( 04 JP2TestCodeStreams file3.jp2 )
+ADD_JP2TEST( 05 JP2TestCodeStreams file4.jp2 )
+ADD_JP2TEST( 06 JP2TestCodeStreams file5.jp2 )
+ADD_JP2TEST( 07 JP2TestCodeStreams file6.jp2 )
+ADD_JP2TEST( 08 JP2TestCodeStreams file7.jp2 )
+ADD_JP2TEST( 09 JP2TestCodeStreams file8.jp2 )
+ADD_JP2TEST( 10 JP2TestCodeStreams file9.jp2 )
+
+# tests for reading 8-bit single component data
+ADD_TEST(itkJPEG2000Test11  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
+  "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/Bretagne0.j2k/Bretagne0.j2k"
+  ${TEMP}/Bretagne0_01.png )
+
+# tests for reading 3 component data with 8bits per component
+ADD_TEST(itkJPEG2000Test12  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${INPUTDATA}/Bretagne1.j2k ${TEMP}/Bretagne1_01.png )
+ADD_TEST(itkJPEG2000Test13  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${INPUTDATA}/Cevennes2.jp2 ${TEMP}/Cevennes2_01.png )
+
+# tests for writing 3 component data with 8bits per component
+ADD_TEST(itkJPEG2000Test14  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${TEMP}/Bretagne1_RegionTest01.tif ${TEMP}/Bretagne1_02.j2k )
+
+ADD_TEST(itkJPEG2000Test15
   ${REVIEW_TESTS5} itkJPEG2000ImageIORegionOfInterest
   ${INPUTDATA}/Bretagne1.j2k
   ${TEMP}/Bretagne1_RegionTest01.tif
@@ -2439,17 +2470,7 @@ ADD_TEST(itkJPEG2000Test00
   320 240
   )
 
-# tests for reading 3 component data with 8bits per component
-ADD_TEST(itkJPEG2000Test01  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${INPUTDATA}/Bretagne1.j2k ${TEMP}/Bretagne1_01.png )
-ADD_TEST(itkJPEG2000Test02  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${INPUTDATA}/Cevennes2.jp2 ${TEMP}/Cevennes2_01.png )
 
-# tests for writing 3 component data with 8bits per component
-ADD_TEST(itkJPEG2000Test03  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${TEMP}/Bretagne1_RegionTest01.tif ${TEMP}/Bretagne1_02.j2k )
-SET_TESTS_PROPERTIES( itkJPEG2000Test03 PROPERTIES DEPENDS itkJPEG2000Test00 )
-
-ADD_TEST(itkJPEG2000Test04  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
-  "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/Bretagne0.j2k/Bretagne0.j2k"
-  ${TEMP}/Bretagne0_01.png )
 
 #
 # Functor colormaps
