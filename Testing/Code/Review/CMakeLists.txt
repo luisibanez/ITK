@@ -2447,9 +2447,9 @@ ADD_TEST(itkJPEG2000Test02  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${INPUTDAT
 ADD_TEST(itkJPEG2000Test03  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${TEMP}/Bretagne1_RegionTest01.tif ${TEMP}/Bretagne1_02.j2k )
 SET_TESTS_PROPERTIES( itkJPEG2000Test03 PROPERTIES DEPENDS itkJPEG2000Test00 )
 
-SET(ITK_JPEG2000_BRETAGNE_0 "Insight Toolkit/Testing/Input/Images/Grayscale/2D/CellsFluorescence2.png")
-ADD_TEST(itkJPEG2000Test04  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01 ${ITK_DOWNLOADED_INPUT_DATA_DIR}/${ITK_JPEG2000_BRETAGNE_0} ${TEMP}/Bretagne0_01.png )
-GET_TESTING_DATA(itkJPEG2000Test04 ${ITK_DOWNLOADED_INPUT_DATA_DIR} ${ITK_JPEG2000_BRETAGNE_0})
+ADD_TEST(itkJPEG2000Test04  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
+  "${ITK_DOWNLOADED_DATA_DIR}/Insight Toolkit/Testing/Baselines/Algorithms/itkNarrowBandCurvesLevelSetImageFilterTest/itkNarrowBandCurvesLevelSetImageFilterTest.png"
+  ${TEMP}/Bretagne0_01.png )
 
 #
 # Functor colormaps
