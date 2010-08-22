@@ -15,7 +15,7 @@ macro( get_testing_data TEST_NAME DESTINATION_DIR PATH_TO_ITEM_OR_BITSTREAM ) #T
 
     add_test( ${TEST_NAME}_${MCN}_${DIN}
       ${MIDAScli_EXECUTABLE} --database ${MIDASdatabase} pull -d ${DESTINATION_DIR}  #pulling the data into the destination directory
-       -r -i ${test_download_data} ${MIDASurl} )
+       -r -C ${test_download_data} ${MIDASurl} )
 
     math( EXPR DIN "${DIN}+1" )                                               #Each time the macro is called, MCN is increased by 1
 
