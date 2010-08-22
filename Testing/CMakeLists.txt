@@ -9,6 +9,17 @@ IF(ITK_CSWIG_JAVA)
 ENDIF(ITK_CSWIG_JAVA)
 
 MAKE_DIRECTORY(${ITKTesting_BINARY_DIR}/Temporary)
+MAKE_DIRECTORY(${ITKTesting_BINARY_DIR}/Temporary/Data)
+SET(ITK_DOWNLOADED_INPUT_DATA_DIR ${ITKTesting_BINARY_DIR}/Temporary/Data/Input)
+MAKE_DIRECTORY(${ITK_DOWNLOADED_INPUT_DATA_DIR})
+
+INCLUDE(itkGetTestingData)
+
+SET(MIDASappname midascli)
+SET(MIDASdatabase C:/Julien/Workspace/MIDAScpp-bin/midas.db)
+SET(MIDASurl http://www.insight-journal.org/midas/api/rest)
+
+
 IF(ITK_BINARY_DIR)
   # We are building inside the tree.
   SUBDIRS(Code)
