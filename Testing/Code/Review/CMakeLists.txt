@@ -2434,35 +2434,41 @@ ADD_TEST(itkVTKImageIO2Test ${REVIEW_TESTS5} itkVTKImageIO2Test ${TEMP})
 ADD_TEST(itkJPEG2000Test00  ${REVIEW_TESTS5} itkJPEG2000ImageIOFactoryTest01 )
 ADD_TEST(itkJPEG2000Test01  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest00 )
 
-FUNCTION(ADD_JP2TEST  TESTID MIDASITEMID  FILEID)
+FUNCTION(ADD_JP2TEST  TESTID MIDASITEMID  INPUTFILEID OUTPUTFILEID)
   ADD_TEST(itkJPEG2000Test${TESTID}  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
-    "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/${MIDASITEMID}/${FILEID}"
-    ${TEMP}/${FILEID}.png )
+    "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/${MIDASITEMID}/${INPUTFILEID}"
+    ${TEMP}/${OUTPUTFILEID} )
 ENDFUNCTION()
 
-ADD_JP2TEST( 02 JP2TestCodeStreams file1.jp2 )
-ADD_JP2TEST( 03 JP2TestCodeStreams file2.jp2 )
-ADD_JP2TEST( 04 JP2TestCodeStreams file3.jp2 )
-ADD_JP2TEST( 05 JP2TestCodeStreams file4.jp2 )
-ADD_JP2TEST( 06 JP2TestCodeStreams file5.jp2 )
-ADD_JP2TEST( 07 JP2TestCodeStreams file6.jp2 )
-ADD_JP2TEST( 08 JP2TestCodeStreams file7.jp2 )
-ADD_JP2TEST( 09 JP2TestCodeStreams file8.jp2 )
-ADD_JP2TEST( 10 JP2TestCodeStreams file9.jp2 )
+ADD_JP2TEST( 02 JP2TestCodeStreams file1.jp2 file1_jp2.png )
+ADD_JP2TEST( 03 JP2TestCodeStreams file2.jp2 file2_jp2.png )
+ADD_JP2TEST( 04 JP2TestCodeStreams file3.jp2 file3_jp2.png )
+ADD_JP2TEST( 05 JP2TestCodeStreams file4.jp2 file4_jp2.png )
+ADD_JP2TEST( 06 JP2TestCodeStreams file5.jp2 file5_jp2.png )
+ADD_JP2TEST( 07 JP2TestCodeStreams file6.jp2 file6_jp2.png )
+ADD_JP2TEST( 08 JP2TestCodeStreams file7.jp2 file7_jp2.png )
+ADD_JP2TEST( 09 JP2TestCodeStreams file8.jp2 file8_jp2.png )
+ADD_JP2TEST( 10 JP2TestCodeStreams file9.jp2 file9_jp2.png )
+
+
+FUNCTION(ADD_JPEG_READ_WRITE_TEST  TESTID MIDASITEMID  INPUTFILEID OUTPUTFILEID)
+  ADD_TEST(itkJPEG2000Test${TESTID}  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
+    "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/${MIDASITEMID}/${INPUTFILEID}"
+    ${TEMP}/${OUTPUTFILEID} )
+ENDFUNCTION()
 
 # tests for reading 8-bit single component data
-ADD_TEST(itkJPEG2000Test11  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest01
-  "${ITK_DOWNLOADED_DATA_INPUT_DIR}/Images/Grayscale/2D/Bretagne0.j2k/Bretagne0.j2k"
-  ${TEMP}/Bretagne0_01.png )
+ADD_JPEG_READ_WRITE_TEST( 11 J2KSampleFiles  Bretagne0.j2k  Bretagne0_j2k.png )
 
 # tests for reading 3 component data with 8bits per component
-ADD_TEST(itkJPEG2000Test12  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${INPUTDATA}/Bretagne1.j2k ${TEMP}/Bretagne1_01.png )
-ADD_TEST(itkJPEG2000Test13  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${INPUTDATA}/Cevennes2.jp2 ${TEMP}/Cevennes2_01.png )
+ADD_JPEG_READ_WRITE_TEST( 12 J2KSampleFiles  Bretagne1.j2k  Bretagne1_j2k.png )
+ADD_JPEG_READ_WRITE_TEST( 13 J2KSampleFiles  Cevennes2.jp2  Cevennes2_jp2.png )
 
 # tests for writing 3 component data with 8bits per component
-ADD_TEST(itkJPEG2000Test14  ${REVIEW_TESTS5} itkJPEG2000ImageIOTest03 ${TEMP}/Bretagne1_RegionTest01.tif ${TEMP}/Bretagne1_02.j2k )
+ADD_JPEG_READ_WRITE_TEST( 14 J2KSampleFiles  Bretagne1.tif  Bretagne1_tif.j2k )
+ADD_JPEG_READ_WRITE_TEST( 15 J2KSampleFiles  Cevennes2.bmp  Cevennes2_bmp.j2k )
 
-ADD_TEST(itkJPEG2000Test15
+ADD_TEST(itkJPEG2000Test16
   ${REVIEW_TESTS5} itkJPEG2000ImageIORegionOfInterest
   ${INPUTDATA}/Bretagne1.j2k
   ${TEMP}/Bretagne1_RegionTest01.tif
