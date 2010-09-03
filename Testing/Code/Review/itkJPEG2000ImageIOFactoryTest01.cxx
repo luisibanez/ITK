@@ -18,14 +18,11 @@
 #pragma warning ( disable : 4786 )
 #endif
 
-#ifdef __BORLANDC__
-#define ITK_LEAN_AND_MEAN
-#endif
 
 #include "itkJPEG2000ImageIOFactory.h"
 
 
-int itkJPEG2000ImageIOFactoryTest01( int argc, char * argv[] )
+int itkJPEG2000ImageIOFactoryTest01( int /*argc */, char * /*argv*/[] )
 {
   //  Register the factory
   itk::JPEG2000ImageIOFactory::RegisterOneFactory();

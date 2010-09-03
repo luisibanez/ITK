@@ -1,5 +1,5 @@
 # This is the root ITK CMakeLists file.
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.2)
 IF(COMMAND CMAKE_POLICY)
   CMAKE_POLICY(SET CMP0003 NEW)
 ENDIF(COMMAND CMAKE_POLICY)
@@ -150,8 +150,6 @@ ENDIF(NOT ITK_NO_LIBRARY_VERSION)
 OPTION(ITK_LEGACY_REMOVE "Remove all legacy code completely." OFF)
 OPTION(ITK_LEGACY_SILENT "Silence all legacy code messages." OFF)
 MARK_AS_ADVANCED(ITK_LEGACY_REMOVE ITK_LEGACY_SILENT)
-
-SET(GDCM_LEGACY_SILENT ${ITK_LEGACY_SILENT})
 
 #-----------------------------------------------------------------------------
 # ITK build patented algorithms
@@ -381,6 +379,7 @@ ENDIF(ITK_USE_SYSTEM_VXL)
 # Provide options to use system versions of third-party libraries.
 ITK_THIRD_PARTY_OPTION(ZLIB zlib)
 ITK_THIRD_PARTY_OPTION(PNG  png)
+ITK_THIRD_PARTY_OPTION(JPEG jpeg)
 ITK_THIRD_PARTY_OPTION(TIFF tiff)
 
 OPTION(ITK_USE_LIBXML2 "Use LIBXML2." OFF)
@@ -710,7 +709,8 @@ IF(ITK_USE_SYSTEM_GDCM)
   IF(GDCM_FOUND)
     INCLUDE(${GDCM_USE_FILE})
     IF( "${GDCM_MAJOR_VERSION}" LESS 2.0 )
-      SET(ITK_GDCM_LIBRARIES gdcm)
+      #SET(ITK_GDCM_LIBRARIES gdcm)
+      message(FATAL_ERROR "Unahndled")
     ELSE( "${GDCM_MAJOR_VERSION}" LESS 2.0 )
       IF(ITK_USE_SYSTEM_TIFF)
         # Long story short. ITKIO is NOT linked to itkjpeg8 explicitely. itkjpeg8 dep is being
@@ -725,7 +725,7 @@ IF(ITK_USE_SYSTEM_GDCM)
         # 1. Have FindTIFF link to jpeg8 (which would be the right thing to do for static system libtiff)
         # 2. Have ITKIO explicitely link to itkjpeg8
         # For the time being let's explicitely pull the dep to itkjpeg8 ourselves.
-        SET(ITK_GDCM_LIBRARIES gdcmMSFF itkjpeg8)
+        SET(ITK_GDCM_LIBRARIES gdcmMSFF itkjpeg)
       ELSE(ITK_USE_SYSTEM_TIFF)
         SET(ITK_GDCM_LIBRARIES gdcmMSFF)
       ENDIF(ITK_USE_SYSTEM_TIFF)
@@ -734,9 +734,9 @@ IF(ITK_USE_SYSTEM_GDCM)
     MESSAGE(FATAL_ERROR "Must set GDCM_DIR for ITK_USE_SYSTEM_GDCM.")
   ENDIF(GDCM_FOUND)
 ELSE(ITK_USE_SYSTEM_GDCM)
-  SET(ITK_GDCM_LIBRARIES itkgdcm)
+  SET(ITK_GDCM_LIBRARIES gdcmMSFF)
   SET(GDCM_INCLUDE_DIR
-    ${ITK_SOURCE_DIR}/Utilities/gdcm/src
+    ${ITK_SOURCE_DIR}/Utilities/gdcm/Source/MediaStorageAndFileFormat
     )
 ENDIF(ITK_USE_SYSTEM_GDCM)
 

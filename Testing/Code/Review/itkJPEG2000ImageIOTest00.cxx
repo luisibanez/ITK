@@ -18,14 +18,11 @@
 #pragma warning ( disable : 4786 )
 #endif
 
-#ifdef __BORLANDC__
-#define ITK_LEAN_AND_MEAN
-#endif
 
 #include "itkJPEG2000ImageIO.h"
 
 
-int itkJPEG2000ImageIOTest00( int argc, char * argv[] )
+int itkJPEG2000ImageIOTest00( int /*argc */, char * /*argv*/[] )
 {
   itk::JPEG2000ImageIO::Pointer imageIO = itk::JPEG2000ImageIO::New();
 
