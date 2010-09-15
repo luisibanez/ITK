@@ -693,6 +693,8 @@ JPEGFixupTags(TIFF* tif)
       (tif->tif_dir.td_planarconfig==PLANARCONFIG_CONTIG)&&
       (tif->tif_dir.td_samplesperpixel==3))
     JPEGFixupTagsSubsampling(tif);
+  #else
+    (void)tif;
   #endif
   return(1);
 }

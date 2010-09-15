@@ -138,7 +138,6 @@ static int
 _TIFFPrettyPrintField(TIFF* tif, FILE* fd, uint32 tag,
           uint32 value_count, void *raw_data)
 {
-  TIFFDirectory *td = &tif->tif_dir;
 
   switch (tag)
   {
@@ -526,12 +525,12 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
   ** Custom tag support.
   */
   {
-    int  i;
+    int  t_i;
     short count;
 
     count = (short) TIFFGetTagListCount(tif);
-    for(i = 0; i < count; i++) {
-      uint32 tag = TIFFGetTagListEntry(tif, i);
+    for(t_i = 0; t_i < count; t_i++) {
+      uint32 tag = TIFFGetTagListEntry(tif, t_i);
       const TIFFField *fip;
       uint32 value_count;
       int mem_alloc = 0;
