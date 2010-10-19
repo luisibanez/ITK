@@ -1,10 +1,10 @@
-PROJECT(ITKTIFF)
+project(ITKTIFF)
 
-INCLUDE_DIRECTORIES(BEFORE ${ITKTIFF_SOURCE_DIR})
-INCLUDE_DIRECTORIES(BEFORE ${ITKTIFF_BINARY_DIR})
+include_directories(BEFORE ${ITKTIFF_SOURCE_DIR})
+include_directories(BEFORE ${ITKTIFF_BINARY_DIR})
 
 # library object files common to compression and decompression
-SET(common_SRCS
+set(common_SRCS
   tif_aux.c
   tif_close.c
   tif_codec.c
@@ -38,125 +38,125 @@ SET(common_SRCS
   tif_jpeg.c
   )
 
-ADD_DEFINITIONS(-DJPEG_SUPPORT -DZIP_SUPPORT -D_HPUX_SOURCE)
+add_definitions(-DJPEG_SUPPORT -DZIP_SUPPORT -D_HPUX_SOURCE)
 
-IF(WIN32)
-  IF(BUILD_SHARED_LIBS)
-    SET(TIFFDLL 1)
-  ELSE(BUILD_SHARED_LIBS)
-    SET(TIFFSTATIC 1)
-  ENDIF(BUILD_SHARED_LIBS)
-ENDIF(WIN32)
+if(WIN32)
+  if(BUILD_SHARED_LIBS)
+    set(TIFFDLL 1)
+  else(BUILD_SHARED_LIBS)
+    set(TIFFSTATIC 1)
+  endif(BUILD_SHARED_LIBS)
+endif(WIN32)
 
-IF(NOT UNIX)
-  ADD_DEFINITIONS( -DTIF_PLATFORM_CONSOLE )
-  SET(common_SRCS ${common_SRCS} tif_win32.c tif_fax3sm.c)
-  IF(NOT MINGW)
-    SET(common_SRCS ${common_SRCS} itktiff.def)
-  ENDIF(NOT MINGW)
-ELSE (NOT UNIX)
-  SET(TIFF_RIGHT_VERSION 1)
+if(NOT UNIX)
+  add_definitions( -DTIF_PLATFORM_CONSOLE )
+  set(common_SRCS ${common_SRCS} tif_win32.c tif_fax3sm.c)
+  if(NOT MINGW)
+    set(common_SRCS ${common_SRCS} itktiff.def)
+  endif(NOT MINGW)
+else (NOT UNIX)
+  set(TIFF_RIGHT_VERSION 1)
 
-  SET(common_SRCS ${common_SRCS} tif_unix.c tif_fax3sm.c)
-  SET_SOURCE_FILES_PROPERTIES(tif_fax3sm.c GENERATED)
-  ADD_EXECUTABLE(itkmkg3states mkg3states.c)
-  IF(CYGWIN)
-    SET(EXE_EXTENSION .exe)
-  ENDIF(CYGWIN)
-  ADD_CUSTOM_COMMAND(
+  set(common_SRCS ${common_SRCS} tif_unix.c tif_fax3sm.c)
+  set_source_files_properties(tif_fax3sm.c GENERATED)
+  add_executable(itkmkg3states mkg3states.c)
+  if(CYGWIN)
+    set(EXE_EXTENSION .exe)
+  endif(CYGWIN)
+  add_custom_command(
     OUTPUT ${ITKTIFF_BINARY_DIR}/tif_fax3sm.c
     COMMAND ${EXECUTABLE_OUTPUT_PATH}/${CMAKE_CFG_INTDIR}/itkmkg3states${EXE_EXTENSION}
     ARGS -c const ${ITKTIFF_BINARY_DIR}/tif_fax3sm.c
     DEPENDS itkmkg3states
     )
-ENDIF (NOT UNIX)
+endif (NOT UNIX)
 
-INCLUDE (${CMAKE_ROOT}/Modules/CheckIncludeFiles.cmake)
-INCLUDE(${CMAKE_ROOT}/Modules/CheckSymbolExists.cmake)
-INCLUDE(${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)
+include (${CMAKE_ROOT}/Modules/CheckIncludeFiles.cmake)
+include(${CMAKE_ROOT}/Modules/CheckSymbolExists.cmake)
+include(${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)
 
 # Check if header file exists and add it to the list.
-CHECK_INCLUDE_FILES("assert.h" HAVE_ASSERT_H)
-CHECK_INCLUDE_FILES("dlfcn.h" HAVE_DLFCN_H)
-CHECK_INCLUDE_FILES("fcntl.h" HAVE_FCNTL_H)
-CHECK_INCLUDE_FILES("inttypes.h" HAVE_INTTYPES_H)
-CHECK_INCLUDE_FILES("limits.h" HAVE_LIMITS_H)
-CHECK_INCLUDE_FILES("malloc.h" HAVE_MALLOC_H)
-CHECK_INCLUDE_FILES("memory.h" HAVE_MEMORY_H)
-CHECK_INCLUDE_FILES("stdint.h" HAVE_STDINT_H)
-CHECK_INCLUDE_FILES("stdlib.h" HAVE_STDLIB_H)
-CHECK_INCLUDE_FILES("string.h" HAVE_STRING_H)
-CHECK_INCLUDE_FILES("strings.h" HAVE_STRINGS_H)
-CHECK_INCLUDE_FILES("sys/stat.h" HAVE_SYS_STAT_H)
-CHECK_INCLUDE_FILES("sys/time.h" HAVE_SYS_TIME_H)
-CHECK_INCLUDE_FILES("sys/types.h" HAVE_SYS_TYPES_H)
-CHECK_INCLUDE_FILES("unistd.h" HAVE_UNISTD_H)
-CHECK_INCLUDE_FILES("windows.h" HAVE_WINDOWS_H)
-CHECK_INCLUDE_FILES("strings.h" HAVE_STRINGS_H)
-CHECK_INCLUDE_FILES("ieeefp.h" HAVE_IEEEFP_H)
+check_include_files("assert.h" HAVE_ASSERT_H)
+check_include_files("dlfcn.h" HAVE_DLFCN_H)
+check_include_files("fcntl.h" HAVE_FCNTL_H)
+check_include_files("inttypes.h" HAVE_INTTYPES_H)
+check_include_files("limits.h" HAVE_LIMITS_H)
+check_include_files("malloc.h" HAVE_MALLOC_H)
+check_include_files("memory.h" HAVE_MEMORY_H)
+check_include_files("stdint.h" HAVE_STDINT_H)
+check_include_files("stdlib.h" HAVE_STDLIB_H)
+check_include_files("string.h" HAVE_STRING_H)
+check_include_files("strings.h" HAVE_STRINGS_H)
+check_include_files("sys/stat.h" HAVE_SYS_STAT_H)
+check_include_files("sys/time.h" HAVE_SYS_TIME_H)
+check_include_files("sys/types.h" HAVE_SYS_TYPES_H)
+check_include_files("unistd.h" HAVE_UNISTD_H)
+check_include_files("windows.h" HAVE_WINDOWS_H)
+check_include_files("strings.h" HAVE_STRINGS_H)
+check_include_files("ieeefp.h" HAVE_IEEEFP_H)
 
-CHECK_FUNCTION_EXISTS(floor HAVE_FLOOR)
-CHECK_FUNCTION_EXISTS(getopt HAVE_GETOPT)
-CHECK_FUNCTION_EXISTS(isascii HAVE_ISASCII)
-CHECK_FUNCTION_EXISTS(memmove HAVE_MEMMOVE)
-CHECK_FUNCTION_EXISTS(memset HAVE_MEMSET)
-CHECK_FUNCTION_EXISTS(mmap HAVE_MMAP)
-CHECK_FUNCTION_EXISTS(pow HAVE_POW)
-CHECK_FUNCTION_EXISTS(sqrt HAVE_SQRT)
-CHECK_FUNCTION_EXISTS(strcasecmp HAVE_STRCASECMP)
-CHECK_FUNCTION_EXISTS(strchr HAVE_STRCHR)
-CHECK_FUNCTION_EXISTS(strrchr HAVE_STRRCHR)
-CHECK_FUNCTION_EXISTS(strstr HAVE_STRSTR)
-CHECK_FUNCTION_EXISTS(strtol HAVE_STRTOL)
-CHECK_FUNCTION_EXISTS(areroul HAVE_STRTOUL)
-
-
-INCLUDE(CheckTypeSize)
-
-CHECK_TYPE_SIZE("signed int" SIZEOF_SIGNED_INT)
-CHECK_TYPE_SIZE("unsigned int" SIZEOF_UNSIGNED_INT)
-CHECK_TYPE_SIZE("signed short" SIZEOF_SIGNED_SHORT)
-CHECK_TYPE_SIZE("unsigned short" SIZEOF_UNSIGNED_SHORT)
-CHECK_TYPE_SIZE("signed long" SIZEOF_SIGNED_LONG)
-CHECK_TYPE_SIZE("unsigned long" SIZEOF_UNSIGNED_LONG)
-CHECK_TYPE_SIZE("signed long long" SIZEOF_SIGNED_LONG_LONG)
-CHECK_TYPE_SIZE("unsigned long long" SIZEOF_UNSIGNED_LONG_LONG)
-CHECK_TYPE_SIZE("unsigned char *" SIZEOF_UNSIGNED_CHAR_P)
+check_function_exists(floor HAVE_FLOOR)
+check_function_exists(getopt HAVE_GETOPT)
+check_function_exists(isascii HAVE_ISASCII)
+check_function_exists(memmove HAVE_MEMMOVE)
+check_function_exists(memset HAVE_MEMSET)
+check_function_exists(mmap HAVE_MMAP)
+check_function_exists(pow HAVE_POW)
+check_function_exists(sqrt HAVE_SQRT)
+check_function_exists(strcasecmp HAVE_STRCASECMP)
+check_function_exists(strchr HAVE_STRCHR)
+check_function_exists(strrchr HAVE_STRRCHR)
+check_function_exists(strstr HAVE_STRSTR)
+check_function_exists(strtol HAVE_STRTOL)
+check_function_exists(areroul HAVE_STRTOUL)
 
 
-CONFIGURE_FILE(${ITKTIFF_SOURCE_DIR}/tiffDllConfig.h.in
+include(CheckTypeSize)
+
+check_type_size("signed int" SIZEOF_SIGNED_INT)
+check_type_size("unsigned int" SIZEOF_UNSIGNED_INT)
+check_type_size("signed short" SIZEOF_SIGNED_SHORT)
+check_type_size("unsigned short" SIZEOF_UNSIGNED_SHORT)
+check_type_size("signed long" SIZEOF_SIGNED_LONG)
+check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
+check_type_size("signed long long" SIZEOF_SIGNED_LONG_LONG)
+check_type_size("unsigned long long" SIZEOF_UNSIGNED_LONG_LONG)
+check_type_size("unsigned char *" SIZEOF_UNSIGNED_CHAR_P)
+
+
+configure_file(${ITKTIFF_SOURCE_DIR}/tiffDllConfig.h.in
   ${ITKTIFF_BINARY_DIR}/tiffDllConfig.h)
-CONFIGURE_FILE(${ITKTIFF_SOURCE_DIR}/tif_config.h.in
+configure_file(${ITKTIFF_SOURCE_DIR}/tif_config.h.in
   ${ITKTIFF_BINARY_DIR}/tif_config.h)
 
-ADD_LIBRARY(itktiff ${common_SRCS})
-TARGET_LINK_LIBRARIES(itktiff itkjpeg ${ITK_ZLIB_LIBRARIES} )
+add_library(itktiff ${common_SRCS})
+target_link_libraries(itktiff itkjpeg ${ITK_ZLIB_LIBRARIES} )
 
-IF(UNIX)
-  TARGET_LINK_LIBRARIES(itktiff -lm)
-ENDIF(UNIX)
+if(UNIX)
+  target_link_libraries(itktiff -lm)
+endif(UNIX)
 
 # Apply user-defined properties to the library target.
-IF(ITK_LIBRARY_PROPERTIES)
-  SET_TARGET_PROPERTIES(itktiff PROPERTIES ${ITK_LIBRARY_PROPERTIES})
-ENDIF(ITK_LIBRARY_PROPERTIES)
+if(ITK_LIBRARY_PROPERTIES)
+  set_target_properties(itktiff PROPERTIES ${ITK_LIBRARY_PROPERTIES})
+endif(ITK_LIBRARY_PROPERTIES)
 
-IF(NOT ITK_INSTALL_NO_LIBRARIES)
-  INSTALL(TARGETS itktiff
+if(NOT ITK_INSTALL_NO_LIBRARIES)
+  install(TARGETS itktiff
     RUNTIME DESTINATION ${ITK_INSTALL_BIN_DIR_CM24} COMPONENT RuntimeLibraries
     LIBRARY DESTINATION ${ITK_INSTALL_LIB_DIR_CM24} COMPONENT RuntimeLibraries
     ARCHIVE DESTINATION ${ITK_INSTALL_LIB_DIR_CM24} COMPONENT Development)
-ENDIF(NOT ITK_INSTALL_NO_LIBRARIES)
+endif(NOT ITK_INSTALL_NO_LIBRARIES)
 
-IF(ITK_USE_FLAT_DIRECTORY_INSTALL)
-  SET( ITK_INSTALL_INCLUDE_DIR_CM24_UTILITIES_TIFF ${ITK_INSTALL_INCLUDE_DIR_CM24})
-ELSE(ITK_USE_FLAT_DIRECTORY_INSTALL)
-  SET( ITK_INSTALL_INCLUDE_DIR_CM24_UTILITIES_TIFF ${ITK_INSTALL_INCLUDE_DIR_CM24}/Utilities/itktiff)
-ENDIF(ITK_USE_FLAT_DIRECTORY_INSTALL)
+if(ITK_USE_FLAT_DIRECTORY_INSTALL)
+  set( ITK_INSTALL_INCLUDE_DIR_CM24_UTILITIES_TIFF ${ITK_INSTALL_INCLUDE_DIR_CM24})
+else(ITK_USE_FLAT_DIRECTORY_INSTALL)
+  set( ITK_INSTALL_INCLUDE_DIR_CM24_UTILITIES_TIFF ${ITK_INSTALL_INCLUDE_DIR_CM24}/Utilities/itktiff)
+endif(ITK_USE_FLAT_DIRECTORY_INSTALL)
 
 
-IF(NOT ITK_INSTALL_NO_DEVELOPMENT)
-  INSTALL(FILES
+if(NOT ITK_INSTALL_NO_DEVELOPMENT)
+  install(FILES
     ${ITKTIFF_BINARY_DIR}/tiffDllConfig.h
     ${ITKTIFF_SOURCE_DIR}/tiffvers.h
     ${ITKTIFF_SOURCE_DIR}/itk_tiff_mangle.h
@@ -164,8 +164,8 @@ IF(NOT ITK_INSTALL_NO_DEVELOPMENT)
     ${ITKTIFF_SOURCE_DIR}/tiffio.h
     DESTINATION ${ITK_INSTALL_INCLUDE_DIR_CM24_UTILITIES_TIFF}
     COMPONENT Development)
-ENDIF(NOT ITK_INSTALL_NO_DEVELOPMENT)
+endif(NOT ITK_INSTALL_NO_DEVELOPMENT)
 
-IF(CMAKE_COMPILER_IS_GNUCXX)
-  SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-strict-aliasing")
-ENDIF(CMAKE_COMPILER_IS_GNUCXX)
+if(CMAKE_COMPILER_IS_GNUCXX)
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-strict-aliasing")
+endif(CMAKE_COMPILER_IS_GNUCXX)

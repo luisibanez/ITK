@@ -41,18 +41,6 @@
    machine */
 #define HAVE_IEEEFP 1
 
-/* Define to 1 if the system has the type `int64'. */
-#cmakedefine HAVE_INT64
-
-/* Define to 1 if the system has the type `int16'. */
-#cmakedefine HAVE_INT16
-
-/* Define to 1 if the system has the type `int32'. */
-#cmakedefine HAVE_INT32
-
-/* Define to 1 if the system has the type `int8'. */
-#cmakedefine HAVE_INT8
-
 /* Define to 1 if you have the <inttypes.h> header file. */
 #cmakedefine HAVE_INTTYPES_H @HAVE_INTTYPES_H@
 
@@ -137,16 +125,18 @@
 /* Define to 1 if you have the <windows.h> header file. */
 #cmakedefine HAVE_WINDOWS_H @HAVE_WINDOWS_H@
 
+#include <itksys/CPU.h>
+
 /* Native cpu byte order: 1 if big-endian (Motorola) or 0 if little-endian
    (Intel) */
-#ifdef CMAKE_WORDS_BIGENDIAN
+#if itksys_CPU_ENDIAN_ID == itksys_CPU_ENDIAN_ID_BIG
   #define HOST_BIGENDIAN 1
 #else
   #define HOST_BIGENDIAN 0
 #endif
 
 /* Set the native cpu bit order (FILLORDER_LSB2MSB or FILLORDER_MSB2LSB) */
-#ifdef CMAKE_WORDS_BIGENDIAN
+#if itksys_CPU_ENDIAN_ID == itksys_CPU_ENDIAN_ID_BIG
   #define HOST_FILLORDER FILLORDER_LSB2MSB
 #else
   #define HOST_FILLORDER FILLORDER_MSB2LSB
@@ -262,69 +252,55 @@
 /* Support ThunderScan 4-bit RLE algorithm */
 #cmakedefine THUNDER_SUPPORT
 
-/* Signed 16-bit type */
-#ifdef HAVE_INT16
-#define TIFF_INT16_T  int16_t
+/* sizeof(void*) */
+#if defined(__SIZEOF_POINTER__)
+# define TIFF_SIZEOF_DATA_PTR __SIZEOF_POINTER__
+#elif defined(_SIZE_PTR)
+# define TIFF_SIZEOF_DATA_PTR (_SIZE_PTR >> 3)
+#elif defined(_LP64) || defined(__LP64__) || defined(__64BIT__)
+# define TIFF_SIZEOF_DATA_PTR 8
+#elif defined(_ILP32)
+# define TIFF_SIZEOF_DATA_PTR 4
+#elif defined(_M_X64)   || defined(__ia64) \
+   || defined(__amd64)  || defined(__amd64__) \
+   || defined(__x86_64) || defined(__x86_64__) \
+   || defined(__sparcv9)
+# define TIFF_SIZEOF_DATA_PTR 8
 #else
-#define TIFF_INT16_T  signed short int
+# define TIFF_SIZEOF_DATA_PTR 4
 #endif
 
-/* Signed 32-bit type formatter */
-#undef TIFF_INT32_FORMAT
+#include <itksys/FundamentalType.h>
 
-/* Signed 32-bit type */
-#ifdef HAVE_INT32
-#define TIFF_INT32_T  int32_t
-#else
-#define TIFF_INT32_T  signed int
+/* Fixed-size integer types. */
+#define TIFF_INT8_T   itksysFundamentalType_Int8
+#define TIFF_UINT8_T  itksysFundamentalType_UInt8
+#define TIFF_INT16_T  itksysFundamentalType_Int16
+#define TIFF_UINT16_T itksysFundamentalType_UInt16
+#define TIFF_INT32_T  itksysFundamentalType_Int32
+#define TIFF_UINT32_T itksysFundamentalType_UInt32
+#define TIFF_INT64_T  itksysFundamentalType_Int64
+#define TIFF_UINT64_T itksysFundamentalType_UInt64
+#if itksys_SIZEOF_LONG == 8
+# define TIFF_UINT64_FORMAT "%lu"
+#elif itksys_USE_LONG_LONG && itksys_SIZEOF_LONG_LONG == 8
+# define TIFF_UINT64_FORMAT "%llu"
+#elif itksys_USE___INT64 && itksys_SIZEOF___INT64 == 8
+# define TIFF_UINT64_FORMAT "%I64u"
 #endif
-
-/* Signed 64-bit type formatter */
-#undef TIFF_INT64_FORMAT
-
-/* Signed 64-bit type */
-#ifdef HAVE_INT64
-#define TIFF_INT64_T   int64_t
+#if TIFF_SIZEOF_DATA_PTR == 8
+# define TIFF_SSIZE_T itksysFundamentalType_Int64
+# if itksys_SIZEOF_LONG == 8
+#  define TIFF_SSIZE_FORMAT "%ld"
+# elif itksys_USE_LONG_LONG && itksys_SIZEOF_LONG_LONG == 8
+#  define TIFF_SSIZE_FORMAT "%lld"
+# elif itksys_USE___INT64 && itksys_SIZEOF___INT64 == 8
+#  define TIFF_SSIZE_FORMAT "%I64d"
+# endif
 #else
-#define TIFF_INT64_T   signed long
+# define TIFF_SSIZE_T itksysFundamentalType_Int32
+# define TIFF_SSIZE_FORMAT "%d"
 #endif
-
-/* Signed 8-bit type */
-#ifdef HAVE_INT8
-#define TIFF_INT8_T   int8_t
-#else
-#define TIFF_INT8_T   signed char
-#endif
-
-/* Pointer difference type formatter */
-#undef TIFF_PTRDIFF_FORMAT
-
-/* Pointer difference type */
-#define TIFF_PTRDIFF_T   ptrdiff_t
-
-/* Signed size type formatter */
-#define TIFF_SSIZE_FORMAT  "%ld"
-
-/* Signed size type */
-#define TIFF_SSIZE_T    size_t
-
-/* Unsigned 16-bit type */
-#define TIFF_UINT16_T   unsigned short
-
-/* Unsigned 32-bit type formatter */
-#define TIFF_UINT32_FORMAT  "%d"
-
-/* Unsigned 32-bit type */
-#define TIFF_UINT32_T   unsigned int
-
-/* Unsigned 64-bit type formatter */
-#define TIFF_UINT64_FORMAT  "%ld"
-
-/* Unsigned 64-bit type */
-#define TIFF_UINT64_T   unsigned long
-
-/* Unsigned 8-bit type */
-#define TIFF_UINT8_T    unsigned char
 
 /* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
 #cmakedefine TIME_WITH_SYS_TIME
