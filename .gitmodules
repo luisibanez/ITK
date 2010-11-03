@@ -1,3 +1,4 @@
+
 [submodule "Testing/Data"]
 	path = Testing/Data
-	url = git://itk.org/ITKData.git
+	url = git@github.com:picslITK/ITKData.git
