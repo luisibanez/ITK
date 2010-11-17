@@ -23,7 +23,7 @@
 #include "itkImageFileWriter.h"
 
 #include "itkSimpleFilterWatcher.h"
-#include <itkBinaryContourImageFilter.h>
+#include "itkBinaryContourImageFilter.h"
 
 int itkBinaryContourImageFilterTest(int argc, char * argv[])
 {
@@ -79,8 +79,6 @@ int itkBinaryContourImageFilterTest(int argc, char * argv[])
     {
     std::cout << excp << std::endl;
     std::cout << "catched EXPECTED exception for emtpy image as input" << std::endl;
-    // TODO: should ResetPipeline() be required?
-    filter->ResetPipeline();
     }
 
   filter->FullyConnectedOn();
