@@ -37,8 +37,9 @@ namespace itk
 class NodeOfPermutation
 {
 public:
-  size_t m_Priority;
-  size_t m_Index;
+  typedef size_t SizeValueType;
+  SizeValueType m_Priority;
+  SizeValueType m_Index;
   double m_Value;
 
   NodeOfPermutation ()
@@ -65,12 +66,13 @@ public:
 class RandomPermutation
 {
 public:
+  typedef size_t     SizeValueType;
   typedef Statistics::MersenneTwisterRandomVariateGenerator::Pointer GeneratorPointer;
   NodeOfPermutation *m_Permutation;
   GeneratorPointer   m_Generator;
-  size_t             m_Size;
+  SizeValueType      m_Size;
 
-  RandomPermutation(size_t sz)
+  RandomPermutation(SizeValueType sz)
   {
     m_Size = sz;
     m_Permutation = new NodeOfPermutation[m_Size];
@@ -80,7 +82,7 @@ public:
 
   void Dump()
   {
-    for ( size_t i = 0; i < m_Size; i++ )
+    for ( SizeValueType i = 0; i < m_Size; i++ )
       {
       std::cout << m_Permutation[i].m_Value << " " << m_Permutation[i].m_Priority
                 << " " << m_Permutation[i].m_Index << ";";
@@ -88,7 +90,7 @@ public:
       }
   }
 
-  void SetPriority(size_t i, size_t priority)
+  void SetPriority(SizeValueType i, SizeValueType priority)
   {
     if ( i > m_Size )
       {
@@ -102,7 +104,7 @@ public:
 
   void Shuffle()
   {
-    for ( size_t i = 0; i < m_Size; i++ )
+    for ( SizeValueType i = 0; i < m_Size; i++ )
       {
       m_Permutation[i].m_Value = m_Generator->GetVariateWithClosedRange (1.0);
       m_Permutation[i].m_Index = i;
@@ -110,7 +112,7 @@ public:
     std::sort(m_Permutation, m_Permutation + m_Size);
   }
 
-  size_t operator[](size_t i)
+  SizeValueType operator[](SizeValueType i)
   {
     return m_Permutation[i].m_Index;
   }
@@ -279,7 +281,7 @@ public:
   itkStaticConstMacro(ImageDimension, unsigned int, ::itk::GetImageDimension< TImage >::ImageDimension);
 
   /** Image with priorities */
-  typedef itk::Image< size_t, itkGetStaticConstMacro(ImageDimension) > PriorityImageType;
+  typedef itk::Image< SizeValueType, itkGetStaticConstMacro(ImageDimension) > PriorityImageType;
 
   /** Set the priority image.  The priority image controls the order
       of the random selection.  Pixels of the same priority will be
@@ -307,9 +309,9 @@ public:
   }
 
   /** Set/Get number of random samples to get from the image region */
-  void SetNumberOfSamples(size_t number);
+  void SetNumberOfSamples(SizeValueType number);
 
-  size_t GetNumberOfSamples(void) const;
+  SizeValueType GetNumberOfSamples(void) const;
 
   /** Reinitialize the seed of the random number generator  */
   void ReinitializeSeed();
@@ -321,9 +323,9 @@ public:
 private:
   void UpdatePosition();
 
-  size_t             m_NumberOfSamplesRequested;
-  size_t             m_NumberOfSamplesDone;
-  size_t             m_NumberOfPixelsInRegion;
+  SizeValueType      m_NumberOfSamplesRequested;
+  SizeValueType      m_NumberOfSamplesDone;
+  SizeValueType      m_NumberOfPixelsInRegion;
   RandomPermutation *m_Permutation;
 };
 } // end namespace itk

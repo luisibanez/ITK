@@ -50,7 +50,7 @@ ImageRandomNonRepeatingConstIteratorWithIndex< TImage >
 template< class TImage >
 void
 ImageRandomNonRepeatingConstIteratorWithIndex< TImage >
-::SetNumberOfSamples(size_t number)
+::SetNumberOfSamples(SizeValueType number)
 {
   m_NumberOfSamplesRequested = number;
   if ( number > m_NumberOfPixelsInRegion ) { m_NumberOfSamplesRequested = m_NumberOfPixelsInRegion; }
@@ -58,7 +58,7 @@ ImageRandomNonRepeatingConstIteratorWithIndex< TImage >
 
 /**  Set the number of samples to extract from the region */
 template< class TImage >
-size_t
+typename ImageRandomNonRepeatingConstIteratorWithIndex< TImage >::SizeValueType
 ImageRandomNonRepeatingConstIteratorWithIndex< TImage >
 ::GetNumberOfSamples(void) const
 {
@@ -92,8 +92,7 @@ ImageRandomNonRepeatingConstIteratorWithIndex< TImage >
 {
   // should probably do error checking to be sure that the priority
   // image is the right size
-  typedef IndexValueType PositionValueType;
-  typedef SizeValueType  SizeValueType;
+  typedef SizeValueType PositionValueType;
 
   for (PositionValueType pixel = 0; pixel < m_NumberOfPixelsInRegion; pixel++ )
     {
@@ -121,7 +120,6 @@ ImageRandomNonRepeatingConstIteratorWithIndex< TImage >
 ::UpdatePosition()
 {
   typedef IndexValueType PositionValueType;
-  typedef SizeValueType  SizeValueType;
 
   PositionValueType position = ( *( this->m_Permutation ) )[m_NumberOfSamplesDone % m_NumberOfSamplesRequested];
   for ( unsigned int dim = 0; dim < TImage::ImageDimension; dim++ )

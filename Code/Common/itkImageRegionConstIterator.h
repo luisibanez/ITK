@@ -264,9 +264,10 @@ public:
   }
 
 protected:
-  SizeValueType m_SpanBeginOffset; // one pixel before the beginning of the span
+  OffsetValueType m_SpanBeginOffset; // one pixel before the beginning of the span
                                    // (row)
-  SizeValueType m_SpanEndOffset;   // one pixel past the end of the span (row)
+  OffsetValueType m_SpanEndOffset;   // one pixel past the end of the span (row)
+
 private:
   void Increment(); // advance in a direction other than the fastest moving
 
