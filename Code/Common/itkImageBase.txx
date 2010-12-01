@@ -418,8 +418,8 @@ ImageBase< VImageDimension >
   for ( i = 0; i < VImageDimension; i++ )
     {
     if ( ( requestedRegionIndex[i] < largestPossibleRegionIndex[i] )
-         || ( ( requestedRegionIndex[i] + requestedRegionSize[i] )
-              > ( largestPossibleRegionIndex[i] + largestPossibleRegionSize[i] ) ) )
+         || ( ( requestedRegionIndex[i] + static_cast< OffsetValueType >( requestedRegionSize[i] ) )
+              > ( largestPossibleRegionIndex[i] + static_cast< OffsetValueType >( largestPossibleRegionSize[i] ) ) ) )
       {
       retval = false;
       }
