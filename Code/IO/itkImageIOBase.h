@@ -70,8 +70,8 @@ public:
   itkGetStringMacro(FileName);
 
   /** Types for managing image size and image index components. */
-  typedef   long          IndexValueType;
-  typedef   unsigned long SizeValueType;
+  typedef   ptrdiff_t     IndexValueType;
+  typedef   size_t        SizeValueType;
 
   /**
    * \class UnknownType

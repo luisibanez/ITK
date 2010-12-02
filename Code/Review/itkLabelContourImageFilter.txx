@@ -197,7 +197,7 @@ LabelContourImageFilter< TInputImage, TOutputImage >
     {
     if ( !m_LineMap[ThisIdx].empty() )
       {
-      for ( OffsetVec::const_iterator I = LineOffsets.begin();
+      for ( typename OffsetVec::const_iterator I = LineOffsets.begin();
             I != LineOffsets.end(); ++I )
         {
         OffsetValueType NeighIdx = ThisIdx + ( *I );
@@ -239,9 +239,9 @@ LabelContourImageFilter< TInputImage, TOutputImage >
   // offset for us. All this messing around produces an array of
   // offsets that will be used to index the map
   typename TOutputImage::Pointer output = this->GetOutput();
-  typedef Image< long, TOutputImage::ImageDimension - 1 >     PretendImageType;
-  typedef typename PretendImageType::RegionType::SizeType     PretendSizeType;
-  typedef typename PretendImageType::RegionType::IndexType    PretendIndexType;
+  typedef Image< OffsetValueType, TOutputImage::ImageDimension - 1 >    PretendImageType;
+  typedef typename PretendImageType::RegionType::SizeType               PretendSizeType;
+  typedef typename PretendImageType::RegionType::IndexType              PretendIndexType;
   typedef ConstShapedNeighborhoodIterator< PretendImageType > LineNeighborhoodType;
 
   typename PretendImageType::Pointer fakeImage;

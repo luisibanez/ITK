@@ -624,7 +624,7 @@ LabelGeometryImageFilter< TLabelImage, TIntensityImage >
 }
 
 template< class TLabelImage, class TIntensityImage >
-unsigned long
+typename LabelGeometryImageFilter< TLabelImage, TIntensityImage >::SizeValueType
 LabelGeometryImageFilter< TLabelImage, TIntensityImage >
 ::GetVolume(LabelPixelType label) const
 {
