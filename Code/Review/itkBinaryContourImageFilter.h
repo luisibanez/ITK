@@ -220,9 +220,9 @@ public:
 
   typename Barrier::Pointer m_Barrier;
 
-  LineMapType m_ForegroundLineMap;
-  LineMapType m_BackgroundLineMap;
-  long        m_NumberOfThreads;
+  LineMapType   m_ForegroundLineMap;
+  LineMapType   m_BackgroundLineMap;
+  unsigned int  m_NumberOfThreads;
 };
 } // end namespace itk
 

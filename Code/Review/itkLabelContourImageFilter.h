@@ -214,7 +214,7 @@ public:
   typename Barrier::Pointer m_Barrier;
 
   LineMapType m_LineMap;
-  long        m_NumberOfThreads;
+  int         m_NumberOfThreads;
 };
 } // end namespace itk
 

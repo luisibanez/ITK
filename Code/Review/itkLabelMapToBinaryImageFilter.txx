@@ -63,7 +63,7 @@ void
 LabelMapToBinaryImageFilter< TInputImage, TOutputImage >
 ::BeforeThreadedGenerateData()
 {
-  unsigned long numberOfThreads = this->GetNumberOfThreads();
+  int numberOfThreads = this->GetNumberOfThreads();
 
   if ( itk::MultiThreader::GetGlobalMaximumNumberOfThreads() != 0 )
     {
