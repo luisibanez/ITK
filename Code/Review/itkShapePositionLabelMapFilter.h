@@ -50,6 +50,7 @@ public:
   typedef typename ImageType::ConstPointer    ImageConstPointer;
   typedef typename ImageType::PixelType       PixelType;
   typedef typename ImageType::IndexType       IndexType;
+  typedef typename ImageType::IndexValueType  IndexValueType;
   typedef typename ImageType::LabelObjectType LabelObjectType;
 
   typedef typename LabelObjectType::AttributeType AttributeType;
@@ -107,7 +108,7 @@ protected:
       // copy the position to a point, required by TransformPhysicalPointToIndex
       for( int i=0; i<ImageDimension; i++ )
         {
-        point[i] = (long)position[i];
+        point[i] = (double)position[i];
         }
       this->GetOutput()->TransformPhysicalPointToIndex( point, idx );
       }
@@ -116,7 +117,7 @@ protected:
       // copy the position to the index, to avoid warnings
       for( int i=0; i<ImageDimension; i++ )
         {
-        idx[i] = (long)position[i];
+        idx[i] = (IndexValueType)position[i];
         }
       }
     // clear the label object
