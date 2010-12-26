@@ -33,6 +33,7 @@
 #include "itkSigmoidImageFilter.h"
 #include "itkTriangleMeshToSimplexMeshFilter.h"
 #include "itkSimplexMeshVolumeCalculator.h"
+#include "itkVTKPolyDataWriter.h"
 #include "itkTimeProbe.h"
 
 int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
@@ -83,6 +84,13 @@ int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
   mySphereMeshSource->SetCenter(center);
   mySphereMeshSource->SetResolution(2);
   mySphereMeshSource->SetScale(scale);
+  mySphereMeshSource->Update();
+
+  typedef itk::VTKPolyDataWriter< TriangleMeshType >   TriangleWriterType;
+  TriangleWriterType::Pointer triangleMeshWriter = TriangleWriterType::New();
+  triangleMeshWriter->SetInput( mySphereMeshSource->GetOutput() );
+  triangleMeshWriter->SetFileName("triangleMesh.vtk");
+  triangleMeshWriter->Update();
 
   std::cout << "Triangle mesh created. " << std::endl;
 
@@ -93,6 +101,12 @@ int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
 
   SimplexMeshType::Pointer simplexMesh = simplexFilter->GetOutput();
   simplexMesh->DisconnectPipeline();
+
+  typedef itk::VTKPolyDataWriter< SimplexMeshType >   SimplexWriterType;
+  SimplexWriterType::Pointer simplexMeshWriter = SimplexWriterType::New();
+  simplexMeshWriter->SetInput( simplexMesh );
+  simplexMeshWriter->SetFileName("simplexMesh.vtk");
+  simplexMeshWriter->Update();
 
   std::cout << "Simplex Mesh: " << simplexMesh << std::endl;
 
@@ -155,27 +169,26 @@ int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
   std::cout << "Sigmoid is DONE!" << std::endl;
 
   GradientFilterType::Pointer gradientFilter = GradientFilterType::New();
-  gradientFilter->SetInput(sigmoidimagefilter->GetOutput());
+  gradientFilter->SetInput( sigmoidimagefilter->GetOutput() );
   gradientFilter->SetSigma(1.0);
   gradientFilter->Update();
   std::cout << "GradientMagnitude is DONE!" << std::endl;
 
   DeformFilterType::Pointer deformFilter = DeformFilterType::New();
 
-  for (int i=0 ; i < 100; i++)
+  const unsigned int numberOfCycles = 1;
+
+  for (unsigned int i=0 ; i < numberOfCycles; i++)
     {
-
-
-      // must disconnect the pipeline
-      simplexMesh->DisconnectPipeline();
-      deformFilter->SetInput( simplexMesh );
-      deformFilter->SetGradient( gradientFilter->GetOutput() );
-      deformFilter->SetAlpha(0.1);
-      deformFilter->SetBeta(-0.1);
-      deformFilter->SetIterations(5);
-      deformFilter->SetRigidity(1);
-      deformFilter->Update();
-
+    // must disconnect the pipeline
+    simplexMesh->DisconnectPipeline();
+    deformFilter->SetInput( simplexMesh );
+    deformFilter->SetGradient( gradientFilter->GetOutput() );
+    deformFilter->SetAlpha(0.1);
+    deformFilter->SetBeta(-0.1);
+    deformFilter->SetIterations(5);
+    deformFilter->SetRigidity(1);
+    deformFilter->Update();
     }
   SimplexMeshType::Pointer deformResult =  deformFilter->GetOutput();
 
@@ -188,7 +201,3 @@ int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
   std::cout << "[TEST DONE]" << std::endl;
   return EXIT_SUCCESS;
 }
-
-
-
-
