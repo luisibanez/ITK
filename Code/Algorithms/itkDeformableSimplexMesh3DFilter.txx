@@ -119,7 +119,6 @@ DeformableSimplexMesh3DFilter< TInputMesh, TOutputMesh >
 ::GenerateData()
 {
   this->Initialize();
-std::cout << "AZUCAR AFTER Initialize() " << std::endl;
 
   m_Step = 0;
 
@@ -141,8 +140,6 @@ std::cout << "AZUCAR AFTER Initialize() " << std::endl;
     m_Step++;
     }
 
-std::cout << "AZUCAR AFTER while() " << std::endl;
-
   const InputMeshType *             inputMesh = this->GetInput(0);
   const InputPointsContainer *      points = inputMesh->GetPoints();
   InputPointsContainerConstIterator pointItr = points->Begin();
@@ -159,8 +156,6 @@ std::cout << "AZUCAR AFTER while() " << std::endl;
       }
     pointItr++;
     }
-
-std::cout << "AZUCAR AFTER second while() " << std::endl;
 
   this->ComputeOutput();
 }
