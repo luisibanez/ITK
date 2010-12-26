@@ -416,12 +416,18 @@ Write(const char *_headName)
   delete m_WriteStream;
   m_WriteStream = 0;
 
+std::cout << "AZUCAR: metaScene::Write() " << std::endl;
+std::cout << "AZUCAR: metaScene::Write()  _headName = " << _headName << std::endl;
   /** Then we write all the objects in the scene */
   ObjectListType::iterator it = m_ObjectList.begin();
   while(it != m_ObjectList.end())
     {
     (*it)->BinaryData(this->BinaryData());
+std::cout << "AZUCAR: Append Begin in " << (*it) << std::endl;
+std::cout << "AZUCAR: ObjectTypeName() = " << (*it)->ObjectTypeName() << std::endl;
+std::cout << "AZUCAR: ObjectSubTypeName() = " << (*it)->ObjectSubTypeName() << std::endl;
     (*it)->Append(_headName);
+std::cout << "AZUCAR: Append End in " << (*it) << std::endl;
     it++;
     }
 

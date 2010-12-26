@@ -1848,7 +1848,7 @@ bool MetaObject
     }
 #endif
 
-  M_Write();
+  M_Write(); //  SEE IF THIS IS THE CULPRIT   FIXME   M_Write();
   
   m_WriteStream->close();
 

@@ -72,16 +72,28 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
   LineType::PointListType       list6;
   LandmarkType::PointListType   list7;
 
+  std::cout << "AZUCAR CHICKEN = " << sizeof( TubePointType ) << std::endl;
+  std::cout << "SPATIAL OBJECT POINT SIZE = " << sizeof( itk::SpatialObjectPoint<3> ) << std::endl;
+  // 136
+  //  20 + 4
+  //  96
   for( unsigned int i=0; i<10; i++)
     {
     TubePointType p;
-    p.SetPosition(i,i,i);
-    p.SetRadius(i);
-    p.SetRed(i);
-    p.SetGreen(i+1);
-    p.SetBlue(i+2);
-    p.SetAlpha(i+3);
-    list.push_back(p);
+    // ID = int = 4
+    // one tangent  3x8 = 24
+    // two normals = 2 x 3x8 = 48
+    p.SetPosition(i,i,i); // 3x8 = 24
+    p.SetRadius(i); // 4
+    p.SetRed(i); // 4
+    p.SetGreen(i+1); // 4
+    p.SetBlue(i+2); //4
+    p.SetAlpha(i+3); //4
+    list.push_back(p); // FIXME
+std::cout << "p       = " <<  std::endl;
+p.Print(std::cout);
+std::cout << "list[i] = "  <<  std::endl;
+list[i].Print(std::cout);
     }
 
   for( unsigned int i=0; i<5; i++)
@@ -89,10 +101,6 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
     VesselTubePointType p;
     p.SetPosition(i*2,i*2,i*2);
     p.SetRadius(i);
-    p.SetRed(i);
-    p.SetGreen(i+1);
-    p.SetBlue(i+2);
-    p.SetAlpha(i+3);
     p.SetRed(i);
     p.SetGreen(i+1);
     p.SetBlue(i+2);
@@ -105,6 +113,10 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
     p.SetAlpha2(i*2);
     p.SetAlpha3(i*3);
     list2.push_back(p);
+std::cout << "p       = " <<  std::endl;
+p.Print(std::cout);
+std::cout << "list2[i] = "  <<  std::endl;
+list2[i].Print(std::cout);
     }
 
   for( unsigned int i=0; i<7; i++)
@@ -201,7 +213,7 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
   TubePointer tube1 = TubeType::New();
   tube1->GetProperty()->SetName("Tube 1");
   tube1->SetId(1);
-  tube1->SetPoints(list);
+  tube1->SetPoints(list); // FIXME
   tube1->ComputeBoundingBox();
 
   VesselTubeType::Pointer tube2 = VesselTubeType::New();
@@ -219,8 +231,8 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
   GroupPointer tubeN1 = GroupType::New();
   tubeN1->GetProperty()->SetName("tube network 1");
   tubeN1->SetId(0);
-  tubeN1->AddSpatialObject( tube1 );
-  tubeN1->AddSpatialObject( tube2 );
+  tubeN1->AddSpatialObject( tube1 ); // FIXME
+  tubeN1->AddSpatialObject( tube2 ); // FIXME
 
 
   GroupPointer tubeN2 = GroupType::New();
@@ -345,25 +357,25 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
     contour->GetInterpolatedPoints().push_back(iPt);
     }
 
-  tubeN1->AddSpatialObject( tubeN2 );
-  tubeN1->AddSpatialObject( blob );
-  tubeN1->AddSpatialObject( line );
-  tubeN1->AddSpatialObject( surface );
-  tubeN1->AddSpatialObject( landmark );
-  tubeN1->AddSpatialObject( ellipse );
-  tubeN1->AddSpatialObject( contour );
+// tubeN1->AddSpatialObject( tubeN2 );
+// tubeN1->AddSpatialObject( blob );
+// tubeN1->AddSpatialObject( line );
+// tubeN1->AddSpatialObject( surface );
+// tubeN1->AddSpatialObject( landmark );
+// tubeN1->AddSpatialObject( ellipse );
+// tubeN1->AddSpatialObject( contour );
 
   std::cout<<"Testing Number of children: ";
 
-  if( tubeN1->GetNumberOfChildren() != 9)
-    {
-    std::cout<< tubeN1->GetNumberOfChildren()  << "[FAILED]"<<std::endl;
-    return EXIT_FAILURE;
-    }
-  else
-    {
-    std::cout<<"[PASSED]"<<std::endl;
-    }
+// if( tubeN1->GetNumberOfChildren() != 9)
+//   {
+//   std::cout<< tubeN1->GetNumberOfChildren()  << "[FAILED]"<<std::endl;
+//   return EXIT_FAILURE;
+//   }
+// else
+//   {
+//   std::cout<<"[PASSED]"<<std::endl;
+//   }
 
   std::cout<<"Testing Writing SceneSpatialObject: ";
 
@@ -384,6 +396,8 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
   writer->Update();
 
   std::cout<<"[PASSED]"<<std::endl;
+
+return EXIT_FAILURE;  // FIXME
 
   std::cout<<"Testing Reading SceneSpatialObject: ";
 
