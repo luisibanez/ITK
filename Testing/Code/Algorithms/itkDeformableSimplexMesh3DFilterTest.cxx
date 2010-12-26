@@ -33,7 +33,6 @@
 #include "itkSigmoidImageFilter.h"
 #include "itkTriangleMeshToSimplexMeshFilter.h"
 #include "itkSimplexMeshVolumeCalculator.h"
-#include "itkVTKPolyDataWriter.h"
 #include "itkTimeProbe.h"
 
 int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
@@ -86,12 +85,6 @@ int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
   mySphereMeshSource->SetScale(scale);
   mySphereMeshSource->Update();
 
-  typedef itk::VTKPolyDataWriter< TriangleMeshType >   TriangleWriterType;
-  TriangleWriterType::Pointer triangleMeshWriter = TriangleWriterType::New();
-  triangleMeshWriter->SetInput( mySphereMeshSource->GetOutput() );
-  triangleMeshWriter->SetFileName("triangleMesh.vtk");
-  triangleMeshWriter->Update();
-
   std::cout << "Triangle mesh created. " << std::endl;
 
   // send the sphere mesh ( triangle cells) to create a simplex mesh
@@ -101,12 +94,6 @@ int itkDeformableSimplexMesh3DFilterTest(int , char * [] )
 
   SimplexMeshType::Pointer simplexMesh = simplexFilter->GetOutput();
   simplexMesh->DisconnectPipeline();
-
-  typedef itk::VTKPolyDataWriter< SimplexMeshType >   SimplexWriterType;
-  SimplexWriterType::Pointer simplexMeshWriter = SimplexWriterType::New();
-  simplexMeshWriter->SetInput( simplexMesh );
-  simplexMeshWriter->SetFileName("simplexMesh.vtk");
-  simplexMeshWriter->Update();
 
   std::cout << "Simplex Mesh: " << simplexMesh << std::endl;
 
