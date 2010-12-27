@@ -749,7 +749,25 @@ M_Write(void)
     int elementSize;
     MET_SizeOfType(m_ElementType, &elementSize);
 
-    char* data = new char[(m_NDims*(2+m_NDims)+10)*m_NPoints*elementSize];
+    const unsigned long dataLength_X = m_NDims * elementSize;
+    const unsigned long dataLength_T = m_NDims * elementSize;
+    const unsigned long dataLength_V1 = m_NDims * elementSize;
+    const unsigned long dataLength_V2 = m_NDims * elementSize;
+    const unsigned long dataLength_Color = 4 * elementSize;
+    const unsigned long dataLength_ID = 1 * elementSize;
+    const unsigned long dataLength_R = 1 * elementSize;
+
+    unsigned long dataLength =
+      dataLength_X + dataLength_T + dataLength_V1 +
+      dataLength_Color + dataLength_ID + dataLength_R;
+
+    if( m_NDims == 3 )
+      {
+      dataLength += dataLength_V2;
+      }
+
+    char* data = new char[dataLength];
+
     int i=0;
     int d;
     while(it != itEnd)
@@ -802,8 +820,13 @@ M_Write(void)
       it++;
       }
 
-    m_WriteStream->write((char *)data,
-                         (m_NDims*(2+m_NDims)+10)*m_NPoints*elementSize);
+    unsigned long actualDataLength = elementSize * i;
+
+std::cout << "AZUCAR i = " << i << std::endl;
+std::cout << "AZUCAR actualDataLength = " << actualDataLength << std::endl;
+std::cout << "AZUCAR dataLength = " << dataLength << std::endl;
+
+    m_WriteStream->write((char *)data,dataLength);
     m_WriteStream->write("\n",1);
     delete [] data;
     }

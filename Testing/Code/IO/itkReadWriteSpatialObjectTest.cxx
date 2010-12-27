@@ -77,12 +77,14 @@ int itkReadWriteSpatialObjectTest(int argc, char* argv[])
   // 136
   //  20 + 4
   //  96
-  for( unsigned int i=0; i<10; i++)
+  // for( unsigned int i=0; i<10; i++)
+  for( unsigned int i=0; i<1; i++)
     {
     TubePointType p;
     // ID = int = 4
     // one tangent  3x8 = 24
     // two normals = 2 x 3x8 = 48
+    p.SetID(i);
     p.SetPosition(i,i,i); // 3x8 = 24
     p.SetRadius(i); // 4
     p.SetRed(i); // 4
@@ -232,7 +234,7 @@ list2[i].Print(std::cout);
   tubeN1->GetProperty()->SetName("tube network 1");
   tubeN1->SetId(0);
   tubeN1->AddSpatialObject( tube1 ); // FIXME
-  tubeN1->AddSpatialObject( tube2 ); // FIXME
+  // tubeN1->AddSpatialObject( tube2 ); // FIXME
 
 
   GroupPointer tubeN2 = GroupType::New();
