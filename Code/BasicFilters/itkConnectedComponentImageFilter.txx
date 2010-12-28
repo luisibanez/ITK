@@ -104,7 +104,6 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
   m_NumberOfLabels.resize(nbOfThreads, 0);
   m_Barrier = Barrier::New();
   m_Barrier->Initialize(nbOfThreads);
-  typedef typename TInputImage::SizeValueType SizeValueType;
   SizeValueType pixelcount = output->GetRequestedRegion().GetNumberOfPixels();
   SizeValueType xsize = output->GetRequestedRegion().GetSize()[0];
   SizeValueType linecount = pixelcount / xsize;
@@ -130,7 +129,6 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
   inLineIt.SetDirection(0);
 
   // set the progress reporter to deal with the number of lines
-  typedef typename TInputImage::SizeValueType SizeValueType;
   SizeValueType    pixelcountForThread = outputRegionForThread.GetNumberOfPixels();
   SizeValueType    xsizeForThread = outputRegionForThread.GetSize()[0];
   SizeValueType    linecountForThread = pixelcountForThread / xsizeForThread;
@@ -152,7 +150,7 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
 
   // compute the number of pixels before that threads
   outputRegionSize[splitAxis] = outputRegionForThreadIdx[splitAxis] - outputRegionIdx[splitAxis];
-  typedef typename TInputImage::SizeValueType LineIdType;
+  typedef SizeValueType LineIdType;
   LineIdType firstLineIdForThread = RegionType(outputRegionIdx, outputRegionSize).GetNumberOfPixels() / xsizeForThread;
   LineIdType lineId = firstLineIdForThread;
 
@@ -244,7 +242,6 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
   // now process the map and make appropriate entries in an equivalence
   // table
   // itkAssertInDebugAndIgnoreInReleaseMacro( linecount == m_LineMap.size() );
-  typedef typename TInputImage::SizeValueType SizeValueType;
   SizeValueType pixelcount = output->GetRequestedRegion().GetNumberOfPixels();
   SizeValueType xsize = output->GetRequestedRegion().GetSize()[0];
   SizeValueType linecount = pixelcount / xsize;
@@ -433,11 +430,10 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
   // offset for us. All this messing around produces an array of
   // offsets that will be used to index the map
   typename TOutputImage::Pointer output = this->GetOutput();
-  typedef Image< long, TOutputImage::ImageDimension - 1 >  PretendImageType;
-  typedef typename PretendImageType::RegionType::SizeType  PretendSizeType;
-  typedef typename PretendImageType::RegionType::IndexType PretendIndexType;
-  typedef ConstShapedNeighborhoodIterator< PretendImageType >
-  LineNeighborhoodType;
+  typedef Image< OffsetValueType, TOutputImage::ImageDimension - 1 >  PretendImageType;
+  typedef typename PretendImageType::RegionType::SizeType             PretendSizeType;
+  typedef typename PretendImageType::RegionType::IndexType            PretendIndexType;
+  typedef ConstShapedNeighborhoodIterator< PretendImageType >         LineNeighborhoodType;
 
   typename PretendImageType::Pointer fakeImage;
   fakeImage = PretendImageType::New();
@@ -472,7 +468,7 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
   typename LineNeighborhoodType::IndexListType::const_iterator LI;
 
   PretendIndexType idx = LineRegion.GetIndex();
-  typename PretendImageType::RegionType::OffsetValueType offset = fakeImage->ComputeOffset(idx);
+  OffsetValueType offset = fakeImage->ComputeOffset(idx);
 
   for ( LI = ActiveIndexes.begin(); LI != ActiveIndexes.end(); LI++ )
     {
@@ -519,8 +515,6 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
   typename lineEncoding::iterator cIt;
 
   mIt = Neighbour.begin(); // out marker iterator
-
-  typedef typename TInputImage::IndexValueType IndexValueType;
 
   for ( cIt = current.begin(); cIt != current.end(); ++cIt )
     {
@@ -601,13 +595,13 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
 template< class TInputImage, class TOutputImage, class TMaskImage >
 void
 ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
-::InsertSet(const typename TInputImage::SizeValueType label)
+::InsertSet(const LabelType label)
 {
   m_UnionFind[label] = label;
 }
 
 template< class TInputImage, class TOutputImage, class TMaskImage >
-typename TInputImage::SizeValueType
+SizeValueType
 ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
 ::CreateConsecutive()
 {
@@ -617,14 +611,14 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
 
   m_Consecutive[background] = background;
 
-  typename TInputImage::SizeValueType CLab = 0;
-  typename TInputImage::SizeValueType count = 0;
-  for ( typename TInputImage::SizeValueType I = 1; I < m_UnionFind.size(); I++ )
+  SizeValueType CLab = 0;
+  SizeValueType count = 0;
+  for ( SizeValueType I = 1; I < m_UnionFind.size(); I++ )
     {
-    typename TInputImage::SizeValueType L = m_UnionFind[I];
+    SizeValueType L = m_UnionFind[I];
     if ( L == I )
       {
-      if ( CLab == static_cast< typename TInputImage::SizeValueType >( m_BackgroundValue ) )
+      if ( CLab == static_cast< SizeValueType >( m_BackgroundValue ) )
         {
         ++CLab;
         }
@@ -637,7 +631,7 @@ ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
 }
 
 template< class TInputImage, class TOutputImage, class TMaskImage >
-typename TInputImage::SizeValueType
+SizeValueType
 ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
 ::LookupSet(const LabelType label)
 {
@@ -654,8 +648,8 @@ void
 ConnectedComponentImageFilter< TInputImage, TOutputImage, TMaskImage >
 ::LinkLabels(const LabelType lab1, const LabelType lab2)
 {
-  typename TInputImage::SizeValueType E1 = this->LookupSet(lab1);
-  typename TInputImage::SizeValueType E2 = this->LookupSet(lab2);
+  SizeValueType E1 = this->LookupSet(lab1);
+  SizeValueType E2 = this->LookupSet(lab2);
 
   if ( E1 < E2 )
     {

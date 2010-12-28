@@ -66,7 +66,8 @@ public:
    * binary value 0 or 1 indicating the LOW face or the HIGH face,
    * respectively.    */
   typedef std::pair< unsigned, unsigned >                        IndexType;
-  typedef typename Image< IdentifierType, TDimension >::IndexType ImageIndexType;
+  typedef Image< IdentifierType, TDimension >                    ImageType;
+  typedef typename ImageType::IndexType                          ImageIndexType;
   typedef TScalarType                                            ScalarType;
 
   /** Data type stored at each pixel in a face.   */

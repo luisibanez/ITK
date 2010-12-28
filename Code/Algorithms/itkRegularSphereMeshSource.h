@@ -57,6 +57,7 @@ public:
   typedef typename OutputMeshType::MeshTraits MeshTraits;
   typedef typename OutputMeshType::PointType  PointType;
   typedef typename MeshTraits::PixelType      PixelType;
+  typedef typename PointType::VectorType      VectorType;
 
   /** Some convenient typedefs. */
   typedef typename OutputMeshType::Pointer                OutputMeshPointer;
@@ -70,9 +71,8 @@ public:
   typedef typename TriCellType::SelfAutoPointer       TriCellAutoPointer;
   typedef typename TriCellType::CellAutoPointer       CellAutoPointer;
 
-  typedef std::pair< size_t, size_t >                 IndexPairType;
-  typedef itk::MapContainer< IndexPairType, size_t >  PointMapType;
-  typedef typename PointType::VectorType              VectorType;
+  typedef std::pair< IdentifierType, IdentifierType >         IndexPairType;
+  typedef itk::MapContainer< IndexPairType, IdentifierType >  PointMapType;
 
   /** Set the resolution level to be used for generating cells in the Sphere.
    *  High values of this parameter will produce sphere with more triangles. */

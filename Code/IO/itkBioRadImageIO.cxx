@@ -339,14 +339,15 @@ void BioRadImageIO::InternalReadImageInformation(std::ifstream & file)
     // sometime the file set an erronous value for byte_format, check the size
     // of the file in this case, since byte_format = 1 seems to be the default
     file.seekg(0, std::ios::end);
-    SizeValueType gcount = static_cast< SizeValueType >( file.tellg() ) - BIORAD_HEADER_LENGTH;
-    if ( gcount == h.nx * h.ny * h.npic )
+    const SizeValueType gcount = static_cast< SizeValueType >( file.tellg() ) - BIORAD_HEADER_LENGTH;
+    const SizeValueType hsize = static_cast< SizeValueType >( h.nx * h.ny * h.npic );
+    if ( gcount == hsize )
       {
       itkWarningMacro(
         << "File is declared as two bytes but really is only one byte");
       SetComponentType(UCHAR);
       }
-    else if ( gcount == h.nx * h.ny * h.npic * 2 )
+    else if ( gcount == hsize * 2 )
       {
       SetComponentType(USHORT);
       }

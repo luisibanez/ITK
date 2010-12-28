@@ -213,6 +213,8 @@ private:
   double m_FloodLevel;
   bool   m_ConsumeInput;
 
+  typedef itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >  HashMapType;
+
   OneWayEquivalencyTableType::Pointer m_MergedSegmentsTable;
 
   /** This value keeps track of the highest level this filter has been

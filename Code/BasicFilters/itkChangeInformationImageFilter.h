@@ -58,53 +58,56 @@ public:
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
+  typedef TInputImage   InputImageType;
+  typedef TInputImage   OutputImageType;
+
   /** Typedef to describe the output and input image region types. */
-  typedef typename TInputImage::RegionType OutputImageRegionType;
-  typedef typename TInputImage::RegionType InputImageRegionType;
+  typedef typename OutputImageType::RegionType OutputImageRegionType;
+  typedef typename InputImageType::RegionType InputImageRegionType;
 
   /** Typedef to describe the pointer to the input. */
-  typedef typename TInputImage::Pointer InputImagePointer;
+  typedef typename InputImageType::ConstPointer InputImageConstPointer;
 
   /** Typedef to describe the type of pixel. */
-  typedef typename TInputImage::PixelType OutputImagePixelType;
-  typedef typename TInputImage::PixelType InputImagePixelType;
+  typedef typename OutputImageType::PixelType OutputImagePixelType;
+  typedef typename InputImageType::PixelType  InputImagePixelType;
 
   /** Typedef to describe the output and input image index and size types. */
-  typedef typename TInputImage::IndexType      OutputImageIndexType;
-  typedef typename TInputImage::IndexValueType OutputImageIndexValueType;
-  typedef typename TInputImage::IndexType      InputImageIndexType;
-  typedef typename TInputImage::SizeType       OutputImageSizeType;
-  typedef typename TInputImage::SizeType       InputImageSizeType;
-  typedef typename TInputImage::OffsetType     OutputImageOffsetType;
-  typedef typename TInputImage::OffsetType     InputImageOffsetType;
-  typedef typename TInputImage::DirectionType  OutputImageDirectionType;
-  typedef typename TInputImage::DirectionType  InputImageDirectionType;
+  typedef typename OutputImageType::IndexType        OutputImageIndexType;
+  typedef typename OutputImageType::SizeType         OutputImageSizeType;
+  typedef typename OutputImageType::OffsetType       OutputImageOffsetType;
+  typedef typename OutputImageType::DirectionType    OutputImageDirectionType;
+  typedef typename OutputImageType::OffsetValueType  OutputImageOffsetValueType;
+  typedef typename InputImageType::IndexType         InputImageIndexType;
+  typedef typename InputImageType::SizeType          InputImageSizeType;
+  typedef typename InputImageType::OffsetType        InputImageOffsetType;
+  typedef typename InputImageType::DirectionType     InputImageDirectionType;
 
   /** Image related typedefs. */
   itkStaticConstMacro(ImageDimension, unsigned int,
-                      TInputImage::ImageDimension);
+                      InputImageType::ImageDimension);
 
   /** Image spacing, origin and direction typedefs */
-  typedef typename TInputImage::SpacingType   SpacingType;
-  typedef typename TInputImage::PointType     PointType;
-  typedef typename TInputImage::DirectionType DirectionType;
+  typedef typename InputImageType::SpacingType   SpacingType;
+  typedef typename InputImageType::PointType     PointType;
+  typedef typename InputImageType::DirectionType DirectionType;
 
   /** Run-time type information (and related methods). */
   itkTypeMacro(ChangeInformationImageFilter, ImageToImageFilter);
 
   /** Copy the information from another Image.  By default,
    *  the information is copied from the input image. */
-  void SetReferenceImage(TInputImage *image)
+  void SetReferenceImage(const InputImageType *image)
   {
     if ( image != m_ReferenceImage )
       {
       m_ReferenceImage = image;
-      this->ProcessObject::SetNthInput(1, image);
+      this->ProcessObject::SetNthInput(1, const_cast< InputImageType *>( image ) );
       this->Modified();
       }
   }
 
-  itkGetObjectMacro(ReferenceImage, TInputImage);
+  itkGetConstObjectMacro(ReferenceImage, TInputImage);
 
   itkSetMacro(UseReferenceImage, bool);
   itkBooleanMacro(UseReferenceImage);
@@ -136,8 +139,8 @@ public:
    *  controls the requested region. Therefore, changing the buffered region
    *  may mean the filter cannot produce the requested region.
    */
-  itkSetVectorMacro(OutputOffset, OutputImageIndexValueType, ImageDimension);
-  itkGetVectorMacro(OutputOffset, const OutputImageIndexValueType, ImageDimension);
+  itkSetVectorMacro(OutputOffset, OutputImageOffsetValueType, ImageDimension);
+  itkGetVectorMacro(OutputOffset, const OutputImageOffsetValueType, ImageDimension);
 
   /** Change the origin, spacing and region of the output image. */
   void ChangeAll()
@@ -219,7 +222,7 @@ private:
   ChangeInformationImageFilter(const Self &); //purposely not implemented
   void operator=(const Self &);               //purposely not implemented
 
-  InputImagePointer m_ReferenceImage;
+  InputImageConstPointer m_ReferenceImage;
 
   bool m_CenterImage;
   bool m_ChangeSpacing;
@@ -232,8 +235,8 @@ private:
   PointType     m_OutputOrigin;
   DirectionType m_OutputDirection;
 
-  OutputImageIndexValueType m_OutputOffset[ImageDimension];
-  OutputImageOffsetType     m_Shift;
+  OutputImageOffsetValueType  m_OutputOffset[ImageDimension];
+  OutputImageOffsetType       m_Shift;
 };
 } // end namespace itk
 

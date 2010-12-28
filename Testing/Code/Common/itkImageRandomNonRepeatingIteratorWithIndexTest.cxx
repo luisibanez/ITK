@@ -27,6 +27,7 @@
 #endif
 #include <iostream>
 #include <algorithm>
+#include "itkIntTypes.h"
 #include "itkImage.h"
 #include "itkImageRegionIteratorWithIndex.h"
 #include "itkImageRandomNonRepeatingIteratorWithIndex.h"
@@ -36,7 +37,7 @@ int itkImageRandomNonRepeatingIteratorWithIndexTest(int, char* [] )
   const unsigned int ImageDimension = 3;
   typedef itk::Index< ImageDimension >                                    PixelType;
   typedef itk::Image< PixelType, ImageDimension >                         ImageType;
-  typedef size_t                                                          PriorityPixelType;
+  typedef itk::IdentifierType                                             PriorityPixelType;
   typedef itk::Image< PriorityPixelType, ImageDimension >                 PriorityImageType;
   typedef itk::ImageRegionIteratorWithIndex< ImageType >                  IteratorType;
   typedef itk::ImageRegionIteratorWithIndex< PriorityImageType >          PriorityIteratorType;

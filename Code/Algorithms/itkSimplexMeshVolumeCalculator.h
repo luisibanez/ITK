@@ -111,7 +111,7 @@ public:
     /**
      * \brief visits all polygon cells and compute the cell centers
      */
-    void Visit(size_t cellId, SimplexPolygonType *poly)
+    void Visit(IdentifierType cellId, SimplexPolygonType *poly)
     {
       typedef typename SimplexPolygonType::PointIdIterator PointIdIterator;
       PointIdIterator it =  poly->PointIdsBegin();

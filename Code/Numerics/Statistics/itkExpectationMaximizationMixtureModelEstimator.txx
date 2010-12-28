@@ -295,17 +295,16 @@ bool
 ExpectationMaximizationMixtureModelEstimator< TSample >
 ::UpdateProportions()
 {
-  int    numberOfComponents = m_ComponentVector.size();
-  SizeValueType   sampleSize = m_Sample->Size();
+  SizeValueType numberOfComponents = m_ComponentVector.size();
+  SizeValueType sampleSize = m_Sample->Size();
   double totalFrequency = (double)( m_Sample->GetTotalFrequency() );
-  SizeValueType   i, j;
   double tempSum;
   bool   updated = false;
 
-  for ( i = 0; i < numberOfComponents; i++ )
+  for ( SizeValueType i = 0; i < numberOfComponents; i++ )
     {
     tempSum = 0.0;
-    for ( j = 0; j < sampleSize; j++ )
+    for ( SizeValueType j = 0; j < sampleSize; j++ )
       {
       tempSum += ( m_ComponentVector[i]->GetWeight(j)
                    * m_Sample->GetFrequency(j) );

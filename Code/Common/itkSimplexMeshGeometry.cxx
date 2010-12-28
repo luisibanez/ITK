@@ -47,7 +47,7 @@ SimplexMeshGeometry
   distance = 0;
   phi = 0;
 
-  neighborIndices.Fill( (size_t)NumericTraits< size_t >::max() );
+  neighborIndices.Fill( NumericTraits< IdentifierType >::max() );
   neighbors.Fill(p);
   meanCurvature = c;
 }

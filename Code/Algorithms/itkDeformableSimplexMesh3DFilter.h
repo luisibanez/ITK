@@ -127,11 +127,11 @@ public:
   typedef typename InputMeshType::NeighborListType           InputNeighbors;
   typedef typename InputMeshType::NeighborListType::iterator InputNeighborsIterator;
 
-  typedef itk::MapContainer< size_t, std::set< size_t > > VertexNeighborListType;
-  typedef std::set< size_t >                              NeighborSetType;
-  typedef std::set< size_t >                              IndexSetType;
-  typedef typename NeighborSetType::iterator              NeighborSetIterator;
-  typedef typename IndexSetType::iterator                 IndexSetIterator;
+  typedef std::set< IdentifierType >                            NeighborSetType;
+  typedef std::set< IdentifierType >                            IndexSetType;
+  typedef itk::MapContainer< IdentifierType, NeighborSetType >  VertexNeighborListType;
+  typedef typename NeighborSetType::iterator                    NeighborSetIterator;
+  typedef typename IndexSetType::iterator                       IndexSetIterator;
 
   typedef typename InputMeshType::GeometryMapType GeometryMapType;
   typedef typename GeometryMapType::Pointer       GeometryMapPointer;

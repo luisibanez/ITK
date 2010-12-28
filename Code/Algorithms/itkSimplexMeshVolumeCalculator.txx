@@ -82,15 +82,19 @@ template< typename TInputMesh >
 IdentifierType SimplexMeshVolumeCalculator< TInputMesh >
 ::FindCellId(IdentifierType id1, IdentifierType id2, IdentifierType id3)
 {
-  std::set< typename InputMeshType::PointIdentifier >           cells1 =  m_SimplexMesh->GetCellLinks()->GetElement(id1);
-  std::set< typename InputMeshType::PointIdentifier >           cells2 =  m_SimplexMesh->GetCellLinks()->GetElement(id2);
-  std::set< typename InputMeshType::PointIdentifier >           cells3 =  m_SimplexMesh->GetCellLinks()->GetElement(id3);
-  typename std::set< typename InputMeshType::PointIdentifier >::iterator cellIt = cells1.begin();
+  typedef std::set< typename InputMeshType::PointIdentifier > PointSetType;
+  typedef typename PointSetType::iterator                     PointSetIterator;
+
+  PointSetType cells1 =  m_SimplexMesh->GetCellLinks()->GetElement(id1);
+  PointSetType cells2 =  m_SimplexMesh->GetCellLinks()->GetElement(id2);
+  PointSetType cells3 =  m_SimplexMesh->GetCellLinks()->GetElement(id3);
+
+  PointSetIterator cellIt = cells1.begin();
 
   while ( cellIt != cells1.end() )
     {
-    typename std::set< typename InputMeshType::PointIdentifier >::iterator found2 = std::find(cells2.begin(), cells2.end(), *cellIt);
-    typename std::set< typename InputMeshType::PointIdentifier >::iterator found3 = std::find(cells3.begin(), cells3.end(), *cellIt);
+    PointSetIterator found2 = std::find(cells2.begin(), cells2.end(), *cellIt);
+    PointSetIterator found3 = std::find(cells3.begin(), cells3.end(), *cellIt);
 
     if ( found2 != cells2.end() && found3 != cells3.end() )
       {

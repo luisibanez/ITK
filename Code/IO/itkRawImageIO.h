@@ -62,6 +62,9 @@ public:
    * or other operations. */
   typedef TPixel PixelType;
 
+  /** Type used for counting elements. */
+  typedef Superclass::SizeValueType    SizeValueType;
+
   /** this type is used in case the pixel has several components */
   typedef typename PixelTraits< PixelType >::ValueType ComponentType;
 

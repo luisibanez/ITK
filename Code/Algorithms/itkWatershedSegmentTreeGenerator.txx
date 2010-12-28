@@ -20,6 +20,7 @@
 
 #include <stack>
 #include "itkOneWayEquivalencyTable.h"
+#include "itkWatershedSegmentTreeGenerator.h"
 
 namespace itk
 {
@@ -295,8 +296,7 @@ void SegmentTreeGenerator< TScalarType >
 {
   typename SegmentTableType::edge_list_t::iterator edgeTOi, edgeFROMi,
   edgeTEMPi;
-  itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >
-                seen_table;
+  HashMapType seen_table;
   IdentifierType labelTO, labelFROM;
 
   // Lookup both entries.
@@ -360,12 +360,12 @@ void SegmentTreeGenerator< TScalarType >
     if ( edgeFROMi->height < edgeTOi->height )
       {
       to_seg->edge_list.insert(edgeTOi, *edgeFROMi);
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelFROM, true) );
+      seen_table.insert( HashMapType::value_type(labelFROM, true) );
       edgeFROMi++;
       }
     else
       {
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelTO, true) );
+      seen_table.insert( HashMapType::value_type(labelTO, true) );
       edgeTOi++;
       }
     }
@@ -383,7 +383,7 @@ void SegmentTreeGenerator< TScalarType >
       {
       if ( labelFROM != edgeFROMi->label ) { edgeFROMi->label = labelFROM; }
       to_seg->edge_list.push_back(*edgeFROMi);
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelFROM, true) );
+      seen_table.insert( HashMapType::value_type(labelFROM, true) );
       edgeFROMi++;
       }
     }
@@ -403,7 +403,7 @@ void SegmentTreeGenerator< TScalarType >
     else
       {
       if ( labelTO   != edgeTOi->label  ) { edgeTOi->label = labelTO; }
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelTO, true) );
+      seen_table.insert( HashMapType::value_type(labelTO, true) );
       edgeTOi++;
       }
     }
@@ -423,8 +423,7 @@ void SegmentTreeGenerator< TScalarType >
 {
   typename SegmentTableType::edge_list_t::iterator edgeTOi, edgeFROMi,
   edgeTEMPi;
-  itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >
-                seen_table;
+  HashMapType seen_table;
   IdentifierType labelTO, labelFROM;
 
   // Lookup both entries.
@@ -490,12 +489,12 @@ void SegmentTreeGenerator< TScalarType >
     if ( edgeFROMi->height < edgeTOi->height )
       {
       to_seg->edge_list.insert(edgeTOi, *edgeFROMi);
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelFROM, true) );
+      seen_table.insert( HashMapType::value_type(labelFROM, true) );
       edgeFROMi++;
       }
     else
       {
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelTO, true) );
+      seen_table.insert( HashMapType::value_type(labelTO, true) );
       edgeTOi++;
       }
     }
@@ -513,7 +512,7 @@ void SegmentTreeGenerator< TScalarType >
       {
       if ( labelFROM != edgeFROMi->label ) { edgeFROMi->label = labelFROM; }
       to_seg->edge_list.push_back(*edgeFROMi);
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelFROM, true) );
+      seen_table.insert( HashMapType::value_type(labelFROM, true) );
       edgeFROMi++;
       }
     }
@@ -533,7 +532,7 @@ void SegmentTreeGenerator< TScalarType >
     else
       {
       if ( labelTO   != edgeTOi->label  ) { edgeTOi->label = labelTO; }
-      seen_table.insert( itk::hash_map< IdentifierType, bool, itk::hash< IdentifierType > >::value_type(labelTO, true) );
+      seen_table.insert( HashMapType::value_type(labelTO, true) );
       edgeTOi++;
       }
     }

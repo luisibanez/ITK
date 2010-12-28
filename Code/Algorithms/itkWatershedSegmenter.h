@@ -367,11 +367,11 @@ private:
    *  streaming applications*/
   ImageRegionType m_LargestPossibleRegion;
 
-  bool          m_SortEdgeLists;
-  bool          m_DoBoundaryAnalysis;
-  double        m_Threshold;
-  double        m_MaximumFloodLevel;
-  IdentifierType m_CurrentLabel;
+  bool            m_SortEdgeLists;
+  bool            m_DoBoundaryAnalysis;
+  double          m_Threshold;
+  double          m_MaximumFloodLevel;
+  IdentifierType  m_CurrentLabel;
 };
 } // end namespace watershed
 } // end namespace itk

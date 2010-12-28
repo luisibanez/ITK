@@ -488,7 +488,7 @@ int itkTDistributionTest(int, char* [] )
   std::cout << "Exercise negative argument " << std::endl;
   std::cout << "InverseCDF(x,p) = " <<  distributionFunction->InverseCDF( -1.0, dof ) << std::endl;
 
-  long newdof = 17;
+  itk::SizeValueType newdof = 17;
   distributionFunction->SetDegreesOfFreedom( newdof );
   TEST_SET_GET_VALUE( newdof, distributionFunction->GetDegreesOfFreedom() );
 

@@ -100,7 +100,9 @@ public:
 
   /** An stl storage container type that can be sorted.  The type used for
    *  the list of active offsets in the neighborhood. */
-  typedef std::list< unsigned int > IndexListType;
+  typedef std::list< IndexValueType >             IndexListType;
+  typedef typename IndexListType::iterator        IndexListIterator;
+  typedef typename IndexListType::const_iterator  IndexListConstIterator;
 
   /** Typedef for boundary condition type. */
   typedef TBoundaryCondition BoundaryConditionType;
@@ -350,9 +352,9 @@ protected:
       argument is an index location calculated as an offset into a linear
       array which represents the image region defined by the radius of this
       iterator, with the smallest dimension as the fastest increasing index. */
-  virtual void ActivateIndex(const unsigned int);
+  virtual void ActivateIndex( IndexValueType );
 
-  virtual void DeactivateIndex(const unsigned int);
+  virtual void DeactivateIndex( IndexValueType );
 
   bool          m_CenterIsActive;
   IndexListType m_ActiveIndexList;

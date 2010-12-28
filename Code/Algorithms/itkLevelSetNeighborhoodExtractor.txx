@@ -267,7 +267,7 @@ LevelSetNeighborhoodExtractor< TLevelSet >
       {
       neighIndex[j] = index[j] + s;
 
-      if ( neighIndex[j] > m_ImageSize[j] - 1
+      if ( neighIndex[j] > static_cast< OffsetValueType >( m_ImageSize[j] ) - 1
            || neighIndex[j] < 0 )
         {
         continue;

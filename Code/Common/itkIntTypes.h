@@ -119,18 +119,18 @@ typedef::size_t    uintptr_t;
 
 /** Any count of number of items (number of pixels in an image, number of
  *  points) (it is unsigned) */
-typedef uintptr_t     SizeValueType;
+typedef unsigned long     SizeValueType;
 
 /** Same type as SizeValueType but when used as an Id (pointId, cellId,
  *  labelObjectId..)(it is unsigned) */
 typedef SizeValueType IdentifierType;
 
 /** The components of the Index array (they are signed) */
-typedef intptr_t      IndexValueType;
+typedef signed long   IndexValueType;
 
 /** Differences between components of indexes, distance from one pointer
  *  to the origin of a buffer (it is signed) */
-typedef intptr_t      OffsetValueType;
+typedef signed long   OffsetValueType;
 
 }
 
