@@ -208,6 +208,7 @@ private:
   double m_Wxy;
   double m_Wxz;
   double m_Wyz;
+
   IndexValueType   m_Muncx;
   IndexValueType   m_Muncy;
   IndexValueType   m_Muncz;
