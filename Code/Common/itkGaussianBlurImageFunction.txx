@@ -367,7 +367,7 @@ GaussianBlurImageFunction< TInputImage, TOutput >
     {
     typename NeighborhoodType::SizeType size;
     size.Fill(0);
-    size[direction] = static_cast<typename NeighborhoodType::SizeValueType>( m_Sigma[direction] * m_Extent[direction] );
+    size[direction] = static_cast<SizeValueType>( m_Sigma[direction] * m_Extent[direction] );
 
     NeighborhoodType gaussianNeighborhood;
     gaussianNeighborhood.SetRadius(size);

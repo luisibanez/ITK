@@ -82,14 +82,11 @@ public:
 
   /** Index typedef support. An index is used to access pixel values. */
   typedef Index< itkGetStaticConstMacro(ImageDimension) > IndexType;
-  typedef typename IndexType::IndexValueType              IndexValueType;
   typedef IndexValueType                                  IndexValueArrayType[ImageDimension];
   typedef typename IndexType::OffsetType                  OffsetType;
-  typedef typename OffsetType::OffsetValueType            OffsetValueType;
 
   /** Size typedef support. A size is used to define region bounds. */
   typedef Size< itkGetStaticConstMacro(ImageDimension) > SizeType;
-  typedef typename SizeType::SizeValueType               SizeValueType;
 
   /** Slice region typedef. SliceRegion is one dimension less than Self. */
   typedef ImageRegion< itkGetStaticConstMacro(SliceDimension) > SliceRegion;
@@ -256,7 +253,7 @@ public:
   /** Pad an image region by the specified radius. Region can be padded
    * uniformly in all dimensions or can be padded by different amounts
    * in each dimension. */
-  void PadByRadius(IndexValueType radius);
+  void PadByRadius(OffsetValueType radius);
 
   void PadByRadius(const IndexValueArrayType radius);
 

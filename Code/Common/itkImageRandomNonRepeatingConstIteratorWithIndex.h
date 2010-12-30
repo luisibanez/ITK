@@ -37,7 +37,6 @@ namespace itk
 class NodeOfPermutation
 {
 public:
-  typedef size_t SizeValueType;
   SizeValueType m_Priority;
   SizeValueType m_Index;
   double m_Value;
@@ -66,7 +65,6 @@ public:
 class RandomPermutation
 {
 public:
-  typedef size_t     SizeValueType;
   typedef Statistics::MersenneTwisterRandomVariateGenerator::Pointer GeneratorPointer;
   NodeOfPermutation *m_Permutation;
   GeneratorPointer   m_Generator;
@@ -211,11 +209,8 @@ public:
 
   /** Inherit types from the superclass */
   typedef typename Superclass::IndexType             IndexType;
-  typedef typename Superclass::IndexValueType        IndexValueType;
   typedef typename Superclass::SizeType              SizeType;
-  typedef typename Superclass::SizeValueType         SizeValueType;
   typedef typename Superclass::OffsetType            OffsetType;
-  typedef typename Superclass::OffsetValueType       OffsetValueType;
   typedef typename Superclass::RegionType            RegionType;
   typedef typename Superclass::ImageType             ImageType;
   typedef typename Superclass::PixelContainer        PixelContainer;

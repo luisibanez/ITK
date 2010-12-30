@@ -215,10 +215,10 @@ BSplineDeformableTransform< TScalarType, NDimensions, VSplineOrder >
     typename RegionType::IndexType index = m_GridRegion.GetIndex();
     for ( unsigned int j = 0; j < SpaceDimension; j++ )
       {
-      index[j] += static_cast< typename RegionType::IndexValueType >( m_Offset );
-      size[j] -= static_cast< typename RegionType::SizeValueType >( 2 * m_Offset );
+      index[j] += static_cast< IndexValueType >( m_Offset );
+      size[j] -= 2 * m_Offset;
       m_ValidRegionFirst[j] = index[j];
-      m_ValidRegionLast[j] = index[j] + static_cast< typename RegionType::IndexValueType >( size[j] ) - 1;
+      m_ValidRegionLast[j] = index[j] + static_cast< OffsetValueType >( size[j] ) - 1;
       }
     m_ValidRegion.SetSize(size);
     m_ValidRegion.SetIndex(index);
