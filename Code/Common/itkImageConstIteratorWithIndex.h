@@ -102,9 +102,11 @@ public:
 
   /** Index typedef support. */
   typedef typename TImage::IndexType         IndexType;
+  typedef typename IndexType::IndexValueType IndexValueType;
 
   /** Size typedef support. */
   typedef typename TImage::SizeType        SizeType;
+  typedef typename SizeType::SizeValueType SizeValueType;
 
   /** Region typedef support. */
   typedef typename TImage::RegionType RegionType;
@@ -131,6 +133,7 @@ public:
 
   /** Type of the Offset taken from the image */
   typedef typename TImage::OffsetType          OffsetType;
+  typedef typename OffsetType::OffsetValueType OffsetValueType;
 
   /** Default Constructor. Need to provide a default constructor since we
    * provide a copy constructor. */
