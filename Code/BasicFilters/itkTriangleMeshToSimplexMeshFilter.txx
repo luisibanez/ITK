@@ -80,7 +80,7 @@ void TriangleMeshToSimplexMeshFilter< TInputMesh, TOutputMesh >
 
     CellAutoPointer triCellPointer;
     input->GetCell(idx1, triCellPointer);
-    const typename TInputMesh::PointIdentifier *tp = triCellPointer->GetPointIds();
+    const PointIdentifier *tp = triCellPointer->GetPointIds();
     if ( !input->GetPoint(tp[0], &v1) )
       {
       itkExceptionMacro ("Point with id " << tp[0]
@@ -391,7 +391,7 @@ TriangleMeshToSimplexMeshFilter< TInputMesh, TOutputMesh >
   CellAutoPointer cellPointer;
 
   input->GetCell(faceId, cellPointer);
-  const typename TOutputMesh::PointIdentifier *tp = cellPointer->GetPointIds();
+  const PointIdentifier *tp = cellPointer->GetPointIds();
   if ( !input->GetPoint(tp[0], &v1) )
     {
     itkExceptionMacro ("Point with id " << tp[0]

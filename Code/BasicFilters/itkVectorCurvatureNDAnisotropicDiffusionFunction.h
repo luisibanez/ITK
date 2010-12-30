@@ -112,8 +112,8 @@ private:
   double m_K;
 
   static double m_MIN_NORM;
-  typename TImage::SizeValueType m_Center;
-  typename TImage::SizeValueType m_Stride[ImageDimension];
+  SizeValueType m_Center;
+  SizeValueType m_Stride[ImageDimension];
 };
 } // end namespace itk
 
