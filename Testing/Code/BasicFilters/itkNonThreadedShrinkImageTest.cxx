@@ -149,7 +149,7 @@ int itkNonThreadedShrinkImageTest(int, char* [] )
   std::cout << "Assign an invalid requested region which should throw an exception." << std::endl;
   std::cout << std::flush;
   itk::Index<2> foo;
-  IndexValueType fooindex[] = {100, 100};
+  itk::ImageRegion<2>::IndexValueType fooindex[] = {100, 100};
   foo.SetIndex(fooindex);
   itk::ImageRegion<2> fooregion;
   fooregion = shrink->GetOutput()->GetRequestedRegion();

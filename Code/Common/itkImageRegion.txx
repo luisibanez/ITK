@@ -52,7 +52,7 @@ ImageRegion< VImageDimension >
 {}
 
 template< unsigned int VImageDimension >
-SizeValueType
+typename ImageRegion< VImageDimension >::SizeValueType
 ImageRegion< VImageDimension >
 ::GetNumberOfPixels() const
 {

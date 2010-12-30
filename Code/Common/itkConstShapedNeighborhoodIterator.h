@@ -85,13 +85,16 @@ public:
 
   /** Inherit typedefs from superclass */
   typedef typename Superclass::OffsetType      OffsetType;
+  typedef typename OffsetType::OffsetValueType OffsetValueType;
   typedef typename Superclass::RadiusType      RadiusType;
   typedef typename Superclass::SizeType        SizeType;
+  typedef typename SizeType::SizeValueType     SizeValueType;
 
   /** Typedef support for common objects */
   typedef TImage                                     ImageType;
   typedef typename TImage::RegionType                RegionType;
   typedef Index< itkGetStaticConstMacro(Dimension) > IndexType;
+  typedef typename IndexType::IndexValueType         IndexValueType;
   typedef Neighborhood< PixelType, itkGetStaticConstMacro(Dimension) >
   NeighborhoodType;
 

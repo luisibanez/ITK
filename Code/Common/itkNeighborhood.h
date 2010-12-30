@@ -77,6 +77,7 @@ public:
 
   /** Size and value typedef support. */
   typedef::itk::Size< VDimension >         SizeType;
+  typedef typename SizeType::SizeValueType SizeValueType;
 
   /** Radius typedef support. */
   typedef::itk::Size< VDimension > RadiusType;
