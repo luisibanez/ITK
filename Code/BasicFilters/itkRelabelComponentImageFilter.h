@@ -171,14 +171,24 @@ public:
    * not calculated.  Size of object #1 is
    * GetSizeOfObjectsInPixels()[0]. Size of object #2 is
    * GetSizeOfObjectsInPixels()[1]. Etc. */
-  itkGetConstReferenceMacro( SizeOfObjectsInPixels, ObjectSizeInPixelsContainerType );
+  const ObjectSizeInPixelsContainerType & GetSizeOfObjectsInPixels() const
+    {
+    // The itkGetConstReferenceMacro() can't be used here becase this container
+    // doesn't have an ostream<< operator overloaded.
+    return this->m_SizeOfObjectsInPixels;
+    }
 
   /** Get the size of each object in physical space (in units of pixel
    * size). This information is only valid after the filter has
    * executed. Size of the background is not calculated.  Size of
    * object #1 is GetSizeOfObjectsInPhysicalUnits()[0]. Size of object
    * #2 is GetSizeOfObjectsInPhysicalUnits()[1]. Etc. */
-  itkGetConstReferenceMacro( SizeOfObjectsInPhysicalUnits, ObjectSizeInPhysicalUnitsContainerType );
+  const ObjectSizeInPhysicalUnitsContainerType & GetSizeOfObjectsInPhysicalUnits() const
+    {
+    // The itkGetConstReferenceMacro() can't be used here becase this container
+    // doesn't have an ostream<< operator overloaded.
+    return this->m_SizeOfObjectsInPhysicalUnits;
+    }
 
   /** Get the size of a particular object in pixels. This information is only
    * valid after the filter has executed.  Size of the background

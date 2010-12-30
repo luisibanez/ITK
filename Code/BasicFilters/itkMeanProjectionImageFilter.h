@@ -49,14 +49,17 @@ template< class TInputPixel, class TAccumulate >
 class MeanAccumulator
 {
 public:
-  typedef typename NumericTraits< TInputPixel >::RealType RealType;
+  typedef typename NumericTraits< TInputPixel >::RealType       RealType;
 
-  MeanAccumulator(size_t size)
+  MeanAccumulator( SizeValueType size )
   {
     m_Size = size;
   }
 
-  ~MeanAccumulator(){}
+  ~MeanAccumulator()
+  {
+    m_Size = NumericTraits< SizeValueType >::Zero;
+  }
 
   inline void Initialize()
   {
@@ -74,7 +77,7 @@ public:
   }
 
   TAccumulate   m_Sum;
-  size_t        m_Size;
+  SizeValueType m_Size;
 };
 } // end namespace Function
 
