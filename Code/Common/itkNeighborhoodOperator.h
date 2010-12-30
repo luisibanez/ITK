@@ -72,7 +72,6 @@ public:
 
   /** Size object typedef support */
   typedef typename Superclass::SizeType      SizeType;
-  typedef typename Superclass::SizeValueType SizeValueType;
 
   /** External support for pixel type */
   typedef TPixel PixelType;

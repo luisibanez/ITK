@@ -39,8 +39,6 @@ public:
   typedef Index< VDimension >         IndexType;
   typedef std::vector< OffsetType >   OffsetArray;
 
-  typedef typename IndexType::IndexValueType IndexValueType;
-
   // constructurs
   BresenhamLine(){}
   ~BresenhamLine(){}

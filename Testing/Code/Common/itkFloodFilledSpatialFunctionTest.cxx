@@ -40,7 +40,7 @@ int itkFloodFilledSpatialFunctionTest(int, char* [])
   // Image typedef
   typedef itk::Image< bool, dim > ImageType;
 
-  typedef ImageType::SizeValueType      SizeValueType;
+  typedef itk::SizeValueType      SizeValueType;
   typedef ImageType::SpacingValueType   SpacingValueType;
   typedef ImageType::PointValueType     PointValueType;
 
@@ -104,7 +104,7 @@ int itkFloodFilledSpatialFunctionTest(int, char* [])
 
     // Create and initialize a spatial function iterator
     ImageType::IndexType seedPos;
-    const ImageType::IndexValueType pos[] = {2,2};
+    const itk::IndexValueType pos[] = {2,2};
     seedPos.SetIndex(pos);
 
     typedef itk::FloodFilledSpatialFunctionConditionalIterator

@@ -62,7 +62,7 @@ int itkMedialNodeCorrespondencesTest(int, char *[])
   // Image size and spacing parameters
   typedef itk::Image< unsigned char, dim > ImageType;
 
-  typedef ImageType::SizeValueType      SizeValueType;
+  typedef itk::SizeValueType      SizeValueType;
   typedef ImageType::SpacingValueType   SpacingValueType;
   typedef ImageType::PointValueType     PointValueType;
 
