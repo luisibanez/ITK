@@ -26,7 +26,7 @@
 namespace itk
 {
 template< class TInputImage, class TOutputImage >
-const typename TInputImage::SizeValueType
+const SizeValueType
 SparseFieldFourthOrderLevelSetImageFilter< TInputImage, TOutputImage >
 ::m_NumVertex = 1 << ImageDimension;
 
@@ -94,18 +94,17 @@ typename SparseFieldFourthOrderLevelSetImageFilter< TInputImage, TOutputImage >
 SparseFieldFourthOrderLevelSetImageFilter< TInputImage, TOutputImage >
 ::ComputeCurvatureFromSparseImageNeighborhood(SparseImageIteratorType & it) const
 {
-  unsigned int        j, k;
   unsigned int        counter;
-  typename TInputImage::SizeValueType       position,  stride[ImageDimension], indicator[ImageDimension];
-  const typename TInputImage::SizeValueType one = 1;
-  const typename TInputImage::SizeValueType center = it.Size() / 2;
+  SizeValueType       position,  stride[ImageDimension], indicator[ImageDimension];
+  const SizeValueType one = 1;
+  const SizeValueType center = it.Size() / 2;
   NormalVectorType    normalvector;
   ValueType           curvature;
   bool                flag = false;
 
   const NeighborhoodScalesType neighborhoodScales = this->GetDifferenceFunction()->ComputeNeighborhoodScales();
 
-  for ( j = 0; j < ImageDimension; j++ )
+  for ( unsigned int j = 0; j < ImageDimension; j++ )
     {
     stride[j] = it.GetStride( j );
     indicator[j] = one << j;
@@ -116,7 +115,7 @@ SparseFieldFourthOrderLevelSetImageFilter< TInputImage, TOutputImage >
   for ( counter = 0; counter < m_NumVertex; counter++ )
     {
     position = center;
-    for ( k = 0; k < ImageDimension; k++ )
+    for ( unsigned int k = 0; k < ImageDimension; k++ )
       {
       if ( counter & indicator[k] )
         {
@@ -130,7 +129,7 @@ SparseFieldFourthOrderLevelSetImageFilter< TInputImage, TOutputImage >
     else
       {
       normalvector = it.GetPixel (position)->m_Data;
-      for ( j = 0; j < ImageDimension; j++ ) // derivative axis
+      for ( unsigned int j = 0; j < ImageDimension; j++ ) // derivative axis
         {
         if ( counter & indicator[j] )
           {
@@ -160,9 +159,8 @@ SparseFieldFourthOrderLevelSetImageFilter< TInputImage, TOutputImage >
   DistanceImageIteratorType distanceImageIterator (
     distanceImage,
     distanceImage->GetRequestedRegion() );
-  unsigned int j;
   typename SparseImageIteratorType::RadiusType radius;
-  for ( j = 0; j < ImageDimension; j++ )
+  for ( unsigned int j = 0; j < ImageDimension; j++ )
     {
     radius[j] = 1;
     }

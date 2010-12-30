@@ -108,8 +108,6 @@ public:
   typedef   typename TInputImage::SizeType    SizeType;
   typedef   typename TOutputImage::RegionType RegionType;
 
-  typedef   typename TInputImage::SizeValueType SizeValueType;
-
   /**
    * Smart pointer typedef support
    */
@@ -127,7 +125,7 @@ public:
   itkNewMacro(Self);
 
   /** Type used as identifier for the different component lables. */
-  typedef SizeValueType LabelType;
+  typedef IdentifierType LabelType;
 
   /** Type used to count number of pixels in objects. */
   typedef SizeValueType ObjectSizeType;

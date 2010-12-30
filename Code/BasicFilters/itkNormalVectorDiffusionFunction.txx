@@ -70,7 +70,6 @@ NormalVectorDiffusionFunction< TSparseImageType >
   Vector< NodeValueType, ImageDimension > gradient[ImageDimension];
   NormalVectorType                        PositiveSidePixel[2], NegativeSidePixel[2], flux;
 
-  typedef typename NeighborhoodType::SizeValueType SizeValueType;
   SizeValueType                           stride[ImageDimension];
   SizeValueType                           center;
 

@@ -50,7 +50,6 @@ ScalarAnisotropicDiffusionFunction< TImage >
   DerivativeOperator< PixelType,
                       ImageDimension > operator_list[ImageDimension];
 
-  typedef typename TImage::SizeValueType SizeValueType;
   SizeValueType Stride[ImageDimension];
   SizeValueType Center[ImageDimension];
 

@@ -167,7 +167,7 @@ protected:
   void CreateTriangles();
 
   /** part of algorithm */
-  PointIdentifier FindCellId(CellIdentifier id1, CellIdentifier id2, CellIdentifier id3);
+  CellIdentifier FindCellId(CellIdentifier id1, CellIdentifier id2, CellIdentifier id3);
 
   /** attribute stores the result of the simplex cell visitor */
   PointMapPointer m_Centers;

@@ -55,8 +55,6 @@ public:
   typedef typename TInputImage::PixelType    PixelType;
   typedef typename TInputImage::IndexType    IndexType;
 
-  typedef typename TInputImage::SizeValueType SizeValueType;
-
   typedef  typename NumericTraits< PixelType >::AccumulateType AccumulateType;
 
   itkStaticConstMacro(ImageDimension, unsigned int,

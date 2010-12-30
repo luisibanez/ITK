@@ -295,7 +295,6 @@ ResampleImageFilter< TInputImage, TOutputImage, TInterpolatorPrecisionType >
 
   typedef ContinuousIndex< TInterpolatorPrecisionType, ImageDimension >
   ContinuousIndexType;
-  typedef typename TInputImage::IndexValueType IndexValueType;
   ContinuousIndexType inputIndex;
 
   // Support for progress methods/callbacks
@@ -560,7 +559,6 @@ ResampleImageFilter< TInputImage, TOutputImage, TInterpolatorPrecisionType >
 
   typedef ContinuousIndex< TInterpolatorPrecisionType, ImageDimension >
   ContinuousIndexType;
-  typedef typename TInputImage::IndexValueType IndexValueType;
   ContinuousIndexType inputIndex;
   ContinuousIndexType tmpInputIndex;
 

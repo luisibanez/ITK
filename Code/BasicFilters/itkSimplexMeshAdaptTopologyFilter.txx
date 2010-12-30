@@ -218,7 +218,7 @@ void SimplexMeshAdaptTopologyFilter< TInputMesh, TOutputMesh >
       nonConstInput->AddEdge(firstNewIndex, secondNewIndex);
 
       // splitting cell
-      PointIdentifier    newPointIndex = 0;
+      PointIdentifier    newPointIndex = NumericTraits< PointIdentifier >::Zero;
       OutputPolygonType *polygon = new OutputPolygonType;
       m_NewSimplexCellPointer.TakeOwnership(polygon);
 
@@ -281,11 +281,11 @@ void
 SimplexMeshAdaptTopologyFilter< TInputMesh, TOutputMesh >
 ::ModifyNeighborCells(CellIdentifier id1, CellIdentifier id2, PointIdentifier insertPointId)
 {
-  std::set< typename InputMeshType::PointIdentifier >           cells1 =   this->GetInput(0)->GetCellLinks()->GetElement(id1);
-  std::set< typename InputMeshType::PointIdentifier >           cells2 =   this->GetInput(0)->GetCellLinks()->GetElement(id2);
-  typename std::set< typename InputMeshType::PointIdentifier >::iterator cellIt = cells1.begin();
+  std::set< PointIdentifier >           cells1 =   this->GetInput(0)->GetCellLinks()->GetElement(id1);
+  std::set< PointIdentifier >           cells2 =   this->GetInput(0)->GetCellLinks()->GetElement(id2);
+  typename std::set< PointIdentifier >::iterator cellIt = cells1.begin();
 
-  std::set< typename InputMeshType::PointIdentifier > result;
+  std::set< PointIdentifier > result;
 
   const InputMeshType *inputMesh = this->GetInput(0);
 
@@ -295,7 +295,7 @@ SimplexMeshAdaptTopologyFilter< TInputMesh, TOutputMesh >
 
   while ( cellIt != cells1.end() )
     {
-    typename std::set< typename InputMeshType::PointIdentifier >::iterator found = std::find(cells2.begin(), cells2.end(), *cellIt);
+    typename std::set< PointIdentifier >::iterator found = std::find(cells2.begin(), cells2.end(), *cellIt);
     if ( found != cells2.end() )
       {
       result.insert(*cellIt);
@@ -324,11 +324,11 @@ SimplexMeshAdaptTopologyFilter< TInputMesh, TOutputMesh >
       {
       m_NewSimplexCellPointer.TakeOwnership(new OutputPolygonType);
       InputPolygonPointIdIterator             pointIt =  nextCell->PointIdsBegin();
-      typename InputMeshType::PointIdentifier cnt = 0;
-      typename InputMeshType::PointIdentifier first = *pointIt++;
-      typename InputMeshType::PointIdentifier startId = first;
+      PointIdentifier cnt = NumericTraits< PointIdentifier >::Zero;
+      PointIdentifier first = *pointIt++;
+      PointIdentifier startId = first;
 
-      typename InputMeshType::PointIdentifier second = 0;
+      PointIdentifier second = 0;
 
       while ( pointIt != nextCell->PointIdsEnd() )
         {
