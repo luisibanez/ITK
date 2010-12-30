@@ -89,12 +89,15 @@ public:
 
   /** Index typedef support. An index is used to access pixel values. */
   typedef typename Superclass::IndexType     IndexType;
+  typedef typename IndexType::IndexValueType IndexValueType;
 
   /** Size typedef support. A size is used to define region bounds. */
   typedef typename Superclass::SizeType    SizeType;
+  typedef typename SizeType::SizeValueType SizeValueType;
 
   /** Offset typedef support. */
   typedef typename Superclass::OffsetType      OffsetType;
+  typedef typename OffsetType::OffsetValueType OffsetValueType;
 
   /** Region typedef support. A region is used to specify a subset of
    *  an image. */

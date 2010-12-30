@@ -126,6 +126,7 @@ public:
 
   /** Index typedef support. An index is used to access pixel values. */
   typedef typename Superclass::IndexType      IndexType;
+  typedef typename Superclass::IndexValueType IndexValueType;
 
   /** Offset typedef support. An offset is used to access pixel values. */
   typedef typename Superclass::OffsetType OffsetType;
@@ -154,6 +155,9 @@ public:
   /** A pointer to the pixel container. */
   typedef typename PixelContainer::Pointer      PixelContainerPointer;
   typedef typename PixelContainer::ConstPointer PixelContainerConstPointer;
+
+  /** Offset typedef (relative position between indices) */
+  typedef typename Superclass::OffsetValueType OffsetValueType;
 
   typedef unsigned int VectorLengthType;
 

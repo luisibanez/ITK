@@ -71,6 +71,7 @@ public:
 
   /** Compatible Index and value typedef */
   typedef   Index< VIndexDimension > IndexType;
+  typedef   ::itk::IndexValueType    IndexValueType;
 
   /** Get the dimension (size) of the index. */
   static unsigned int GetIndexDimension() { return VIndexDimension; }
@@ -80,6 +81,7 @@ public:
 
   /** Compatible Offset and Offset value typedef. */
   typedef   Offset< VIndexDimension >            OffsetType;
+  typedef   ::itk::OffsetValueType               OffsetValueType;
 
   /** Lexicographic ordering functor type.  */
   typedef Functor::IndexLexicographicCompare< VIndexDimension > LexicographicCompare;
