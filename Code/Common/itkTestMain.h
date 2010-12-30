@@ -48,7 +48,7 @@
 #include "itkExtractImageFilter.h"
 #include "itkDifferenceImageFilter.h"
 #include "itksys/SystemTools.hxx"
-
+#include "itkIntTypes.h"
 #include "itkFloatingPointExceptions.h"
 
 #define ITK_TEST_DIMENSION_MAX 6
@@ -312,7 +312,7 @@ int RegressionTestImage(const char *testImageFilename,
   diff->SetToleranceRadius(radiusTolerance);
   diff->UpdateLargestPossibleRegion();
 
-  DiffType::OutputImageSizeValueType status = 0;
+  itk::SizeValueType status = itk::NumericTraits< itk::SizeValueType >::Zero;
   status = diff->GetNumberOfPixelsWithDifferences();
 
   // if there are discrepencies, create an diff image

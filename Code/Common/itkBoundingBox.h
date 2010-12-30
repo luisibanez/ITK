@@ -30,6 +30,7 @@
 
 #include "itkPoint.h"
 #include "itkVectorContainer.h"
+#include "itkIntTypes.h"
 
 namespace itk
 {
@@ -62,7 +63,7 @@ namespace itk
  */
 
 template<
-  typename TPointIdentifier = size_t,
+  typename TPointIdentifier = IdentifierType,
   int VPointDimension = 3,
   typename TCoordRep = float,
   typename TPointsContainer =

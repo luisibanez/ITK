@@ -57,7 +57,6 @@ public:
   typedef TOutputImage                                        OutputImageType;
   typedef typename OutputImageType::PixelType                 OutputPixelType;
   typedef typename OutputImageType::RegionType                OutputImageRegionType;
-  typedef typename OutputImageType::SizeValueType             OutputImageSizeValueType;
   typedef typename NumericTraits< OutputPixelType >::RealType RealType;
   typedef typename NumericTraits< RealType >::AccumulateType  AccumulateType;
 
@@ -86,7 +85,7 @@ public:
   /** Get parameters of the difference image after execution.  */
   itkGetConstMacro(MeanDifference, RealType);
   itkGetConstMacro(TotalDifference, AccumulateType);
-  itkGetConstMacro(NumberOfPixelsWithDifferences, OutputImageSizeValueType);
+  itkGetConstMacro(NumberOfPixelsWithDifferences, SizeValueType);
 protected:
   DifferenceImageFilter();
   virtual ~DifferenceImageFilter() {}
@@ -117,12 +116,12 @@ protected:
 
   AccumulateType m_TotalDifference;
 
-  OutputImageSizeValueType m_NumberOfPixelsWithDifferences;
+  SizeValueType m_NumberOfPixelsWithDifferences;
 
   int m_ToleranceRadius;
 
-  Array< AccumulateType >            m_ThreadDifferenceSum;
-  Array< OutputImageSizeValueType >  m_ThreadNumberOfPixels;
+  Array< AccumulateType >    m_ThreadDifferenceSum;
+  Array< SizeValueType >     m_ThreadNumberOfPixels;
 
 private:
   DifferenceImageFilter(const Self &); //purposely not implemented

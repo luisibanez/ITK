@@ -32,7 +32,7 @@ namespace itk
  */
 template< typename TPixelType,
           unsigned int VImageDimension,
-          typename TPixelContainer = ValarrayImageContainer< size_t, TPixelType > >
+          typename TPixelContainer = ValarrayImageContainer< SizeValueType, TPixelType > >
 class DefaultImageTraits
 {
 public:
