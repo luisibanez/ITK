@@ -51,7 +51,7 @@ public:
 
   /** Types inherited from the Superclass */
   typedef typename Superclass::IndexType             IndexType;
-  typedef typename Superclass::IndexValueType        IndexValueType;
+  typedef typename IndexType::IndexValueType         IndexValueType;
   typedef typename Superclass::SizeType              SizeType;
   typedef typename Superclass::SizeValueType         SizeValueType;
   typedef typename Superclass::OffsetType            OffsetType;
