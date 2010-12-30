@@ -160,10 +160,8 @@ public:
 
   /** Inherit typedefs from superclass */
   typedef typename Superclass::OffsetType                        OffsetType;
-  typedef typename OffsetType::OffsetValueType                   OffsetValueType;
   typedef typename Superclass::RadiusType                        RadiusType;
   typedef typename Superclass::SizeType                          SizeType;
-  typedef typename Superclass::SizeValueType                     SizeValueType;
   typedef typename Superclass::ConstIterator                     ConstIterator;
   typedef typename Superclass::IndexListType                     IndexListType;
   typedef typename Superclass::BoundaryConditionType             BoundaryConditionType;
@@ -172,7 +170,6 @@ public:
   typedef typename Superclass::IndexType                         IndexType;
   typedef typename Superclass::ImageType                         ImageType;
   typedef typename Superclass::RegionType                        RegionType;
-  typedef typename Superclass::IndexValueType                    IndexValueType;
 
   /** An  iterator for the ShapedNeighborhood classes. */
   struct Iterator:public ConstIterator {

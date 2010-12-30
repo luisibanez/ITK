@@ -109,12 +109,10 @@ public:
 
   /** Index typedef support. An index is used to access pixel values. */
   typedef Index< TDimension >                IndexType;
-  typedef typename IndexType::IndexValueType IndexValueType;
 
   /** Offset typedef support. An offset represent relative position
    * between indices. */
   typedef Offset< TDimension >                 OffsetType;
-  typedef typename OffsetType::OffsetValueType OffsetValueType;
   typedef ImageRegion< TDimension >            RegionType;
   typedef Size< TDimension >                   SizeType;
   typedef SpatialObjectProperty< float >       PropertyType;

@@ -106,17 +106,14 @@ public:
   itkStaticConstMacro(ImageDimension, unsigned int, VImageDimension);
 
   /** Index typedef support. An index is used to access pixel values. */
-  typedef Index< VImageDimension >           IndexType;
-  typedef typename IndexType::IndexValueType IndexValueType;
+  typedef Index< VImageDimension >       IndexType;
 
   /** Offset typedef support. An offset represent relative position
    * between indices. */
-  typedef Offset< VImageDimension >            OffsetType;
-  typedef typename OffsetType::OffsetValueType OffsetValueType;
+  typedef Offset< VImageDimension >      OffsetType;
 
   /** Size typedef support. A size is used to define region bounds. */
-  typedef Size< VImageDimension >          SizeType;
-  typedef typename SizeType::SizeValueType SizeValueType;
+  typedef Size< VImageDimension >        SizeType;
 
   /** Region typedef support. A region is used to specify a subset of an image.
     */

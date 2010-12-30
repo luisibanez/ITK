@@ -77,18 +77,15 @@ public:
 
   /** Size and value typedef support. */
   typedef::itk::Size< VDimension >         SizeType;
-  typedef typename SizeType::SizeValueType SizeValueType;
 
   /** Radius typedef support. */
   typedef::itk::Size< VDimension > RadiusType;
 
   /** Offset type used to reference neighbor locations */
   typedef Offset< VDimension >                 OffsetType;
-  typedef typename OffsetType::OffsetValueType OffsetValueType;
 
   /** Index and value typedef support. */
   typedef Index< VDimension >                IndexType;
-  typedef typename IndexType::IndexValueType IndexValueType;
 
   /** External slice iterator type typedef support. */
   typedef SliceIterator< TPixel, Self > SliceIteratorType;
@@ -148,10 +145,12 @@ public:
   SizeType GetSize() const
   { return m_Size; }
 
+  typedef unsigned int   StrideType;
+
   /** Returns the stride length for the specified dimension. Stride
    * length is the number of pixels between adjacent pixels along the
    * given dimension. */
-  unsigned GetStride(const unsigned axis) const
+  StrideType GetStride(const unsigned axis) const
   {     return m_StrideTable[axis];  }
 
   /** STL-style iterator support. */
@@ -267,7 +266,7 @@ private:
 
   /** A lookup table for keeping track of stride lengths in a neighborhood
       i.e. the memory offsets between pixels along each dimensional axis */
-  unsigned int m_StrideTable[VDimension];
+  StrideType m_StrideTable[VDimension];
 
   /** */
   std::vector< OffsetType > m_OffsetTable;

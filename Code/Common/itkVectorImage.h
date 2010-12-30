@@ -126,14 +126,12 @@ public:
 
   /** Index typedef support. An index is used to access pixel values. */
   typedef typename Superclass::IndexType      IndexType;
-  typedef typename Superclass::IndexValueType IndexValueType;
 
   /** Offset typedef support. An offset is used to access pixel values. */
   typedef typename Superclass::OffsetType OffsetType;
 
   /** Size typedef support. A size is used to define region bounds. */
   typedef typename Superclass::SizeType      SizeType;
-  typedef typename Superclass::SizeValueType SizeValueType;
 
   /** Container used to store pixels in the image. */
   typedef ImportImageContainer< SizeValueType, InternalPixelType > PixelContainer;
@@ -156,9 +154,6 @@ public:
   /** A pointer to the pixel container. */
   typedef typename PixelContainer::Pointer      PixelContainerPointer;
   typedef typename PixelContainer::ConstPointer PixelContainerConstPointer;
-
-  /** Offset typedef (relative position between indices) */
-  typedef typename Superclass::OffsetValueType OffsetValueType;
 
   typedef unsigned int VectorLengthType;
 

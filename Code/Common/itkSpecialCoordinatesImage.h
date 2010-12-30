@@ -144,7 +144,6 @@ public:
 
   /** Size typedef support. A size is used to define region bounds. */
   typedef typename Superclass::SizeType      SizeType;
-  typedef typename Superclass::SizeValueType SizeValueType;
 
   /** Container used to store pixels in the image. */
   typedef ImportImageContainer< SizeValueType, PixelType > PixelContainer;
@@ -205,7 +204,7 @@ public:
    * allocated yet. */
   void SetPixel(const IndexType & index, const TPixel & value)
   {
-    typename Superclass::OffsetValueType offset = this->ComputeOffset(index);
+    OffsetValueType offset = this->ComputeOffset(index);
     ( *m_Buffer )[offset] = value;
   }
 
@@ -215,7 +214,7 @@ public:
    * image has actually been allocated yet. */
   const TPixel & GetPixel(const IndexType & index) const
   {
-    typename Superclass::OffsetValueType offset = this->ComputeOffset(index);
+    OffsetValueType offset = this->ComputeOffset(index);
     return ( ( *m_Buffer )[offset] );
   }
 
@@ -225,7 +224,7 @@ public:
    * image has actually been allocated yet. */
   TPixel & GetPixel(const IndexType & index)
   {
-    typename Superclass::OffsetValueType offset = this->ComputeOffset(index);
+    OffsetValueType offset = this->ComputeOffset(index);
     return ( ( *m_Buffer )[offset] );
   }
 

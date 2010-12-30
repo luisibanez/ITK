@@ -145,7 +145,7 @@ std::slice Neighborhood< TPixel, VDimension, TContainer >
 }
 
 template< class TPixel, unsigned int VDimension, class TContainer >
-typename Neighborhood< TPixel, VDimension, TContainer >::IndexValueType
+IndexValueType
 Neighborhood< TPixel, VDimension, TContainer >
 ::GetNeighborhoodIndex(const OffsetType & o) const
 {

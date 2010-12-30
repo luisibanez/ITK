@@ -45,7 +45,7 @@ void ComputeFastIndex(TImage *image, unsigned int count, unsigned int repeat)
   typename TImage::IndexType index;
   index.Fill( 0 );
   const typename TImage::IndexType &bufferedRegionIndex = image->GetBufferedRegion().GetIndex();
-  const typename TImage::OffsetValueType *offsetTable = image->GetOffsetTable();
+  const itk::OffsetValueType *offsetTable = image->GetOffsetTable();
 
   for (unsigned int j = 0; j < repeat; j++)
     {
@@ -63,8 +63,8 @@ void ComputeFastIndex(TImage *image, unsigned int count, unsigned int repeat)
 template <class TImage>
 void ComputeOffset(TImage *image, unsigned int count, unsigned int repeat)
 {
-  typename TImage::OffsetValueType offset = 0;
-  typename TImage::OffsetValueType accum = 0;
+  itk::OffsetValueType offset = 0;
+  itk::OffsetValueType accum = 0;
   typename TImage::IndexType index;
   typename TImage::OffsetType indexIncr;
   indexIncr.Fill(1);
@@ -86,13 +86,13 @@ void ComputeOffset(TImage *image, unsigned int count, unsigned int repeat)
 template <class TImage>
 void ComputeFastOffset(TImage *image, unsigned int count, unsigned int repeat)
 {
-  typename TImage::OffsetValueType offset = 0;
-  typename TImage::OffsetValueType accum = 0;
+  itk::OffsetValueType offset = 0;
+  itk::OffsetValueType accum = 0;
   typename TImage::IndexType index;
   typename TImage::OffsetType indexIncr;
   indexIncr.Fill(1);
 
-  const typename TImage::OffsetValueType *offsetTable = image->GetOffsetTable();
+  const itk::OffsetValueType *offsetTable = image->GetOffsetTable();
 
   for (unsigned j = 0; j < repeat; j++)
     {

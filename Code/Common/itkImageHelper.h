@@ -57,8 +57,6 @@ public:
   typedef ImageBase< NImageDimension >              ImageType;
   typedef typename ImageType::IndexType             IndexType;
   typedef typename ImageType::OffsetType            OffsetType;
-  typedef typename ImageType::IndexValueType        IndexValueType;
-  typedef typename ImageType::OffsetValueType       OffsetValueType;
   typedef Concept::Detail::UniqueType_bool< false > UniqueTypeBoolFalse;
   typedef Concept::Detail::UniqueType_bool< true >  UniqueTypeBoolTrue;
 

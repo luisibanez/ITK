@@ -114,17 +114,14 @@ public:
   /** Index typedef support. While this was already typdef'ed in the superclass
    * it needs to be redone here for this subclass to compile properly with gcc. */
   typedef typename Superclass::IndexType      IndexType;
-  typedef typename Superclass::IndexValueType IndexValueType;
 
   /** Size typedef support. While this was already typdef'ed in the superclass
    * it needs to be redone here for this subclass to compile properly with gcc. */
   typedef typename Superclass::SizeType      SizeType;
-  typedef typename Superclass::SizeValueType SizeValueType;
 
   /** Offset typedef support. While this was already typdef'ed in the superclass
    * it needs to be redone here for this subclass to compile properly with gcc. */
   typedef typename Superclass::OffsetType      OffsetType;
-  typedef typename Superclass::OffsetValueType OffsetValueType;
 
   /** Region typedef support. */
   typedef typename Superclass::RegionType RegionType;

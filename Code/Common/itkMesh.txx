@@ -52,7 +52,7 @@ Mesh< TPixelType, VDimension, TMeshTraits >
   os << indent << "Size of Cell Data Container: "
      << ( ( m_CellDataContainer ) ?  m_CellDataContainer->Size() : 0 ) << std::endl;
   os << indent << "Number of explicit cell boundary assignments: "
-     << static_cast< size_t >( m_BoundaryAssignmentsContainers.size() ) << std::endl;
+     << static_cast< CellIdentifier >( m_BoundaryAssignmentsContainers.size() ) << std::endl;
   os << indent << "CellsAllocationMethod: "
      << m_CellsAllocationMethod << std::endl;
 }
@@ -473,7 +473,7 @@ Mesh< TPixelType, VDimension, TMeshTraits >
  * Get the number of cells in the CellsContainer.
  */
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
-size_t
+typename Mesh< TPixelType, VDimension, TMeshTraits >::CellIdentifier
 Mesh< TPixelType, VDimension, TMeshTraits >
 ::GetNumberOfCells() const
 {
@@ -593,7 +593,7 @@ Mesh< TPixelType, VDimension, TMeshTraits >
  * though, and we are not sure how wide-spread this support is.
  */
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
-size_t
+typename Mesh< TPixelType, VDimension, TMeshTraits >::CellIdentifier
 Mesh< TPixelType, VDimension, TMeshTraits >
 ::GetCellBoundaryFeatureNeighbors(int dimension, CellIdentifier cellId,
                                   CellFeatureIdentifier featureId,
@@ -729,7 +729,7 @@ Mesh< TPixelType, VDimension, TMeshTraits >
    * set, less the cell through which the request was made.
    */
   currentCells->erase(cellId);
-  size_t numberOfNeighboringCells = currentCells->size();
+  CellIdentifier numberOfNeighboringCells = currentCells->size();
   if ( cellSet != 0 )
     {
     *cellSet = *currentCells;
@@ -758,7 +758,7 @@ Mesh< TPixelType, VDimension, TMeshTraits >
  * though, and we are not sure how wide-spread this support is.
  */
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
-size_t
+typename Mesh< TPixelType, VDimension, TMeshTraits >::CellIdentifier
 Mesh< TPixelType, VDimension, TMeshTraits >
 ::GetCellNeighbors(CellIdentifier cellId, std::set< CellIdentifier > *cellSet)
 {
@@ -878,7 +878,7 @@ Mesh< TPixelType, VDimension, TMeshTraits >
    * the original cell determined by cellId.  We simply need to copy
    * this set to the output cell set.
    */
-  size_t numberOfNeighboringCells = currentCells->size();
+  CellIdentifier numberOfNeighboringCells = currentCells->size();
   if ( cellSet != 0 )
     {
     *cellSet = *currentCells;

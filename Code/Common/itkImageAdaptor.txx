@@ -122,7 +122,7 @@ ImageAdaptor< TImage, TAccessor >
 
 //----------------------------------------------------------------------------
 template< class TImage, class TAccessor >
-const typename ImageAdaptor< TImage, TAccessor >::OffsetValueType *
+const OffsetValueType *
 ImageAdaptor< TImage, TAccessor >
 ::GetOffsetTable(void) const
 {

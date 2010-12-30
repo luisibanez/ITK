@@ -126,14 +126,12 @@ public:
 
   /** Index typedef support. An index is used to access pixel values. */
   typedef typename Superclass::IndexType      IndexType;
-  typedef typename Superclass::IndexValueType IndexValueType;
 
   /** Offset typedef support. An offset is used to access pixel values. */
   typedef typename Superclass::OffsetType OffsetType;
 
   /** Size typedef support. A size is used to define region bounds. */
   typedef typename Superclass::SizeType      SizeType;
-  typedef typename Superclass::SizeValueType SizeValueType;
 
   /** Container used to store pixels in the image. */
   typedef ImportImageContainer< SizeValueType, PixelType > PixelContainer;
@@ -156,9 +154,6 @@ public:
   /** A pointer to the pixel container. */
   typedef typename PixelContainer::Pointer      PixelContainerPointer;
   typedef typename PixelContainer::ConstPointer PixelContainerConstPointer;
-
-  /** Offset typedef (relative position between indices) */
-  typedef typename Superclass::OffsetValueType OffsetValueType;
 
   /** Allocate the image memory. The size of the image must
    * already be set, e.g. by calling SetRegions(). */
@@ -198,7 +193,7 @@ public:
    * allocated yet. */
   void SetPixel(const IndexType & index, const TPixel & value)
   {
-    typename Superclass::OffsetValueType offset = this->ComputeOffset(index);
+    OffsetValueType offset = this->ComputeOffset(index);
     ( *m_Buffer )[offset] = value;
   }
 
@@ -208,7 +203,7 @@ public:
    * image has actually been allocated yet. */
   const TPixel & GetPixel(const IndexType & index) const
   {
-    typename Superclass::OffsetValueType offset = this->ComputeOffset(index);
+    OffsetValueType offset = this->ComputeOffset(index);
     return ( ( *m_Buffer )[offset] );
   }
 
@@ -218,7 +213,7 @@ public:
    * image has actually been allocated yet. */
   TPixel & GetPixel(const IndexType & index)
   {
-    typename Superclass::OffsetValueType offset = this->ComputeOffset(index);
+    OffsetValueType offset = this->ComputeOffset(index);
     return ( ( *m_Buffer )[offset] );
   }
 

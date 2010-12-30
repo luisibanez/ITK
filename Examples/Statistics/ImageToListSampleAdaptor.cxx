@@ -83,11 +83,10 @@ int main()
   random->SetMin(    0.0 );
   random->SetMax( 1000.0 );
 
-  typedef FloatImage2DType::SpacingValueType  SpacingValueType;
-  typedef FloatImage2DType::SizeValueType     SizeValueType;
   typedef FloatImage2DType::PointValueType    PointValueType;
+  typedef FloatImage2DType::SpacingValueType  SpacingValueType;
 
-  SizeValueType size[2] = {20, 20};
+  itk::SizeValueType size[2] = {20, 20};
   random->SetSize( size );
 
   SpacingValueType spacing[2] = {0.7, 2.1};

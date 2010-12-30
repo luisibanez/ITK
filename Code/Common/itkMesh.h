@@ -287,7 +287,7 @@ protected:
   BoundaryAssignmentsContainerVector m_BoundaryAssignmentsContainers;
 public:
   /** Mesh-level operation interface. */
-  size_t GetNumberOfCells() const;
+  CellIdentifier GetNumberOfCells() const;
 
   void PassStructure(Self *inputMesh);
 
@@ -406,7 +406,7 @@ public:
    * feature.  Returns the number of neighbors found.  If cellSet is not NULL,
    * the set of cell pointers is filled in with identifiers of the neighboring
    * cells. */
-  size_t GetCellBoundaryFeatureNeighbors(
+  CellIdentifier GetCellBoundaryFeatureNeighbors(
     int dimension, CellIdentifier, CellFeatureIdentifier,
     std::set< CellIdentifier > *cellSet);
 
@@ -414,7 +414,7 @@ public:
    *  boundary.  Returns the number of neighbors found.  If cellSet is
    *  not NULL, the set of cell pointers is filled in with identifiers
    *  of the neighboring cells. */
-  size_t GetCellNeighbors(CellIdentifier cellId,
+  CellIdentifier GetCellNeighbors(CellIdentifier cellId,
                                  std::set< CellIdentifier > *cellSet);
 
 #ifndef CABLE_CONFIGURATION
