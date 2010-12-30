@@ -309,7 +309,7 @@ ExpandImageFilter< TInputImage, TOutputImage >
     {
     outputSpacing[i] = inputSpacing[i] / (float)m_ExpandFactors[i];
     outputSize[i] = inputSize[i] * (SizeValueType)m_ExpandFactors[i];
-    outputStartIndex[i] = inputStartIndex[i] * (typename TOutputImage::IndexValueType)m_ExpandFactors[i];
+    outputStartIndex[i] = inputStartIndex[i] * (IndexValueType)m_ExpandFactors[i];
     const double fraction = (double)( m_ExpandFactors[i] - 1 ) / (double)m_ExpandFactors[i];
     inputOriginShift[i] = -( inputSpacing[i] / 2.0 ) * fraction;
     }

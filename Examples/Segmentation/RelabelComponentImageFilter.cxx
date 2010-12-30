@@ -131,7 +131,7 @@ int main( int argc, char * argv[] )
 
 
   // Software Guide : BeginCodeSnippet
-  typedef std::vector< size_t > SizesInPixelsType;
+  typedef FilterType::ObjectSizeInPixelsContainerType  SizesInPixelsType;
 
   const SizesInPixelsType &  sizesInPixels = relabeler->GetSizeOfObjectsInPixels();
 
@@ -149,7 +149,7 @@ int main( int argc, char * argv[] )
   // Software Guide : EndCodeSnippet
 
   // Software Guide : BeginCodeSnippet
-  typedef std::vector< float > SizesInPhysicalUnitsType;
+  typedef FilterType::ObjectSizeInPhysicalUnitsContainerType  SizesInPhysicalUnitsType;
 
   const SizesInPhysicalUnitsType  sizesInUnits = relabeler->GetSizeOfObjectsInPhysicalUnits();
 

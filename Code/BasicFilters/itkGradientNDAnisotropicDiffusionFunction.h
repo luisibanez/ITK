@@ -83,7 +83,7 @@ public:
   typedef typename Superclass::NeighborhoodType NeighborhoodType;
   typedef typename Superclass::FloatOffsetType  FloatOffsetType;
 
-  typedef typename NeighborhoodType::SizeValueType NeighborhoodSizeValueType;
+  typedef SizeValueType NeighborhoodSizeValueType;
 
   /** Inherit some parameters from the superclass type. */
   itkStaticConstMacro(ImageDimension, unsigned int, Superclass::ImageDimension);

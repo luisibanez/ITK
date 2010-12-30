@@ -232,9 +232,9 @@ RelabelComponentImageFilter< TInputImage, TOutputImage >
      << m_NumberOfObjectsToPrint << std::endl;
   os << indent << "MinimumObjectSizez: " << m_MinimumObjectSize << std::endl;
 
-  typename std::vector< ObjectSizeType >::const_iterator it;
-  std::vector< float >::const_iterator                   fit;
-  LabelType                                              i;
+  typename ObjectSizeInPixelsContainerType::const_iterator it;
+  ObjectSizeInPhysicalUnitsContainerType::const_iterator   fit;
+  LabelType                                                i;
 
   // limit the number of objects to print
   LabelType numPrint = m_NumberOfObjectsToPrint;

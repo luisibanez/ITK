@@ -63,8 +63,6 @@ public:
   /** Size typedef support. A size is used to define region bounds. */
   typedef Size< VImageDimension > SizeType;
 
-  typedef typename SizeType::SizeValueType SizeValueType;
-
   /** Region typedef support. A region is used to specify a
    * subset of an image. */
   typedef ImageRegion< VImageDimension > RegionType;

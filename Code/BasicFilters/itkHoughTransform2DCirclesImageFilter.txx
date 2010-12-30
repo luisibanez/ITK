@@ -106,7 +106,6 @@ HoughTransform2DCirclesImageFilter< TInputPixelType, TOutputPixelType >
 
   Index< 2 >        index;
   Point< float, 2 > point;
-  typedef Index< 2 >::IndexValueType IndexValueType;
 
   while ( !image_it.IsAtEnd() )
     {
@@ -225,7 +224,6 @@ HoughTransform2DCirclesImageFilter< TInputPixelType, TOutputPixelType >
   ImageRegionIterator< InternalImageType > it_input( postProcessImage, postProcessImage->GetLargestPossibleRegion() );
 
   Index< 2 > index;
-  typedef Index< 2 >::IndexValueType IndexValueType;
 
   CirclesListSizeType circles = 0;
   bool         found;

@@ -235,7 +235,7 @@ VTKPolyDataReader< TOutputMesh >
   long long numberOfCellPoints;
   long long ids[3];
 
-  for ( CellIdentifier i = 0; i < numberOfPolygons; i++ )
+  for ( CellIdentifier i = 0; i < static_cast<CellIdentifier>( numberOfPolygons ); i++ )
     {
     std::getline(inputFile, line, '\n');
     if ( inputFile.eof() )
@@ -291,7 +291,7 @@ VTKPolyDataReader< TOutputMesh >
 
     CellAutoPointer   cell;
     TriangleCellType *triangleCell = new TriangleCellType;
-    for ( PointIdentifier k = 0; k < numberOfCellPoints; k++ )
+    for ( PointIdentifier k = 0; k < static_cast<PointIdentifier>( numberOfCellPoints ); k++ )
       {
       triangleCell->SetPointId(k, ids[k]);
       }

@@ -72,7 +72,6 @@ HoughTransform2DLinesImageFilter< TInputPixelType, TOutputPixelType >
   // Compute the size of the output image
   typename InputImageType::RegionType region;
   Size< 2 > size;
-  typedef Size< 2 >::SizeValueType SizeValueType;
 
   size[0] =
     (SizeValueType)( vcl_sqrt(m_AngleResolution * m_AngleResolution
@@ -121,7 +120,6 @@ HoughTransform2DLinesImageFilter< TInputPixelType, TOutputPixelType >
   image_it.Begin();
 
   Index< 2 > index;
-  typedef Index< 2 >::IndexValueType IndexValueType;
 
   while ( !image_it.IsAtEnd() )
     {
@@ -177,7 +175,7 @@ HoughTransform2DLinesImageFilter< TInputPixelType, TOutputPixelType >
 
   Index< 2 > index;
   Index< 2 > maxIndex;
-  typedef Index< 2 >::IndexValueType IndexValueType;
+
   typename OutputImageType::PixelType value;
   typename OutputImageType::PixelType valuemax;
 
@@ -282,7 +280,6 @@ HoughTransform2DLinesImageFilter< TInputPixelType, TOutputPixelType >
   const double nPI = 4.0 * vcl_atan(1.0);
 
   itk::Index< 2 > index;
-  typedef Index< 2 >::IndexValueType IndexValueType;
 
   unsigned int lines = 0;
   bool         found;

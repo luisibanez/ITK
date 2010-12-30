@@ -200,8 +200,6 @@ FlipImageFilter< TImage >
 ::ThreadedGenerateData(const OutputImageRegionType & outputRegionForThread,
                        int threadId)
 {
-  unsigned int  j;
-
   // Get the input and output pointers
   InputImageConstPointer inputPtr = this->GetInput();
   OutputImagePointer     outputPtr = this->GetOutput();
@@ -222,7 +220,7 @@ FlipImageFilter< TImage >
     outputPtr->GetLargestPossibleRegion().GetIndex();
 
   IndexValueType offset[ImageDimension];
-  for ( j = 0; j < ImageDimension; j++ )
+  for ( unsigned int j = 0; j < ImageDimension; j++ )
     {
     if ( m_FlipAxes[j] )
       {
@@ -238,7 +236,7 @@ FlipImageFilter< TImage >
     outputIndex = outIt.GetIndex();
 
     // determine the input pixel location associated with this output pixel
-    for ( j = 0; j < ImageDimension; j++ )
+    for ( unsigned int j = 0; j < ImageDimension; j++ )
       {
       if ( m_FlipAxes[j] )
         {

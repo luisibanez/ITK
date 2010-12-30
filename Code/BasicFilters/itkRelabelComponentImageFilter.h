@@ -136,6 +136,9 @@ public:
    * valid after the filter has executed. */
   itkGetConstMacro(NumberOfObjects, LabelType);
 
+  typedef std::vector< ObjectSizeType >   ObjectSizeInPixelsContainerType;
+  typedef std::vector< float >            ObjectSizeInPhysicalUnitsContainerType;
+
   /** Get the original number of objects in the image before small
    * objects were discarded. This information is only valid after
    * the filter has executed. If the caller has not specified a
@@ -168,16 +171,14 @@ public:
    * not calculated.  Size of object #1 is
    * GetSizeOfObjectsInPixels()[0]. Size of object #2 is
    * GetSizeOfObjectsInPixels()[1]. Etc. */
-  const std::vector< ObjectSizeType > & GetSizeOfObjectsInPixels() const
-  { return m_SizeOfObjectsInPixels; }
+  itkGetConstReferenceMacro( SizeOfObjectsInPixels, ObjectSizeInPixelsContainerType );
 
   /** Get the size of each object in physical space (in units of pixel
    * size). This information is only valid after the filter has
    * executed. Size of the background is not calculated.  Size of
    * object #1 is GetSizeOfObjectsInPhysicalUnits()[0]. Size of object
    * #2 is GetSizeOfObjectsInPhysicalUnits()[1]. Etc. */
-  const std::vector< float > & GetSizeOfObjectsInPhysicalUnits() const
-  { return m_SizeOfObjectsInPhysicalUnits; }
+  itkGetConstReferenceMacro( SizeOfObjectsInPhysicalUnits, ObjectSizeInPhysicalUnitsContainerType );
 
   /** Get the size of a particular object in pixels. This information is only
    * valid after the filter has executed.  Size of the background
@@ -285,8 +286,8 @@ private:
   LabelType      m_OriginalNumberOfObjects;
   ObjectSizeType m_MinimumObjectSize;
 
-  std::vector< ObjectSizeType > m_SizeOfObjectsInPixels;
-  std::vector< float >          m_SizeOfObjectsInPhysicalUnits;
+  ObjectSizeInPixelsContainerType         m_SizeOfObjectsInPixels;
+  ObjectSizeInPhysicalUnitsContainerType  m_SizeOfObjectsInPhysicalUnits;
 };
 } // end namespace itk
 
