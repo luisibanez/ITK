@@ -85,9 +85,6 @@ public:
   /** Offset type used to reference neighbor locations */
   typedef Offset< VDimension >                 OffsetType;
 
-  /** Index and value typedef support. */
-  typedef Index< VDimension >                IndexType;
-
   /** External slice iterator type typedef support. */
   typedef SliceIterator< TPixel, Self > SliceIteratorType;
 
