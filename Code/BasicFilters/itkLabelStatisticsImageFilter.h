@@ -97,7 +97,7 @@ public:
   typedef SimpleDataObjectDecorator< RealType > RealObjectType;
 
   /** Bounding Box-related typedefs */
-  typedef std::vector< typename IndexType::IndexValueType > BoundingBoxType;
+  typedef std::vector< IndexValueType > BoundingBoxType;
 
   /** Histogram-related typedefs */
   typedef itk::Statistics::Histogram< RealType > HistogramType;
@@ -113,7 +113,7 @@ public:
     LabelStatistics()
     {
       // initialized to the default values
-      m_Count = 0;
+      m_Count = NumericTraits< IdentifierType >::Zero;
       m_Sum = NumericTraits< RealType >::Zero;
       m_SumOfSquares = NumericTraits< RealType >::Zero;
 
@@ -130,8 +130,8 @@ public:
       m_BoundingBox.resize(imageDimension * 2);
       for ( unsigned int i = 0; i < imageDimension * 2; i += 2 )
         {
-        m_BoundingBox[i] = NumericTraits< ITK_TYPENAME IndexType::IndexValueType >::max();
-        m_BoundingBox[i + 1] = NumericTraits< ITK_TYPENAME IndexType::IndexValueType >::NonpositiveMin();
+        m_BoundingBox[i] = NumericTraits< IndexValueType >::max();
+        m_BoundingBox[i + 1] = NumericTraits< IndexValueType >::NonpositiveMin();
         }
       m_Histogram = 0;
     }
@@ -140,7 +140,7 @@ public:
     LabelStatistics(int size, RealType lowerBound, RealType upperBound)
     {
       // initialized to the default values
-      m_Count = 0;
+      m_Count = NumericTraits< IdentifierType >::Zero;
       m_Sum = NumericTraits< RealType >::Zero;
       m_SumOfSquares = NumericTraits< RealType >::Zero;
 
@@ -157,8 +157,8 @@ public:
       m_BoundingBox.resize(imageDimension * 2);
       for ( unsigned int i = 0; i < imageDimension * 2; i += 2 )
         {
-        m_BoundingBox[i] = NumericTraits< ITK_TYPENAME IndexType::IndexValueType >::max();
-        m_BoundingBox[i + 1] = NumericTraits< ITK_TYPENAME IndexType::IndexValueType >::NonpositiveMin();
+        m_BoundingBox[i] = NumericTraits< IndexValueType >::max();
+        m_BoundingBox[i + 1] = NumericTraits< IndexValueType >::NonpositiveMin();
         }
 
       // Histogram
@@ -206,7 +206,7 @@ public:
       m_Histogram = l.m_Histogram;
     }
 
-    size_t          m_Count;
+    IdentifierType  m_Count;
     RealType        m_Minimum;
     RealType        m_Maximum;
     RealType        m_Mean;
@@ -222,7 +222,7 @@ public:
   typedef itk::hash_map< LabelPixelType, LabelStatistics >                          MapType;
   typedef typename itk::hash_map< LabelPixelType, LabelStatistics >::iterator       MapIterator;
   typedef typename itk::hash_map< LabelPixelType, LabelStatistics >::const_iterator MapConstIterator;
-  typedef typename itk::hash_map< LabelPixelType, LabelStatistics >::size_type      MapSizeType;
+  typedef IdentifierType                                                            MapSizeType;
 
   // macros for Histogram enables
   itkSetMacro(UseHistograms, bool);
