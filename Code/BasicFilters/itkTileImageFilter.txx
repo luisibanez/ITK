@@ -80,11 +80,13 @@ TileImageFilter< TInputImage, TOutputImage >
         }
       OutputImageRegionType tempRegion(tempIndex, tempSize);
       tempImage->SetRegions(tempRegion);
-      typedef typename TInputImage::SizeValueType InputSizeValueType;
-      tempImage->SetPixelContainer( const_cast< ImportImageContainer< InputSizeValueType,
-                                                                      InputPixelType > * >( this->GetInput(it.Get().
-                                                                                                           m_ImageNumber)
-                                                                                            ->GetPixelContainer() ) );
+
+      const TInputImage * inputImage = this->GetInput( it.Get().m_ImageNumber );
+
+      typedef ImportImageContainer< SizeValueType, InputPixelType > PixelContainerType;
+
+      tempImage->SetPixelContainer( const_cast< PixelContainerType * >( inputImage->GetPixelContainer() ) );
+
       paste->SetSourceImage(tempImage);
       paste->SetDestinationIndex( it.Get().m_Region.GetIndex() );
       paste->SetSourceRegion(tempRegion);
