@@ -19,6 +19,7 @@
 #define __itkSmapsFileParser_h
 
 #include "itkMacro.h"
+#include "itkIntTypes.h"
 
 #include <string>
 #include <vector>
@@ -36,7 +37,7 @@ namespace itk
 class ITKCommon_EXPORT MapRecord
 {
 public:
-  typedef size_t MemoryLoadType;
+  typedef SizeValueType  MemoryLoadType;
   virtual ~MapRecord();
   /** Reset the record
   */
@@ -116,7 +117,7 @@ class ITKCommon_EXPORT MapData
 {
 public:
   /** need a large enough type to be able to accumulate the SmapsRecord */
-  typedef size_t MemoryLoadType;
+  typedef SizeValueType  MemoryLoadType;
   //todo delete records
   virtual ~MapData();
 

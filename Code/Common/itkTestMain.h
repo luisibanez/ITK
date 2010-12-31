@@ -64,7 +64,7 @@ int RegressionTestImage(const char *testImageFilename,
                         const char *baselineImageFilename,
                         int reportErrors,
                         double intensityTolerance,
-                        size_t numberOfPixelsTolerance = 0,
+                        ::itk::SizeValueType numberOfPixelsTolerance = 0,
                         unsigned int radiusTolerance = 0);
 
 std::map< std::string, int > RegressionTestBaselines(char *);
@@ -251,7 +251,7 @@ int RegressionTestImage(const char *testImageFilename,
                         const char *baselineImageFilename,
                         int reportErrors,
                         double intensityTolerance,
-                        size_t numberOfPixelsTolerance,
+                        ::itk::SizeValueType numberOfPixelsTolerance,
                         unsigned int radiusTolerance)
 {
   // Use the factory mechanism to read the test and baseline files and convert

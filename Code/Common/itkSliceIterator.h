@@ -19,7 +19,9 @@
 #define __itkSliceIterator_h
 
 #include "itkMacro.h"
+#include "itkIntTypes.h"
 #include <valarray>
+
 namespace itk
 {
 /** \class SliceIterator
@@ -63,7 +65,7 @@ public:
   {
     SliceIterator ans = *this;
 
-    ans.m_Pos = static_cast< size_t >( m_Slice.size() );
+    ans.m_Pos = static_cast< OffsetValueType >( m_Slice.size() );
     return ans;
   }
 
@@ -85,7 +87,7 @@ public:
 
   /** Returns the element at position n of the slice. Sets the
    * iterator to point to position n. */
-  TPixel & operator[](size_t n)
+  TPixel & operator[](OffsetValueType n)
   { return this->Loc(m_Pos = n); }
 
   /** Dereferences the iterator, returning the value that it points
@@ -120,10 +122,10 @@ public:
 
 private:
   /** Returns the value located at position n of the slice. */
-  TPixel & Loc(size_t n) const
+  TPixel & Loc(OffsetValueType n) const
   {
-    const size_t start  = static_cast< size_t >( m_Slice.start() );
-    const size_t stride = static_cast< size_t >( m_Slice.stride() );
+    const OffsetValueType start  = static_cast< OffsetValueType >( m_Slice.start() );
+    const OffsetValueType stride = static_cast< OffsetValueType >( m_Slice.stride() );
 
     return ( *m_ContainerPointer )[start + n * stride];
   }
@@ -132,7 +134,7 @@ private:
   TContainer *m_ContainerPointer;
 
   /** Current position within the slice. */
-  size_t m_Pos;
+  OffsetValueType m_Pos;
 
   /** Slice structure information. */
   std::slice m_Slice;
