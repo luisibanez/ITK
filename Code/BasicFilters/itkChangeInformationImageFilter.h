@@ -66,6 +66,7 @@ public:
   typedef typename InputImageType::RegionType   InputImageRegionType;
 
   /** Typedef to describe the pointer to the input. */
+  typedef typename InputImageType::Pointer      InputImagePointer;
   typedef typename InputImageType::ConstPointer InputImageConstPointer;
 
   /** Typedef to describe the type of pixel. */
@@ -97,7 +98,7 @@ public:
 
   /** Copy the information from another Image.  By default,
    *  the information is copied from the input image. */
-  void SetReferenceImage(const InputImageType *image)
+  void SetReferenceImage(InputImageType *image)
   {
     if ( image != m_ReferenceImage )
       {
@@ -107,7 +108,7 @@ public:
       }
   }
 
-  itkGetConstObjectMacro(ReferenceImage, TInputImage);
+  itkGetObjectMacro(ReferenceImage, TInputImage);
 
   itkSetMacro(UseReferenceImage, bool);
   itkBooleanMacro(UseReferenceImage);
@@ -223,7 +224,7 @@ private:
   ChangeInformationImageFilter(const Self &); //purposely not implemented
   void operator=(const Self &);               //purposely not implemented
 
-  InputImageConstPointer m_ReferenceImage;
+  InputImagePointer m_ReferenceImage;
 
   bool m_CenterImage;
   bool m_ChangeSpacing;
