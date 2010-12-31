@@ -67,6 +67,9 @@ public:
   typedef typename Superclass::PixelType PixelType;
   typedef typename Superclass::SizeType  SizeType;
 
+  /** Type for strides in the neighborhood */
+  typedef typename Superclass::StrideType     StrideType;
+
   /**  Default constructor  */
   LaplacianOperator()
   {
