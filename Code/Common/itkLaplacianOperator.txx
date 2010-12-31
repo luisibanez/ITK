@@ -87,8 +87,6 @@ LaplacianOperator< TPixel, VDimension, TAllocator >
   w = this->Size();
   CoefficientVector coeffP(w);
 
-  typedef typename Superclass::StrideType     StrideType;
-
   //Set the coefficients
   double   sum = 0.0;
   for ( i = 0; i < 2 * VDimension; i += 2 )
