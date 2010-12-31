@@ -244,7 +244,7 @@ PermuteAxesImageFilter< TImage >
   ProgressReporter progress( this, threadId, outputRegionForThread.GetNumberOfPixels() );
 
   // walk the output region, and sample the input image
-  for ( ; !outIt.IsAtEnd(); ++outIt )
+  for ( outIt.GoToBegin(); !outIt.IsAtEnd(); ++outIt )
     {
     // determine the index of the output pixel
     outputIndex = outIt.GetIndex();

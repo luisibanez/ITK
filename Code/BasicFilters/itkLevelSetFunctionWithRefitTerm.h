@@ -158,8 +158,8 @@ private:
   ScalarValueType m_MinVectorNorm;
 
   /** Constants used in computations. */
-  static const NeighborhoodSizeValueType m_NumVertex;
-  static const ScalarValueType m_DimConst;
+  static const NeighborhoodSizeValueType    m_NumVertex;
+  static const ScalarValueType              m_DimConst;
 };
 } // end namespace itk
 

@@ -47,11 +47,11 @@ class CellInterfaceVisitor:public LightObject
 {
 public:
   /** Standard class typedefs. */
-  typedef CellInterfaceVisitor       Self;
-  typedef LightObject                Superclass;
-  typedef SmartPointer< Self >       Pointer;
-  typedef SmartPointer< const Self > ConstPointer;
-  typedef typename TCellTraits::CellIdentifier CellIdentifier;
+  typedef CellInterfaceVisitor                  Self;
+  typedef LightObject                           Superclass;
+  typedef SmartPointer< Self >                  Pointer;
+  typedef SmartPointer< const Self >            ConstPointer;
+  typedef typename TCellTraits::CellIdentifier  CellIdentifier;
 
   /** Run-time type information (and related methods). */
   itkTypeMacro(CellInterfaceVisitor, LightObject);
@@ -105,9 +105,9 @@ class CellInterfaceVisitorImplementation:
 {
 public:
   /** Standard class typedefs. */
-  typedef CellInterfaceVisitorImplementation Self;
-  typedef SmartPointer< Self >               Pointer;
-  typedef typename TCellTraits::CellIdentifier CellIdentifier;
+  typedef CellInterfaceVisitorImplementation    Self;
+  typedef SmartPointer< Self >                  Pointer;
+  typedef typename TCellTraits::CellIdentifier  CellIdentifier;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);

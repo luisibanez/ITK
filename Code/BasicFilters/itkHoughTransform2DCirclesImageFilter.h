@@ -185,12 +185,12 @@ private:
   double m_Threshold;
   double m_SigmaGradient;
 
-  OutputImagePointer m_RadiusImage;
-  CirclesListType    m_CirclesList;
-  CirclesListSizeType m_NumberOfCircles;
-  float              m_DiscRadiusRatio;
-  float              m_Variance;
-  unsigned long      m_OldModifiedTime;
+  OutputImagePointer    m_RadiusImage;
+  CirclesListType       m_CirclesList;
+  CirclesListSizeType   m_NumberOfCircles;
+  float                 m_DiscRadiusRatio;
+  float                 m_Variance;
+  unsigned long         m_OldModifiedTime;
 
   CirclesListSizeType m_OldNumberOfCircles;
 };

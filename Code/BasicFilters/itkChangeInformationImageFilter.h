@@ -62,8 +62,8 @@ public:
   typedef TInputImage   OutputImageType;
 
   /** Typedef to describe the output and input image region types. */
-  typedef typename OutputImageType::RegionType OutputImageRegionType;
-  typedef typename InputImageType::RegionType InputImageRegionType;
+  typedef typename OutputImageType::RegionType  OutputImageRegionType;
+  typedef typename InputImageType::RegionType   InputImageRegionType;
 
   /** Typedef to describe the pointer to the input. */
   typedef typename InputImageType::ConstPointer InputImageConstPointer;

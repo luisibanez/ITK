@@ -39,7 +39,7 @@ class NodeOfPermutation
 public:
   SizeValueType m_Priority;
   SizeValueType m_Index;
-  double m_Value;
+  double        m_Value;
 
   NodeOfPermutation ()
   {

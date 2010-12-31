@@ -34,7 +34,7 @@ template< typename TItemType >
 class NodeList:public std::list< TItemType >
 {
 public:
-  typedef typename std::list< TItemType>::size_type size_type;
+  typedef typename std::list< TItemType>::size_type NodeListSizeType;
 
   /** Pointer to the item. */
   TItemType *ItemPointer;
@@ -43,7 +43,7 @@ public:
   void SetItemPointer(TItemType *itemPointer) { ItemPointer = itemPointer; }
 
   /** Get the number of items stored in the list. */
-  size_type GetSize()
+  NodeListSizeType GetSize() const
   { return this->size(); }
 
   NodeList();

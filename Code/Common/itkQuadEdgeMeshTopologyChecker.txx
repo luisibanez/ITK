@@ -30,7 +30,7 @@ QuadEdgeMeshTopologyChecker< TMesh >
   m_ExpectedNumberOfEdges = NumericTraits< CellIdentifier >::Zero;
   m_ExpectedNumberOfFaces = NumericTraits< CellIdentifier >::Zero;
   m_ExpectedNumberOfBoundaries = NumericTraits< CellIdentifier >::Zero;
-  m_ExpectedGenus = NumericTraits< OffsetValueType >::Zero;;
+  m_ExpectedGenus = NumericTraits< OffsetValueType >::Zero;
   m_Mesh = NULL;
 }
 
