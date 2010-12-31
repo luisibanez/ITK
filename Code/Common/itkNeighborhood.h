@@ -24,7 +24,6 @@
 #include "itkSliceIterator.h"
 #include "vnl/vnl_vector.h"
 #include "itkOffset.h"
-#include "itkIndex.h"
 #include <vector>
 #include <stdlib.h>
 #include <string.h>
@@ -83,7 +82,7 @@ public:
   typedef::itk::Size< VDimension > RadiusType;
 
   /** Offset type used to reference neighbor locations */
-  typedef Offset< VDimension >                 OffsetType;
+  typedef Offset< VDimension > OffsetType;
 
   /** External slice iterator type typedef support. */
   typedef SliceIterator< TPixel, Self > SliceIteratorType;
@@ -161,16 +160,18 @@ public:
   ConstIterator Begin() const
   { return m_DataBuffer.begin(); }
 
+  typedef unsigned int  NeighborIndexType;
+
   /** More STL-style support. */
-  unsigned int Size() const
+  NeighborIndexType Size() const
   { return m_DataBuffer.size(); }
 
   /** Pass-through data access methods to the buffer. */
-  TPixel & operator[](SizeValueType i)
+  TPixel & operator[](NeighborIndexType i)
   { return m_DataBuffer[i]; }
-  const TPixel & operator[](SizeValueType i) const
+  const TPixel & operator[](NeighborIndexType i) const
   { return m_DataBuffer[i]; }
-  TPixel & GetElement(SizeValueType i)
+  TPixel & GetElement(NeighborIndexType i)
   { return m_DataBuffer[i]; }
 
   /** Returns the element at the center of the neighborhood. */
@@ -214,14 +215,14 @@ public:
 
   /** Returns the itk::Offset from the center of the Neighborhood to
       the requested neighbor index. */
-  OffsetType GetOffset(IndexValueType i) const
+  OffsetType GetOffset(NeighborIndexType i) const
   { return m_OffsetTable[i]; }
 
-  virtual IndexValueType GetNeighborhoodIndex(const OffsetType &) const;
+  virtual NeighborIndexType GetNeighborhoodIndex(const OffsetType &) const;
 
-  IndexValueType GetCenterNeighborhoodIndex() const
+  NeighborIndexType GetCenterNeighborhoodIndex() const
   {
-    return static_cast< IndexValueType >( this->Size() / 2 );
+    return static_cast< NeighborIndexType >( this->Size() / 2 );
   }
 
   std::slice GetSlice(unsigned int) const;

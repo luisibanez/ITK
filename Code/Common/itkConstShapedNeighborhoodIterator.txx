@@ -42,7 +42,7 @@ ConstShapedNeighborhoodIterator< TImage, TBoundaryCondition >
 template< class TImage, class TBoundaryCondition >
 void
 ConstShapedNeighborhoodIterator< TImage, TBoundaryCondition >
-::ActivateIndex(IndexValueType n)
+::ActivateIndex(NeighborIndexType n)
 {
   const OffsetValueType *OffsetTable = this->m_ConstImage->GetOffsetTable();
 
@@ -94,7 +94,7 @@ ConstShapedNeighborhoodIterator< TImage, TBoundaryCondition >
 template< class TImage, class TBoundaryCondition >
 void
 ConstShapedNeighborhoodIterator< TImage, TBoundaryCondition >
-::DeactivateIndex( IndexValueType n)
+::DeactivateIndex(NeighborIndexType n)
 {
   IndexListIterator it = m_ActiveIndexList.begin();
 

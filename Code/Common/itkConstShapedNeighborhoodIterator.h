@@ -98,9 +98,12 @@ public:
   typedef Neighborhood< PixelType, itkGetStaticConstMacro(Dimension) >
   NeighborhoodType;
 
+  typedef typename NeighborhoodType::NeighborIndexType  NeighborIndexType;
+
   /** An stl storage container type that can be sorted.  The type used for
    *  the list of active offsets in the neighborhood. */
-  typedef std::list< IndexValueType >             IndexListType;
+  typedef std::list< NeighborIndexType >             IndexListType;
+
   typedef typename IndexListType::iterator        IndexListIterator;
   typedef typename IndexListType::const_iterator  IndexListConstIterator;
 
@@ -352,9 +355,9 @@ protected:
       argument is an index location calculated as an offset into a linear
       array which represents the image region defined by the radius of this
       iterator, with the smallest dimension as the fastest increasing index. */
-  virtual void ActivateIndex( IndexValueType );
+  virtual void ActivateIndex( NeighborIndexType );
 
-  virtual void DeactivateIndex( IndexValueType );
+  virtual void DeactivateIndex( NeighborIndexType );
 
   bool          m_CenterIsActive;
   IndexListType m_ActiveIndexList;
