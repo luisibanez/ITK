@@ -121,6 +121,7 @@ public:
   typedef typename Superclass::CellsContainerConstPointer   CellsContainerConstPointer;
   typedef typename Superclass::CellsContainerIterator       CellsContainerIterator;
   typedef typename Superclass::CellsContainerConstIterator  CellsContainerConstIterator;
+  typedef typename Superclass::CellIdentifier               CellIdentifier;
 
   /** set the map of geometrydata to the new pointer */
   itkSetMacro(GeometryData, GeometryMapPointer);
