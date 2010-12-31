@@ -66,13 +66,13 @@ public:
   typedef typename SimplexMeshGeometry::IndexArray IndexArray;
 
   /** definition for a set of neighbor indices */
-  typedef std::set< size_t > NeighborSetType;
+  typedef std::set< SizeValueType > NeighborSetType;
 
   /** */
   typedef typename NeighborSetType::iterator NeighborSetIterator;
 
   /** */
-  typedef std::vector< size_t > NeighborListType;
+  typedef std::vector< SizeValueType > NeighborListType;
 
   /** */
   typedef typename TMeshTraits::PointType PointType;
@@ -96,7 +96,7 @@ public:
 
   /** map containing a SimplexMeshGeometry data object for each mesh
    * point */
-  typedef itk::MapContainer< size_t, SimplexMeshGeometry * > GeometryMapType;
+  typedef itk::MapContainer< SizeValueType, SimplexMeshGeometry * > GeometryMapType;
 
   /** smartpointer def for the geometry map */
   typedef typename GeometryMapType::Pointer GeometryMapPointer;
@@ -129,10 +129,10 @@ public:
   itkGetConstReferenceMacro(GeometryData, GeometryMapPointer);
 
   /** Get the first free id for new cells */
-  itkSetMacro(LastCellId, size_t);
+  itkSetMacro(LastCellId, CellIdentifier);
 
   /** Set the id value valid for new cells */
-  itkGetConstMacro(LastCellId, size_t);
+  itkGetConstMacro(LastCellId, CellIdentifier);
 
   /**
    * copy all necessary information from passed object
@@ -146,7 +146,7 @@ public:
    * Note: This can destroy the simplex mesh structure! Better use the
    * simplex mesh modification or creation filters
    */
-  size_t AddEdge(PointIdentifier startPointId, PointIdentifier endPointId);
+  CellIdentifier AddEdge(PointIdentifier startPointId, PointIdentifier endPointId);
 
   /**
    * Add a new simplex mesh cell to the mesh by passing an AutoPointer of a
@@ -155,13 +155,13 @@ public:
    * Note: This can destroy the simplex mesh structure! You should use the
    * simplex mesh modification or creation filters.
    */
-  size_t AddFace(CellAutoPointer & cellPointer);
+  CellIdentifier AddFace(CellAutoPointer & cellPointer);
 
   /**
    * Replaces the cell specified by replaceIndex with the new cell passed by its
    * AutoPopinter
    */
-  size_t ReplaceFace(size_t replaceIndex, CellAutoPointer & cellPointer);
+  CellIdentifier ReplaceFace(CellIdentifier replaceIndex, CellAutoPointer & cellPointer);
 
   /**
    * Get the three direct neighbors of a point
@@ -178,17 +178,17 @@ public:
    * Note: This can destroy the simplex mesh topology!
    * Better use te simplex mesh creation filters.
    */
-  void AddNeighbor(PointIdentifier pointId, size_t neighborId);
+  void AddNeighbor(PointIdentifier pointId, PointIdentifier neighborId);
 
   /**
    * Replace a neighbor of a specific point by a new one
    */
-  void ReplaceNeighbor(PointIdentifier pointId, size_t oldNeighborId, size_t newNeighborIdx);
+  void ReplaceNeighbor(PointIdentifier pointId, PointIdentifier oldNeighborId, PointIdentifier newNeighborIdx);
 
   /**
    * Swap the order of two neighbors
    */
-  void SwapNeighbors(PointIdentifier pointId, size_t firstNeighborId, size_t secondNeighborId);
+  void SwapNeighbors(PointIdentifier pointId, PointIdentifier firstNeighborId, PointIdentifier secondNeighborId);
 
   /**
    * Set the geometry data for a specified point
@@ -275,7 +275,7 @@ protected:
    * one cannot rely on the size of the map or the highest index when
    * cells are removed.
    */
-  size_t m_LastCellId;
+  CellIdentifier m_LastCellId;
 
 private:
   SimplexMesh(const Self &); //purposely not implemented

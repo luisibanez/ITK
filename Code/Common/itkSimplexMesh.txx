@@ -210,12 +210,12 @@ SimplexMesh< TPixelType, VDimension, TMeshTraits >
 }
 
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
-size_t
+typename SimplexMesh< TPixelType, VDimension, TMeshTraits >::CellIdentifier
 SimplexMesh< TPixelType, VDimension, TMeshTraits >
 ::AddEdge(PointIdentifier startPointId, PointIdentifier endPointId)
 {
   CellAutoPointer NewCellPointer(new LineType, true);
-  size_t          edgeId = m_LastCellId;
+  CellIdentifier  edgeId = m_LastCellId;
 
   NewCellPointer->SetPointId(0, startPointId);
   NewCellPointer->SetPointId(1, endPointId);
@@ -226,7 +226,7 @@ SimplexMesh< TPixelType, VDimension, TMeshTraits >
 }
 
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
-size_t
+typename SimplexMesh< TPixelType, VDimension, TMeshTraits >::CellIdentifier
 SimplexMesh< TPixelType, VDimension, TMeshTraits >
 ::AddFace(CellAutoPointer & cellPointer)
 {
@@ -236,9 +236,9 @@ SimplexMesh< TPixelType, VDimension, TMeshTraits >
 }
 
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
-size_t
+typename SimplexMesh< TPixelType, VDimension, TMeshTraits >::CellIdentifier
 SimplexMesh< TPixelType, VDimension, TMeshTraits >
-::ReplaceFace(size_t replaceIndex, CellAutoPointer & cellPointer)
+::ReplaceFace(CellIdentifier replaceIndex, CellAutoPointer & cellPointer)
 {
   this->GetCells()->DeleteIndex(replaceIndex);
   this->SetCell(replaceIndex, cellPointer);
@@ -376,13 +376,13 @@ SimplexMesh< TPixelType, VDimension, TMeshTraits >
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
 void
 SimplexMesh< TPixelType, VDimension, TMeshTraits >
-::AddNeighbor(PointIdentifier pointIdx, size_t neighborIdx)
+::AddNeighbor(PointIdentifier pointIdx, PointIdentifier neighborIdx)
 {
   SimplexMeshGeometry *data = m_GeometryData->GetElement(pointIdx);
 
   for ( int i = 0; i < 3; i++ )
     {
-    if ( data->neighborIndices[i] == ( (size_t)NumericTraits< size_t >::max() ) )
+    if ( data->neighborIndices[i] == ( (PointIdentifier)NumericTraits< PointIdentifier >::max() ) )
       {
       data->neighborIndices[i] = neighborIdx;
       break;
@@ -393,7 +393,7 @@ SimplexMesh< TPixelType, VDimension, TMeshTraits >
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
 void
 SimplexMesh< TPixelType, VDimension, TMeshTraits >
-::ReplaceNeighbor(PointIdentifier pointIdx, size_t oldIdx, size_t newIdx)
+::ReplaceNeighbor(PointIdentifier pointIdx, PointIdentifier oldIdx, PointIdentifier newIdx)
 {
   SimplexMeshGeometry *data = m_GeometryData->GetElement(pointIdx);
 
@@ -409,7 +409,7 @@ SimplexMesh< TPixelType, VDimension, TMeshTraits >
 template< typename TPixelType, unsigned int VDimension, typename TMeshTraits >
 void
 SimplexMesh< TPixelType, VDimension, TMeshTraits >
-::SwapNeighbors(PointIdentifier pointIdx, size_t firstIdx, size_t secondIdx)
+::SwapNeighbors(PointIdentifier pointIdx, PointIdentifier firstIdx, PointIdentifier secondIdx)
 {
   SimplexMeshGeometry *data = m_GeometryData->GetElement(pointIdx);
   int                  i;
