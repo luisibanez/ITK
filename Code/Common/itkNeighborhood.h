@@ -130,24 +130,22 @@ public:
 
   /** Returns the radius of the neighborhood along a specified
    * dimension. */
-  SizeValueType GetRadius(const unsigned long n) const
+  SizeValueType GetRadius(unsigned int n) const
   { return m_Radius[n]; }
 
   /** Returns the size (total length) of the neighborhood along
    * a specified dimension. */
-  SizeValueType GetSize(const unsigned long n) const
+  SizeValueType GetSize(unsigned int n) const
   { return m_Size[n]; }
 
   /** Returns the size (total length of sides) of the neighborhood. */
   SizeType GetSize() const
   { return m_Size; }
 
-  typedef unsigned int   StrideType;
-
   /** Returns the stride length for the specified dimension. Stride
    * length is the number of pixels between adjacent pixels along the
    * given dimension. */
-  StrideType GetStride(const unsigned axis) const
+  OffsetValueType GetStride(const unsigned axis) const
   {     return m_StrideTable[axis];  }
 
   /** STL-style iterator support. */
@@ -265,7 +263,7 @@ private:
 
   /** A lookup table for keeping track of stride lengths in a neighborhood
       i.e. the memory offsets between pixels along each dimensional axis */
-  StrideType m_StrideTable[VDimension];
+  OffsetValueType m_StrideTable[VDimension];
 
   /** */
   std::vector< OffsetType > m_OffsetTable;

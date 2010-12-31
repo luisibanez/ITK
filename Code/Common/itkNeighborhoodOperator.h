@@ -79,9 +79,6 @@ public:
   /** Slice iterator typedef support */
   typedef SliceIterator< TPixel, Self > SliceIteratorType;
 
-  /** Type for strides in the neighborhood */
-  typedef typename Superclass::StrideType     StrideType;
-
   /** Constructor. */
   NeighborhoodOperator()
   {  m_Direction = 0;  }

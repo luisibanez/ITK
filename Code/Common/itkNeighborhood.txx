@@ -113,7 +113,7 @@ Neighborhood< TPixel, VDimension, TContainer >
   m_Radius     = other.m_Radius;
   m_Size       = other.m_Size;
   m_DataBuffer = other.m_DataBuffer;
-  ::memcpy(m_StrideTable, other.m_StrideTable, sizeof( unsigned int ) * VDimension);
+  ::memcpy(m_StrideTable, other.m_StrideTable, sizeof( OffsetValueType ) * VDimension);
   m_OffsetTable = other.m_OffsetTable;
 }
 
@@ -125,7 +125,7 @@ Neighborhood< TPixel, VDimension, TContainer >
   m_Radius     = other.m_Radius;
   m_Size       = other.m_Size;
   m_DataBuffer = other.m_DataBuffer;
-  ::memcpy(m_StrideTable, other.m_StrideTable, sizeof( unsigned int ) * VDimension);
+  ::memcpy(m_StrideTable, other.m_StrideTable, sizeof( OffsetValueType ) * VDimension);
   m_OffsetTable = other.m_OffsetTable;
   return *this;
 }
