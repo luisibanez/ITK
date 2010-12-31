@@ -87,15 +87,15 @@ LaplacianOperator< TPixel, VDimension, TAllocator >
   w = this->Size();
   CoefficientVector coeffP(w);
 
+  typedef typename Superclass::StrideType     StrideType;
+
   //Set the coefficients
-  double sum = 0.0;
-  double hsq;
-  long   stride;
+  double   sum = 0.0;
   for ( i = 0; i < 2 * VDimension; i += 2 )
     {
-    stride = static_cast< long >( this->GetStride(i / 2) );
+    StrideType stride = this->GetStride(i / 2);
 
-    hsq = m_DerivativeScalings[i / 2] * m_DerivativeScalings[i / 2];
+    const double   hsq = m_DerivativeScalings[i / 2] * m_DerivativeScalings[i / 2];
     coeffP[w / 2 - stride] =  coeffP[w / 2 + stride] = hsq;
     sum += 2.0 * hsq;
     }

@@ -103,11 +103,12 @@ protected:
     IndexType idx;
     if( physical )
       {
-      Point< double, ImageDimension > point;
+      typedef double CoordinateType;
+      Point< CoordinateType, ImageDimension > point;
       // copy the position to a point, required by TransformPhysicalPointToIndex
       for( int i=0; i<ImageDimension; i++ )
         {
-        point[i] = (long)position[i];
+        point[i] = static_cast<CoordinateType>( position[i] );
         }
       this->GetOutput()->TransformPhysicalPointToIndex( point, idx );
       }
@@ -116,7 +117,7 @@ protected:
       // copy the position to the index, to avoid warnings
       for( int i=0; i<ImageDimension; i++ )
         {
-        idx[i] = (long)position[i];
+        idx[i] = static_cast<IndexValueType>( position[i] );
         }
       }
     // clear the label object

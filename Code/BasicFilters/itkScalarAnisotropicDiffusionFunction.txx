@@ -50,8 +50,8 @@ ScalarAnisotropicDiffusionFunction< TImage >
   DerivativeOperator< PixelType,
                       ImageDimension > operator_list[ImageDimension];
 
-  unsigned long Stride[ImageDimension];
-  unsigned long Center[ImageDimension];
+  SizeValueType Stride[ImageDimension];
+  SizeValueType Center[ImageDimension];
 
   // Set up the derivative operators, one for each dimension
   for ( i = 0; i < ImageDimension; ++i )

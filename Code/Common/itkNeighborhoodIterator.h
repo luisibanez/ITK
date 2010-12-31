@@ -225,7 +225,6 @@ public:
   typedef typename Superclass::RegionType        RegionType;
   typedef typename Superclass::IndexType         IndexType;
   typedef typename Superclass::OffsetType        OffsetType;
-  typedef typename OffsetType::OffsetValueType   OffsetValueType;
   typedef typename Superclass::RadiusType        RadiusType;
   typedef typename Superclass::NeighborhoodType  NeighborhoodType;
   typedef typename Superclass::Iterator          Iterator;
