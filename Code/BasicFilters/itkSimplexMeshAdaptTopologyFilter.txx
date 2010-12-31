@@ -77,8 +77,6 @@ void SimplexMeshAdaptTopologyFilter< TInputMesh, TOutputMesh >
   const InputMeshType *inputMesh   =  this->GetInput();
   OutputMeshPointer    outputMesh  =  this->GetOutput();
 
-  typedef typename InputMeshType::PointIdentifier  PointIdentifier;
-
   const PointIdentifier numberOfPoints = inputMesh->GetNumberOfPoints();
 
   typedef typename InputMeshType::GeometryMapType           GeometryMapType;
