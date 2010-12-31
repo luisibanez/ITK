@@ -26,12 +26,12 @@ template< class TMesh >
 QuadEdgeMeshTopologyChecker< TMesh >
 ::QuadEdgeMeshTopologyChecker()
 {
-  m_ExpectedNumberOfPoints = 0;
-  m_ExpectedNumberOfEdges = 0;
-  m_ExpectedNumberOfFaces = 0;
-  m_ExpectedNumberOfBoundaries = 0;
-  m_ExpectedGenus = 0;
-  m_Mesh = 0;
+  m_ExpectedNumberOfPoints = NumericTraits< PointIdentifier >::Zero;
+  m_ExpectedNumberOfEdges = NumericTraits< CellIdentifier >::Zero;
+  m_ExpectedNumberOfFaces = NumericTraits< CellIdentifier >::Zero;
+  m_ExpectedNumberOfBoundaries = NumericTraits< CellIdentifier >::Zero;
+  m_ExpectedGenus = NumericTraits< OffsetValueType >::Zero;;
+  m_Mesh = NULL;
 }
 
 template< class TMesh >
@@ -47,15 +47,15 @@ QuadEdgeMeshTopologyChecker< TMesh >
   typename BoundaryEdges::Pointer boundaryEdges = BoundaryEdges::New();
 
   // Number of USED points
-  IdentifierType numPoints = m_Mesh->ComputeNumberOfPoints();
+  PointIdentifier numPoints = m_Mesh->ComputeNumberOfPoints();
   // Number of USED edges
-  IdentifierType numEdges  = m_Mesh->ComputeNumberOfEdges();
+  CellIdentifier numEdges  = m_Mesh->ComputeNumberOfEdges();
   // Number of USED faces
-  IdentifierType numFaces  = m_Mesh->ComputeNumberOfFaces();
+  CellIdentifier numFaces  = m_Mesh->ComputeNumberOfFaces();
   // Number of Boundaries
   typename BoundaryEdges::OutputType
   listOfBoundaries = boundaryEdges->Evaluate( ( *m_Mesh ) );
-  IdentifierType numBounds = listOfBoundaries->size();
+  CellIdentifier numBounds = listOfBoundaries->size();
   delete listOfBoundaries;
 
   /**
@@ -82,7 +82,10 @@ QuadEdgeMeshTopologyChecker< TMesh >
   // hence ( 2 - numBounds - numFaces + numEdges - numPoints ) must
   // be an odd number. Let's check it out:
   // Note that genus can take a negative value...
-  ptrdiff_t twiceGenus = 2 - numBounds - numFaces + numEdges - numPoints;
+  OffsetValueType twiceGenus =
+    OffsetValueType(2) - OffsetValueType(numBounds)
+  - OffsetValueType(numFaces) + OffsetValueType(numEdges)
+  - OffsetValueType(numPoints);
 
   if ( twiceGenus % 2 )
     {
@@ -130,15 +133,15 @@ QuadEdgeMeshTopologyChecker< TMesh >
   Superclass::PrintSelf(os, indent);
 
   os << indent << "ExpectedNumberOfPoints: "
-     << static_cast< ptrdiff_t >( m_ExpectedNumberOfPoints ) << std::endl;
+     << m_ExpectedNumberOfPoints  << std::endl;
   os << indent << "ExpectedNumberOfEdges: "
-     << static_cast< ptrdiff_t >( m_ExpectedNumberOfEdges ) << std::endl;
+     << m_ExpectedNumberOfEdges << std::endl;
   os << indent << "ExpectedNumberOfFaces: "
-     << static_cast< ptrdiff_t >( m_ExpectedNumberOfFaces ) << std::endl;
+     << m_ExpectedNumberOfFaces << std::endl;
   os << indent << "ExpectedNumberOfBoundaries: "
-     << static_cast< ptrdiff_t >( m_ExpectedNumberOfBoundaries ) << std::endl;
+     << m_ExpectedNumberOfBoundaries << std::endl;
   os << indent << "ExpectedGenus: "
-     << static_cast< ptrdiff_t >( m_ExpectedGenus ) << std::endl;
+     << m_ExpectedGenus << std::endl;
   os << indent << "Mesh: " << m_Mesh << std::endl;
 }
 }

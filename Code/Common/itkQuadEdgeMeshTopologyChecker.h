@@ -61,7 +61,8 @@ public:
 
   itkSetConstObjectMacro(Mesh, MeshType);
 
-  typedef ::itk::IdentifierType  IdentifierType;
+  typedef ::itk::IdentifierType     IdentifierType;
+  typedef ::itk::OffsetValueType    OffsetValueType;
 
   itkSetMacro(ExpectedNumberOfPoints, PointIdentifier);
   itkSetMacro(ExpectedNumberOfEdges, CellIdentifier);
@@ -88,7 +89,7 @@ private:
   CellIdentifier   m_ExpectedNumberOfEdges;
   CellIdentifier   m_ExpectedNumberOfFaces;
   CellIdentifier   m_ExpectedNumberOfBoundaries;
-  unsigned int     m_ExpectedGenus;
+  OffsetValueType  m_ExpectedGenus;
 };
 }
 
