@@ -57,7 +57,7 @@ ImageRandomConstIteratorWithIndex< TImage >
 
 /**  Set the number of samples to extract from the region */
 template< class TImage >
-typename ImageConstIteratorWithIndex<TImage>::SizeType::SizeValueType
+SizeValueType
 ImageRandomConstIteratorWithIndex< TImage >
 ::GetNumberOfSamples(void) const
 {
