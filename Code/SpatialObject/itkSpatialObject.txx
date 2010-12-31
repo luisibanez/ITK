@@ -779,9 +779,9 @@ SpatialObject< TDimension >
   for ( i = 0; i < m_Dimension; i++ )
     {
     if ( ( requestedRegionIndex[i] < bufferedRegionIndex[i] )
-         || ( ( requestedRegionIndex[i] + static_cast< IndexValueType >( requestedRegionSize[i] ) )
+         || ( ( requestedRegionIndex[i] + static_cast< OffsetValueType >( requestedRegionSize[i] ) )
               > ( bufferedRegionIndex[i]
-                  + static_cast< IndexValueType >( bufferedRegionSize[i] ) ) ) )
+                  + static_cast< OffsetValueType >( bufferedRegionSize[i] ) ) ) )
       {
       return true;
       }
@@ -823,9 +823,9 @@ SpatialObject< TDimension >
   for ( i = 0; i < m_Dimension; i++ )
     {
     if ( ( requestedRegionIndex[i] < largestPossibleRegionIndex[i] )
-         || ( ( requestedRegionIndex[i] + static_cast< IndexValueType >( requestedRegionSize[i] ) )
+         || ( ( requestedRegionIndex[i] + static_cast< OffsetValueType >( requestedRegionSize[i] ) )
               > ( largestPossibleRegionIndex[i]
-                  + static_cast< IndexValueType >( largestPossibleRegionSize[i] ) ) ) )
+                  + static_cast< OffsetValueType >( largestPossibleRegionSize[i] ) ) ) )
       {
       retval = false;
       }
