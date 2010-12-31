@@ -30,7 +30,6 @@
 #include "itksys/SystemTools.hxx"
 #include "itksys/Directory.hxx"
 #include "itksys/RegularExpression.hxx"
-#include "itkIntTypes.h"
 #include "itkRegularExpressionSeriesFileNames.h"
 
 struct lt_pair_numeric_string_string {
