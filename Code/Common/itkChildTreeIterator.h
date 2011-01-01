@@ -73,8 +73,8 @@ protected:
 
 private:
 
-  mutable int            m_ListPosition;
-  TreeNode< ValueType > *m_ParentNode;
+  mutable SizeValueType   m_ListPosition;
+  TreeNode< ValueType > * m_ParentNode;
 };
 
 /** Constructor */

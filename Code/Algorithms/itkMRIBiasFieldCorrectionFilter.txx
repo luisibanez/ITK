@@ -968,8 +968,8 @@ MRIBiasFieldCorrectionFilter< TInputImage, TOutputImage, TMaskImage >
                            const Array< double > & sigmas)
 throw ( ExceptionObject )
 {
-  size_t meanSize = means.Size();
-  size_t sigmaSize = sigmas.Size();
+  const SizeValueType meanSize = means.Size();
+  const SizeValueType sigmaSize = sigmas.Size();
 
   if ( meanSize == 0 )
     {

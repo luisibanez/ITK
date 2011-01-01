@@ -338,7 +338,7 @@ Mesh< TPixelType, VDimension, TMeshTraits >
  * already in the mesh.  The dimension of boundaryId must be specified
  * by 'dimension', and a unique CellFeatureIdentifier featureId must be
  * assigned for each distinct boundary feature of a given dimension.
- * CellFeatureIdentifier is equivalent to size_t by default,
+ * CellFeatureIdentifier is equivalent to IdentifierType by default,
  * and will not typically need to be changed.  The UsingCells list of
  * boundaryId is automatically updated to include cellId.
  */

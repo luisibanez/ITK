@@ -1216,7 +1216,7 @@ QuadEdgeMesh< TPixel, VDimension, TTraits >
     {
     typename PointIdList::const_iterator itr = points.begin();
     typename PointIdList::const_iterator end = points.end();
-    typename PointIdList::size_type count = 0;
+    PointIdentifier count = NumericTraits< PointIdentifier >::Zero;
     const PointIdentifier pointId = points[i];
     while ( itr != end )
       {
@@ -1286,8 +1286,10 @@ QuadEdgeMesh< TPixel, VDimension, TTraits >
   typedef std::vector< QEPrimal * > QEList;
   QEList FaceQEList;
 
+  const PointIdentifier numberOfPoints = static_cast< PointIdentifier >( points.size() );
+
   // Now create edge list and create missing edges if needed.
-  for ( size_t i = 0; i < points.size(); i++ )
+  for ( PointIdentifier i = 0; i < numberOfPoints; i++ )
     {
     PointIdentifier pid0 = points[i];
     PointIdentifier pid1 = points[( i + 1 ) % points.size()];

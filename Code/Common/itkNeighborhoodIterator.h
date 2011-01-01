@@ -122,8 +122,8 @@ namespace itk
  *
  * \code
  *
- * ::size_t c = (::size_t) (iterator.Size() / 2); // get offset of center pixel
- * ::size_t s = iterator.GetStride(1);            // y-dimension step size
+ * SizeValueType c = (SizeValueType) (iterator.Size() / 2); // get offset of center pixel
+ * SizeValueType s = iterator.GetStride(1);            // y-dimension step size
  *
  * std::cout << iterator.GetPixel(7)      << std::endl;
  * std::cout << iterator.GetCenterPixel() << std::endl;
