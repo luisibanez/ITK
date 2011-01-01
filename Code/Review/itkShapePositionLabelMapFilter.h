@@ -108,7 +108,11 @@ protected:
       // copy the position to a point, required by TransformPhysicalPointToIndex
       for( int i=0; i<ImageDimension; i++ )
         {
-        point[i] = static_cast<CoordinateType>( position[i] );
+        // FIXME: This is a bug. The cast should be as in the following line
+        // where CoordinateType is used as the type to cast to. We are temporarily
+        // keeping this original line here to avoid confusing the patch for 64 bits.
+        point[i] = static_cast<OffsetValueType>( position[i] ); // FIXME: use next line instead.
+        // point[i] = static_cast<CoordinateType>( position[i] );
         }
       this->GetOutput()->TransformPhysicalPointToIndex( point, idx );
       }
