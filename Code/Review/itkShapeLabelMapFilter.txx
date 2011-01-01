@@ -607,7 +607,8 @@ ShapeLabelMapFilter< TImage, TLabelImage >
           // add as much intercepts as intersections of the 2 lines
           intercepts[no] += vnl_math_max( lZero, vnl_math_min(lMax, nMax) - vnl_math_max(lMin, nMin) + 1 );
           // std::cout << "============" << std::endl;
-          // std::cout << "  lMin:" << lMin << " lMax:" << lMax << " nMin:" << nMin << " nMax:" << nMax << " count: " << vnl_math_max( 0l, vnl_math_min(lMax, nMax) - vnl_math_max(lMin, nMin) + 1 ) << std::endl;
+          // std::cout << "  lMin:" << lMin << " lMax:" << lMax << " nMin:" << nMin << " nMax:" << nMax;
+          // std::cout << " count: " << vnl_math_max( 0l, vnl_math_min(lMax, nMax) - vnl_math_max(lMin, nMin) + 1 ) << std::endl;
           // std::cout << "  " << no << ": " << intercepts[no] << std::endl;
           // std::cout << vnl_math_max( lZero, vnl_math_min(lMax, nMax+1) - vnl_math_max(lMin, nMin+1) + 1 ) << std::endl;
           // std::cout << vnl_math_max( lZero, vnl_math_min(lMax, nMax-1) - vnl_math_max(lMin, nMin-1) + 1 ) << std::endl;
