@@ -128,6 +128,9 @@ public:
   typedef typename Superclass::InternalPixelType     InternalPixelType;
   typedef typename Superclass::PixelType             PixelType;
   typedef typename Superclass::AccessorType          AccessorType;
+  typedef typename Superclass::IndexValueType        IndexValueType;
+  typedef typename Superclass::OffsetValueType       OffsetValueType;
+  typedef typename Superclass::SizeValueType         SizeValueType;
 
   /** Default constructor. Needed since we provide a cast constructor. */
   ImageRandomConstIteratorWithIndex();
