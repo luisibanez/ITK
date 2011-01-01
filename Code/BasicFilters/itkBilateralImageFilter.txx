@@ -306,7 +306,7 @@ BilateralImageFilter< TInputImage, TOutputImage >
           {
           // look up the range gaussian in a table
           tableArg = rangeDistance * distanceToTableIndex;
-          rangeGaussian = m_RangeGaussianTable[Math::Floor < size_t > ( tableArg )];
+          rangeGaussian = m_RangeGaussianTable[Math::Floor < SizeValueType > ( tableArg )];
 
           // normalization factor so filter integrates to one
           // (product of the domain and the range gaussian)
