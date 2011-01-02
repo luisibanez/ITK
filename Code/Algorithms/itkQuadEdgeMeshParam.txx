@@ -184,7 +184,7 @@ QuadEdgeMeshParam< TInputMesh, TOutputMesh, TSolverTraits >
 
   this->ComputeListOfInteriorVertices();
 
-  PointIdentifier NbOfInteriorPts = m_InternalPtMap.size();
+  InputPointIdentifier NbOfInteriorPts = m_InternalPtMap.size();
 
   SolverTraits traits;
 

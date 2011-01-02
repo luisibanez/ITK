@@ -170,7 +170,7 @@ QuadEdgeMeshBorderTransform< TInputMesh, TOutputMesh >
 {
   InputMeshConstPointer input = this->GetInput();
 
-  PointIdentifier NbBoundaryPt = this->m_BoundaryPtMap.size();
+  InputPointIdentifier NbBoundaryPt = this->m_BoundaryPtMap.size();
 
   InputCoordRepType r = this->RadiusMaxSquare();
 
@@ -342,7 +342,7 @@ QuadEdgeMeshBorderTransform< TInputMesh, TOutputMesh >
 
   InputQEType *bdryEdge = ( *list->begin() );
 
-  PointIdentifier NbBoundaryPt = this->m_BoundaryPtMap.size();
+  InputPointIdentifier NbBoundaryPt = this->m_BoundaryPtMap.size();
 
   std::vector< InputCoordRepType > Length(NbBoundaryPt + 1, 0.0);
 
