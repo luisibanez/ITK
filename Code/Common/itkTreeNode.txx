@@ -192,7 +192,7 @@ TreeNode< TValueType >::ChildPosition(TValueType element) const
 {
   const ChildIdentifier numberOfChildren = static_cast< ChildIdentifier >( m_Children.size() );
 
-  for ( unsigned int i = 0; i < numberOfChildren; i++ )
+  for ( ChildIdentifier i = 0; i < numberOfChildren; i++ )
     {
     if ( m_Children[i]->Get() == element )
       {
