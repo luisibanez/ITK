@@ -19,8 +19,6 @@
 #define __itkTreeNode_txx
 
 #include "itkTreeNode.h"
-#include "itkNumericTraits.h"
-
 #include <cstring>
 #include <string.h>
 
@@ -40,7 +38,7 @@ TreeNode< TValueType >::~TreeNode()
     m_Parent->Remove(this);
     }
 
-  for ( IdentifierType i = m_Children.size(); i > 0; i-- )
+  for ( size_t i = m_Children.size(); i > 0; i-- )
     {
     m_Children[i - 1]->SetParent(NULL);
     }
@@ -62,9 +60,9 @@ TreeNode< TValueType >
 template< class TValueType >
 TreeNode< TValueType > *
 TreeNode< TValueType >
-::GetChild(IdentifierType number) const
+::GetChild(int number) const
 {
-  if ( number < static_cast<IdentifierType>( m_Children.size() ) )
+  if ( (unsigned int)number < m_Children.size() )
     {
     return m_Children[number];
     }
@@ -123,11 +121,11 @@ bool TreeNode< TValueType >::HasChildren() const
 
 /** Return the number of children */
 template< class TValueType >
-SizeValueType
+int
 TreeNode< TValueType >
 ::CountChildren() const
 {
-  return static_cast< SizeValueType >( m_Children.size() );
+  return static_cast< int >( m_Children.size() );
 }
 
 /** Remove a child node from the current node */
@@ -153,9 +151,9 @@ TreeNode< TValueType >
 template< class TValueType >
 bool TreeNode< TValueType >::ReplaceChild(TreeNode< TValueType > *oldChild, TreeNode< TValueType > *newChild)
 {
-  SizeValueType numberOfChildren = static_cast<SizeValueType>( m_Children.size() );
+  int size = m_Children.size();
 
-  for ( SizeValueType i = 0; i < numberOfChildren; i++ )
+  for ( int i = 0; i < size; i++ )
     {
     if ( m_Children[i] == oldChild )
       {
@@ -168,9 +166,9 @@ bool TreeNode< TValueType >::ReplaceChild(TreeNode< TValueType > *oldChild, Tree
 
 /** Return the child position given a node */
 template< class TValueType >
-IdentifierType TreeNode< TValueType >::ChildPosition(const TreeNode< TValueType > *node) const
+int TreeNode< TValueType >::ChildPosition(const TreeNode< TValueType > *node) const
 {
-  for ( IdentifierType i = 0; i < static_cast<IdentifierType>( m_Children.size() ); i++ )
+  for ( unsigned int i = 0; i < m_Children.size(); i++ )
     {
     if ( m_Children[i] == node )
       {
@@ -182,9 +180,9 @@ IdentifierType TreeNode< TValueType >::ChildPosition(const TreeNode< TValueType 
 
 /** Return the child position given an element, the first child found. */
 template< class TValueType >
-IdentifierType TreeNode< TValueType >::ChildPosition(TValueType element) const
+int TreeNode< TValueType >::ChildPosition(TValueType element) const
 {
-  for ( IdentifierType i = 0; i < static_cast< IdentifierType >( m_Children.size() ); i++ )
+  for ( unsigned int i = 0; i < m_Children.size(); i++ )
     {
     if ( m_Children[i]->Get() == element )
       {
@@ -208,13 +206,13 @@ void TreeNode< TValueType >::AddChild(TreeNode< TValueType > *node)
 template< class TValueType >
 void
 TreeNode< TValueType >
-::AddChild(IdentifierType number, TreeNode< TValueType > *node)
+::AddChild(int number, TreeNode< TValueType > *node)
 {
-  IdentifierType size = static_cast<IdentifierType>( m_Children.size() );
+  size_t size = m_Children.size();
 
-  if ( number > size )
+  if ( (size_t)number > size )
     {
-    for ( IdentifierType i = size; i <= number; i++ )
+    for ( size_t i = size; i <= (size_t)number; i++ )
       {
       m_Children[i] = NULL;
       }
@@ -227,14 +225,14 @@ TreeNode< TValueType >
 
 /** Get the number of children given a name and a depth */
 template< class TValueType >
-SizeValueType
+unsigned int
 TreeNode< TValueType >
 ::GetNumberOfChildren(unsigned int depth, char *name) const
 {
   typename ChildrenListType::const_iterator it = m_Children.begin();
   typename ChildrenListType::const_iterator itEnd = m_Children.end();
 
-  SizeValueType cnt = NumericTraits< SizeValueType >::Zero;
+  unsigned int cnt = 0;
   while ( it != itEnd )
     {
     if ( name == NULL || strstr(typeid( **it ).name(), name) )
