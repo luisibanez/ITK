@@ -117,7 +117,7 @@ typedef::size_t    uintptr_t;
 
 #endif // ITK_HAVE_STDINT_H
 
-#if !defined( _WIN64 )
+#if defined( _WIN64 )
 
 /** Any count of number of items (number of pixels in an image, number of
  *  points) (it is unsigned) */
