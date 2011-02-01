@@ -90,6 +90,7 @@ protected:
   AbsImageFilter() {}
   virtual ~AbsImageFilter() {}
 private:
+// Testing commenting capabilities of github
   AbsImageFilter(const Self &); //purposely not implemented
   void operator=(const Self &); //purposely not implemented
 };
