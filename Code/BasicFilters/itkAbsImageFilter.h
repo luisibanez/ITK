@@ -18,6 +18,7 @@
 #ifndef __itkAbsImageFilter_h
 #define __itkAbsImageFilter_h
 
+// more experimentation
 #include "itkUnaryFunctorImageFilter.h"
 #include "itkConceptChecking.h"
 
