@@ -128,20 +128,20 @@ ITK-Review
 )
 
 set(VideoCommon_module_list
-Video-Core-Common
-Video-IO-Base
-Video-IO-FileList
-Video-Filters-Common
+ITK-Video-Core-Common
+ITK-Video-IO-Base
+ITK-Video-IO-FileList
+ITK-Video-Filters-Common
 )
 
 set(VideoOpenCV_module_list
-Video-Core-OpenCV
-Video-IO-OpenCV
-Video-Filters-OpenCV
+ITK-Video-Core-OpenCV
+ITK-Video-IO-OpenCV
+ITK-Video-Filters-OpenCV
 )
 
 set(VideoVXL_module_list
-Video-IO-VXL
+ITK-Video-IO-VXL
 )
 #------------------------------------------------
 # Turn on the ITK_BUILD option for each group

@@ -1,5 +1,5 @@
 # Include the midas script
-include(${Video-Core-Common_SOURCE_DIR}/MIDAS.cmake)
+include(${ITK-Video-Core-Common_SOURCE_DIR}/MIDAS.cmake)
 
 # Macro to add a midas test with the "Video" label
 macro(add_video_test)

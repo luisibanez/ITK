@@ -1,5 +1,5 @@
 itk_module_test()
-set(Video-IO-VXLTests
+set(ITK-Video-IO-VXLTests
   itkVXLVideoIOTest.cxx
   itkVXLVideoIOFactoryTest.cxx
   vidl_itk_istreamTest.cxx
@@ -9,11 +9,11 @@ set(Video-IO-VXLTests
 find_package ( VXL REQUIRED )
 include( ${VXL_CMAKE_DIR}/UseVXL.cmake )
 
-CreateTestDriver(Video-IO-VXL "${Video-IO-VXL-Test_LIBRARIES}" "${Video-IO-VXLTests}")
+CreateTestDriver(ITK-Video-IO-VXL "${ITK-Video-IO-VXL-Test_LIBRARIES}" "${ITK-Video-IO-VXLTests}")
 
 # VXLVideoIO:
 add_video_test(NAME VXLVideoIOTest
-               COMMAND Video-IO-VXLTestDriver itkVXLVideoIOTest
+               COMMAND ITK-Video-IO-VXLTestDriver itkVXLVideoIOTest
                # Video Input:
                MIDAS{inde-circulation.avi.md5}
                # Non-Video Input:
@@ -28,7 +28,7 @@ add_video_test(NAME VXLVideoIOTest
 
 # VXLVideoIOFactory:
 add_video_test(NAME VXLVideoIOFactoryTest
-               COMMAND Video-IO-VXLTestDriver itkVXLVideoIOFactoryTest
+               COMMAND ITK-Video-IO-VXLTestDriver itkVXLVideoIOFactoryTest
                # Video Input:
                MIDAS{inde-circulation.avi.md5}
                # Output:
@@ -39,7 +39,7 @@ add_video_test(NAME VXLVideoIOFactoryTest
 
 # vidl_itk_istream:
 add_video_test(NAME vidl_itk_istreamTest
-               COMMAND Video-IO-VXLTestDriver vidl_itk_istreamTest
+               COMMAND ITK-Video-IO-VXLTestDriver vidl_itk_istreamTest
                # Video Input:
                MIDAS{inde-circulation_short.avi.md5}
                # Output:

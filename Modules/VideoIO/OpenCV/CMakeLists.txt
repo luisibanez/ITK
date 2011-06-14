@@ -1,8 +1,8 @@
-project(Video-IO-OpenCV)
+project(ITK-Video-IO-OpenCV)
 
 find_package ( OpenCV REQUIRED )
 
-set(Video-IO-OpenCV_INCLUDE_DIRS ${OpenCV_INCLUDE_DIRS} )
-set(Video-IO-OpenCV_LIBRARIES Video-Core-Common Video-IO-OpenCV)
+set(ITK-Video-IO-OpenCV_INCLUDE_DIRS ${OpenCV_INCLUDE_DIRS} )
+set(ITK-Video-IO-OpenCV_LIBRARIES ITK-Video-Core-Common ITK-Video-IO-OpenCV ${OpenCV_LIBS})
 
 itk_module_impl()

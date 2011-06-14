@@ -1,14 +1,14 @@
-set(Video-IO-OpenCV_SRC
+set(ITK-Video-IO-OpenCV_SRC
 itkOpenCVVideoIO.cxx
 itkOpenCVVideoIOFactory.cxx
 )
 
-add_library(Video-IO-OpenCV ${Video-IO-OpenCV_SRC})
-target_link_libraries(Video-IO-OpenCV
+add_library(ITK-Video-IO-OpenCV ${ITK-Video-IO-OpenCV_SRC})
+target_link_libraries(ITK-Video-IO-OpenCV
   ${ITK-Common_LIBRARIES}
-  ${ITK-IO-Base} Video-IO-Base
+  ${ITK-IO-Base} ITK-Video-IO-Base
   ${TEST_DEPENDS_LIBRARIES}
   ${ITK-TestKernel_LIBRARIES}
   )
 
-itk_module_target(Video-IO-OpenCV)
+itk_module_target(ITK-Video-IO-OpenCV)

@@ -1,5 +1,5 @@
 itk_module_test()
-set(Video-Core-CommonTests
+set(ITK-Video-Core-CommonTests
   itkRingBufferTest.cxx
   itkTemporalRegionTest.cxx
   itkTemporalDataObjectTest.cxx
@@ -11,9 +11,9 @@ set(Video-Core-CommonTests
 
 
 # For adding midas test with "Video" label
-include(${Video-Core-Common_SOURCE_DIR}/add_video_test.cmake)
+include(${ITK-Video-Core-Common_SOURCE_DIR}/add_video_test.cmake)
 
-CreateTestDriver(Video-Core-Common  "${Video-Core-Common-Test_LIBRARIES}" "${Video-Core-CommonTests}" )
+CreateTestDriver(ITK-Video-Core-Common  "${ITK-Video-Core-Common_LIBRARIES}" "${ITK-Video-Core-CommonTests}" )
 
 # VideoToVideoFilterTest
 add_video_test( NAME VideoToVideoFilterTest

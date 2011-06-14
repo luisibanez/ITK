@@ -1,13 +1,13 @@
 itk_module_test()
-set(Video-Filters-OpenCVTests
+set(ITK-Video-Filters-OpenCVTests
   itkFaceDetectionFilterTest.cxx
 )
 
-CreateTestDriver(Video-Filters-OpenCV  "${Video-Filters-OpenCV-Test_LIBRARIES}" "${Video-Filters-OpenCVTests}")
+CreateTestDriver(ITK-Video-Filters-OpenCV  "${ITK-Video-Filters-OpenCV-Test_LIBRARIES}" "${ITK-Video-Filters-OpenCVTests}")
 
 #Face detection :
 add_video_test(NAME ITKVideoTestFaceDetection
-               COMMAND Video-Filters-OpenCVTestDriver itkFaceDetectionFilterTest
+               COMMAND ITK-Video-Filters-OpenCVTestDriver itkFaceDetectionFilterTest
                #Input
                ${ITKVideo_Data_DIR}/faces3.png
                #Main Output

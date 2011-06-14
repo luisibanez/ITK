@@ -1,12 +1,12 @@
 itk_module_test()
-set(Video-IO-BaseTests
+set(ITK-Video-IO-BaseTests
   itkVideoFileReaderWriterTest.cxx
 )
-CreateTestDriver(Video-IO-Base  "${Video-IO-Base-Test_LIBRARIES}" "${Video-IO-BaseTests}")
+CreateTestDriver(ITK-Video-IO-Base  "${ITK-Video-IO-Base-Test_LIBRARIES}" "${ITK-Video-IO-BaseTests}")
 
 # VideoFileRederWriterTest:
 add_video_test(NAME VideoFileReaderWriterTest
-               COMMAND Video-IO-BaseTestDriver itkVideoFileReaderWriterTest
+               COMMAND ITK-Video-IO-BaseTestDriver itkVideoFileReaderWriterTest
                # Input
                "MIDAS{frame0.jpg.md5},MIDAS{frame1.jpg.md5},MIDAS{frame2.jpg.md5},MIDAS{frame3.jpg.md5},MIDAS{frame4.jpg.md5}"
                # Output

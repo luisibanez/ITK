@@ -1,12 +1,10 @@
 itk_module_test()
-set(Video-Core-OpenCVTests
+set(ITK-Video-Core-OpenCVTests
   itkOpenCVVideoCaptureTest.cxx
   itkOpenCVImageBridgeTest.cxx
 )
 
-CreateTestDriver(Video-Core-OpenCV  "${Video-Core-OpenCV-Test_LIBRARIES}" "${Video-Core-OpenCVTests}")
-
-include_directories(${Video-IO-OpenCV_INCLUDE_DIRS})
+CreateTestDriver(ITK-Video-Core-OpenCV  "${ITK-Video-Core-OpenCV-LIBRARIES}" "${OpenCV_LIBS}" "${ITK-Video-Core-OpenCVTests}")
 
 # OpenCVVideoCapture:
 add_video_test(NAME OpenCVVideoCaptureTest

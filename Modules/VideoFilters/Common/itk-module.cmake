@@ -1,1 +1,1 @@
-itk_module(Video-Filters-Common DEPENDS ITK-Common Video-Core-Common TEST_DEPENDS ITK-TestKernel ITK-Smoothing Video-IO-FileList)
+itk_module(ITK-Video-Filters-Common DEPENDS ITK-Common ITK-Video-Core-Common TEST_DEPENDS ITK-TestKernel ITK-Smoothing ITK-Video-IO-FileList)

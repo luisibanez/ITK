@@ -1,13 +1,13 @@
 itk_module_test()
-set(Video-IO-FileListTests
+set(ITK-Video-IO-FileListTests
   itkFileListVideoIOTest.cxx
   itkFileListVideoIOFactoryTest.cxx
 )
-CreateTestDriver(Video-IO-FileList  "${Video-IO-FileList-Test_LIBRARIES}" "${Video-IO-FileListTests}")
+CreateTestDriver(ITK-Video-IO-FileList  "${ITK-Video-IO-FileList-Test_LIBRARIES}" "${ITK-Video-IO-FileListTests}")
 
 # FileListVideoIO:
 add_video_test(NAME FileListVideoIOTest
-               COMMAND Video-IO-FileListTestDriver itkFileListVideoIOTest
+               COMMAND ITK-Video-IO-FileListTestDriver itkFileListVideoIOTest
                # Video Input:
                "MIDAS{frame0.jpg.md5},MIDAS{frame1.jpg.md5},MIDAS{frame2.jpg.md5},MIDAS{frame3.jpg.md5},MIDAS{frame4.jpg.md5}"
                # Non-Video Input:
@@ -22,7 +22,7 @@ add_video_test(NAME FileListVideoIOTest
 
 # FileListVideoIOFactory:
 add_video_test(NAME FileListVideoIOFactoryTest
-               COMMAND Video-IO-FileListTestDriver itkFileListVideoIOFactoryTest
+               COMMAND ITK-Video-IO-FileListTestDriver itkFileListVideoIOFactoryTest
                # Video Input:
                "MIDAS{frame0.jpg.md5},MIDAS{frame1.jpg.md5},MIDAS{frame2.jpg.md5},MIDAS{frame3.jpg.md5},MIDAS{frame4.jpg.md5}"
                # Output:

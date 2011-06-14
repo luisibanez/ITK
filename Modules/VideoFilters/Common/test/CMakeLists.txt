@@ -1,16 +1,16 @@
 itk_module_test()
-set(Video-Filters-CommonTests
+set(ITK-Video-Filters-CommonTests
   itkFrameAverageVideoFilterTest.cxx
   itkDecimateFramesVideoFilterTest.cxx
   itkImageFilterToVideoFilterWrapperTest.cxx
   itkFrameDifferenceVideoFilterTest.cxx
 )
 
-CreateTestDriver(Video-Filters-Common  "${Video-Filters-Common-Test_LIBRARIES}" "${Video-Filters-CommonTests}")
+CreateTestDriver(ITK-Video-Filters-Common  "${ITK-Video-Filters-Common-Test_LIBRARIES}" "${ITK-Video-Filters-CommonTests}")
 
 # FrameAverageVideoFilter
 add_video_test(NAME FrameAverageVideoFilterTest
-              COMMAND Video-Filters-CommonTestDriver itkFrameAverageVideoFilterTest
+              COMMAND ITK-Video-Filters-CommonTestDriver itkFrameAverageVideoFilterTest
               # Input
               "MIDAS{frame0.jpg.md5},MIDAS{frame1.jpg.md5},MIDAS{frame2.jpg.md5},MIDAS{frame3.jpg.md5},MIDAS{frame4.jpg.md5}"
               # Output
@@ -19,7 +19,7 @@ add_video_test(NAME FrameAverageVideoFilterTest
 
 # DecimateFramesVideoFilter
 add_video_test(NAME DecimateFramesVideoFilterTest
-              COMMAND Video-Filters-CommonTestDriver itkDecimateFramesVideoFilterTest
+              COMMAND ITK-Video-Filters-CommonTestDriver itkDecimateFramesVideoFilterTest
               # Input
               "MIDAS{frame0.jpg.md5},MIDAS{frame1.jpg.md5},MIDAS{frame2.jpg.md5},MIDAS{frame3.jpg.md5},MIDAS{frame4.jpg.md5}"
               # Output
@@ -28,7 +28,7 @@ add_video_test(NAME DecimateFramesVideoFilterTest
 
 # ImageFilterToVideoFilterWrapperTest
 add_video_test(NAME ImageFilterToVideoFilterWrapperTest
-              COMMAND Video-Filters-CommonTestDriver itkImageFilterToVideoFilterWrapperTest
+              COMMAND ITK-Video-Filters-CommonTestDriver itkImageFilterToVideoFilterWrapperTest
               # Input
               "MIDAS{frame0.jpg.md5},MIDAS{frame1.jpg.md5},MIDAS{frame2.jpg.md5},MIDAS{frame3.jpg.md5},MIDAS{frame4.jpg.md5}"
               # Output
@@ -37,5 +37,5 @@ add_video_test(NAME ImageFilterToVideoFilterWrapperTest
 
 # FrameDifferenceVideoFilter
 add_video_test(NAME FrameDifferenceVideoFilterTest
-              COMMAND Video-Filters-CommonTestDriver itkFrameDifferenceVideoFilterTest
+              COMMAND ITK-Video-Filters-CommonTestDriver itkFrameDifferenceVideoFilterTest
               )

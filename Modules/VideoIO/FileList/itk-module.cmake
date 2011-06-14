@@ -1,1 +1,1 @@
-itk_module(Video-IO-FileList DEPENDS ITK-IO-Base Video-IO-Base TEST_DEPENDS ITK-TestKernel)
+itk_module(ITK-Video-IO-FileList DEPENDS ITK-IO-Base ITK-Video-IO-Base TEST_DEPENDS ITK-TestKernel)

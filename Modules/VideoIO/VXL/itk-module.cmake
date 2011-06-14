@@ -1,1 +1,1 @@
-itk_module(Video-IO-VXL DEPENDS ITK-IO-Base Video-IO-Base Video-Core-Common TEST_DEPENDS ITK-TestKernel)
+itk_module(ITK-Video-IO-VXL DEPENDS ITK-IO-Base ITK-Video-IO-Base ITK-Video-Core-Common TEST_DEPENDS ITK-TestKernel)

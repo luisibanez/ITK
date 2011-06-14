@@ -1,14 +1,14 @@
 itk_module_test()
-set(Video-IO-OpenCVTests
+set(ITK-Video-IO-OpenCVTests
   itkOpenCVVideoIOTest.cxx
   itkOpenCVVideoIOFactoryTest.cxx
 )
 
-CreateTestDriver(Video-IO-OpenCV  "${Video-IO-OpenCV-Test_LIBRARIES}" "${Video-IO-OpenCVTests}")
+CreateTestDriver(ITK-Video-IO-OpenCV  "${ITK-Video-IO-OpenCV-Test_LIBRARIES}" "${ITK-Video-IO-OpenCVTests}")
 
 # OpenCVVideoIO:
 add_video_test(NAME OpenCVVideoIOTest
-               COMMAND Video-IO-OpenCVTestDriver itkOpenCVVideoIOTest
+               COMMAND ITK-Video-IO-OpenCVTestDriver itkOpenCVVideoIOTest
                # Video Input:
                MIDAS{inde-circulation.avi.md5}
                # Non-Video Input:
@@ -23,7 +23,7 @@ add_video_test(NAME OpenCVVideoIOTest
 
 # OpenCVVideoIOFactory:
 add_video_test(NAME OpenCVVideoIOFactoryTest
-               COMMAND Video-IO-OpenCVTestDriver itkOpenCVVideoIOFactoryTest
+               COMMAND ITK-Video-IO-OpenCVTestDriver itkOpenCVVideoIOFactoryTest
                # Video Input:
                MIDAS{inde-circulation.avi.md5}
                # Output:

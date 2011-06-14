@@ -1,3 +1,3 @@
-project(Video-IO-Base)
-set(Video-IO-Base_LIBRARIES Video-IO-Base Video-Core-Common)
+project(ITK-Video-IO-Base)
+set(ITK-Video-IO-Base_LIBRARIES ITK-Video-IO-Base ITK-Video-Core-Common)
 itk_module_impl()
