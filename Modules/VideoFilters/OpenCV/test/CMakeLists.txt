@@ -2,7 +2,7 @@ itk_module_test()
 set(Video-Filters-OpenCVTests
   itkFaceDetectionFilterTest.cxx
 )
-find_package ( OpenCV REQUIRED )
+
 CreateTestDriver(Video-Filters-OpenCV  "${Video-Filters-OpenCV-Test_LIBRARIES}" "${Video-Filters-OpenCVTests}")
 
 #Face detection :

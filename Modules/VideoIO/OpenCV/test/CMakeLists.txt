@@ -3,7 +3,7 @@ set(Video-IO-OpenCVTests
   itkOpenCVVideoIOTest.cxx
   itkOpenCVVideoIOFactoryTest.cxx
 )
-find_package ( OpenCV REQUIRED )
+
 CreateTestDriver(Video-IO-OpenCV  "${Video-IO-OpenCV-Test_LIBRARIES}" "${Video-IO-OpenCVTests}")
 
 # OpenCVVideoIO:

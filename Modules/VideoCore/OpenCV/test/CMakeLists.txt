@@ -3,7 +3,7 @@ set(Video-Core-OpenCVTests
   itkOpenCVVideoCaptureTest.cxx
   itkOpenCVImageBridgeTest.cxx
 )
-find_package ( OpenCV REQUIRED )
+
 CreateTestDriver(Video-Core-OpenCV  "${Video-Core-OpenCV-Test_LIBRARIES}" "${Video-Core-OpenCVTests}")
 
 include_directories(${Video-IO-OpenCV_INCLUDE_DIRS})
